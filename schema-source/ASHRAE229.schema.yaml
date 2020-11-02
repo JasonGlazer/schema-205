@@ -99,6 +99,22 @@ Building:
       Range: ">=0"
       Required: True
       Notes: ""
+    thermal_blocks:
+      Description: "thermal blocks in the building"
+      Data Type: "[{ThermalBlock}]"
+      Notes: "Contains a list of thermal blocks in the building."
+
+ThermalBlock:
+  Object Type: "Data Group"
+  Data Elements:
+    zones:
+      Description: "zones in the building"
+      Data Type: "[{Zone}]"
+      Notes: "Contains a list of zones in the building."
+
+Zone:
+  Object Type: "Data Group"
+  Data Elements:
     spaces:
       Description: "Spaces in the building"
       Data Type: "[{Space}]"

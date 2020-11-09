@@ -144,9 +144,14 @@ Space:
       Data Type: "<ConditioningType>"
       Required: True
       Notes: ""
-    use_class:
+    lighting_space_type:
       Description: "Whether space use types are building area types from Table 9.5.1 or space use types from Table 9.6.1"
-      Data Type: "<UseClassType>"
+      Data Type: "<LightingSpaceType>"
+      Required: True
+      Notes: ""
+    ventilations_space_type:
+      Description: "Whether space use types are building area types from Standard 62.1"
+      Data Type: "<VentilationSpaceType>"
       Required: True
       Notes: ""
 
@@ -174,7 +179,7 @@ ConditioningType:
       Notes: ""
       Display Text: "Plenum"
 
-UseClassType:
+LightingSpaceType:
   Object Type: "Enumeration"
   Enumerators:
 # Table 9.5.1 Building Area Types  

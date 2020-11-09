@@ -77,10 +77,6 @@ ASHRAE229:
       Description: "Schedules for internal loads, thermostats, equipment operation and control, and any other need."
       Data Type: "[{Schedule}]"
       Notes: "Contains a list of schedules used in model."
-    schedules_alternative_01:
-      Description: "Alternative way of expressing schedules with only a few key values including a fingerprint-hash value"
-      Data Type: "[{ScheduleAlternative01}]"
-      Notes: "Contains a list of schedules used in model."
 
 Building:
   Object Type: "Data Group"
@@ -298,189 +294,47 @@ Schedule:
       Data Type: "String"
       Required: True
       Notes: "Not an enumerations because we only care that the type assigned by BEM tool matches across RMR"
-    week_schedules:
-      Description: "List of week schedules in annual schedule"
-      Data Type: "[{WeekSchedule}]"
-      Notes: "Contains a list of week specficiations"
-    
-WeekSchedule:
-  Object Type: "Data Group"
-  Data Elements:
-    id:
-      Description: "Unique Identification Number"
-      Data Type: "Numeric"
-      Required: True
-      Notes: ""
-    name:
-      Description: "Week Schedule Name"
-      Data Type: "String"
-      Required: True
-      Notes: ""
-    start_month:
-      Description: "start month of assigned weeks"
-      Data Type: "Integer" 
-      Range: ">=1, <=12"
-      Required: True
-      Notes: ""
-    start_day:
-      Description: "start day of month of assigned weeks"
-      Data Type: "Integer" 
-      Range: ">=1, <=31"
-      Required: True
-      Notes: ""
-    end_month:
-      Description: "end month of assigned weeks"
-      Data Type: "Integer" 
-      Range: ">=1, <=12"
-      Required: True
-      Notes: ""
-    end_day:
-      Description: "end day of month of assigned weeks"
-      Data Type: "Integer" 
-      Range: ">=1, <=31"
-      Required: True
-      Notes: ""
-    monday_day_schedule:
-      Description: "Monday Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-    tuesday_day_schedule:
-      Description: "Tuesday Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-    wednesday_day_schedule:
-      Description: "Wednesday Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-    thursday_day_schedule:
-      Description: "Thursday Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-    friday_day_schedule:
-      Description: "Friday Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-    saturday_day_schedule:
-      Description: "Saturday Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-    sunday_day_schedule:  
-      Description: "Sunday Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-    holiday_day_schedule:
-      Description: "Holiday Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-    cooling_design_day_day_schedule:
-      Description: "Cooling design day Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-    heating_design_day_day_schedule:
-      Description: "Heating design day Schedule Name"
-      Data Type: "{DaySchedule}"
-      Required: True
-      Notes: ""
-
-DaySchedule:
-  Object Type: "Data Group"
-  Data Elements:
-    id:
-      Description: "Unique Identification Number"
-      Data Type: "Numeric"
-      Required: True
-      Notes: ""
-    name:
-      Description: "Name of the Day Schedule"
-      Data Type: "String"
-      Required: True
-      Notes: ""
     values:
       Description: "Hourly Values of Schedule"
-      Data Type: "[Numeric][1..24]"
+      Data Type: "[Numeric][1..8760]"
       Required: True
       Notes: ""
-
-ScheduleAlternative01:
+    
+Calendar:
   Object Type: "Data Group"
   Data Elements:
     id:
       Description: "Unique Identification Number"
       Data Type: "Numeric"
       Required: True
-      Notes: ""
-    name:
-      Description: "Name of the Schedule"
-      Data Type: "String"
+    day_of_week_for_january_1:
+      Description: "Day of the Week for January 1"
+      Data Type: "<DayOfWeek>"
       Required: True
-      Notes: ""
-    type:
-      Description: "The type of schedule"
-      Data Type: "String"
+    is_leap_year:
+      Description: "The schedules assume it is a leap year"
+      Data Type: "Boolean"
       Required: True
-      Notes: "Not an enumerations because we only care that the type assigned by BEM tool matches across RMR"
-    hash_fingerprint:
-      Description: "A digital fingerprint or hash of all schedule values"
-      Data Type: "Integer"
+    is_daylight_savings_time:
+      Description: "The schedules adjust for daylight Savings Time"
+      Data Type: "Boolean"
       Required: True
-      Notes: "The hash algorithm would need to result in significant different hash values when only minor changes are made to the schedule and is primarily to check for sameness"
-    equivalent_full_load_hours:    
-      Description: "Equivalent full load hours"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "The sum of the schedule values for entire year"
-    average_value:
-      Description: "The average value of the schedule"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "the average value of schedule for all hours in the schedule"
-    average_occupied_value:
-      Description: "The average value of the schedule during occupied hours"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "The occupied and unoccupied time periods are defined elsewhere."
-    average_unoccupied_value:
-      Description: "The average value of the schedule during unoccupied hours"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "The occupied and unoccupied time periods are defined elsewhere."
-    fraction_of_occupied_hours_nonzero:
-      Description: "Fraction of the occupied hours that are nonzero or 'on'"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "The occupied and unoccupied time periods are defined elsewhere."
-    fraction_of_unoccupied_hours_nonzero:
-      Description: "Fraction of the unoccupied hours that are nonzero or 'on'"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "The occupied and unoccupied time periods are defined elsewhere."
-    most_common_occupied_hour_value:
-      Description: "Most common value of schedule during occupied hours"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "The occupied and unoccupied time periods are defined elsewhere."
-    most_common_unoccupied_hour_value:
-      Description: "Most common value of schedule during unoccupied hours"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "The occupied and unoccupied time periods are defined elsewhere."
-    fraction_of_occupied_hours_at_most_common_value:
-      Description: "Fraction of the occupied hours that are at the most common value during occupied hours"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "The occupied and unoccupied time periods are defined elsewhere."
-    fraction_of_unoccupied_hours_at_most_common_value:
-      Description: "Fraction of the unoccupied hours that are at the most common value during unoccupied hours"
-      Data Type: "Numeric"
-      Required: True
-      Notes: "The occupied and unoccupied time periods are defined elsewhere."
+
+DayOfWeek:
+  Object Type: "Enumeration"
+  Enumerators:
+    SUNDAY:
+      Description: "Sunday"
+    MONDAY:
+      Description: "Monday"
+    TUESDAY:
+      Description: "Tuesday"
+    WEDNESDAY:
+      Description: "Wednesday"
+    THURSDAY:
+      Description: "Thursday"
+    FRIDAY:
+      Description: "Friday"
+    SATURDAY:
+      Description: "Saturday"
     

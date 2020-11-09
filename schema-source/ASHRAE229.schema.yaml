@@ -141,10 +141,20 @@ Space:
       Range: ">=0"
       Required: True
       Notes: ""
+    floor_area_basis_for_exterior:
+      Description: "The basis of the measurement location related to floor area for exterior walls."
+      Data Type: "<FloorAreaBasis>"
+      Required: True
+      Notes: ""
+    floor_area_basis_for_interior:
+      Description: "The basis of the measurement location related to floor area for interior walls."
+      Data Type: "<FloorAreaBasis>"
+      Required: True
+      Notes: ""
     conditioning_type:
       Description: "Space conditioning category"
       Data Type: "<ConditioningType>"
-      Required: True
+      Required: False
       Notes: ""
     lighting_space_type:
       Description: "Whether space use types are building area types from Table 9.5.1 or space use types from Table 9.6.1"
@@ -156,6 +166,22 @@ Space:
       Data Type: "<VentilationSpaceType6212019>"
       Required: True
       Notes: ""
+
+FloorAreaBasis:
+  Object Type: "Enumeration"
+  Enumerators:
+    CENTER:
+      Description: "Center line of the wall"
+      Notes: ""
+      Display Text: "The area is measured to the center line of the wall"
+    NEAR_SIDE:
+      Description: "Near side of the wall"
+      Notes: ""
+      Display Text: "The area is measured to the line on the near side wall"
+    FAR_SIDE:
+      Description: "Far side of the wall"
+      Notes: ""
+      Display Text: "The area is measured to the line on the far side wall"
 
 ConditioningType:
   Object Type: "Enumeration"

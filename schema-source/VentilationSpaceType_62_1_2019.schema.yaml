@@ -1,439 +1,451 @@
-VentilationSpaceType:
+---
+# VentilationSpaceType_62_1_2019.schema.yaml
+# The purpose of this ventilation space type file is to provide a separated source forom the main 
+# schema file in the generator format to generate ventilation standard materials, both normative and informative.
+
+Schema:
+  Object Type: "Meta"
+  References:
+    - "ASHRAE229"
+  Title: "Ventilation ASHRAE 62.1-2019"
+  Description: "Schema for ASHRAE 205 related to ventilation based on ASHRAE 62.1-2019"
+
+VentilationSpaceType6212019:
   Object Type: "Enumeration"
   Enumerators:
-    ANIMAL_FACILITIES_ANIMAL_EXAM_ROOM_VETERINARY_OFFICE
+    ANIMAL_FACILITIES_ANIMAL_EXAM_ROOM_VETERINARY_OFFICE:
       Description: "Animal Facilities - Animal exam room (veterinary office)"
       Notes: ""
       Display Text: "Animal Facilities - Animal exam room (veterinary office)"
-    ANIMAL_FACILITIES_ANIMAL_IMAGING_MRI_CT_PET
+    ANIMAL_FACILITIES_ANIMAL_IMAGING_MRI_CT_PET:
       Description: "Animal Facilities - Animal imaging (MRI/CT/PET)"
       Notes: ""
       Display Text: "Animal Facilities - Animal imaging (MRI/CT/PET)"
-    ANIMAL_FACILITIES_ANIMAL_OPERATING_ROOMS
+    ANIMAL_FACILITIES_ANIMAL_OPERATING_ROOMS:
       Description: "Animal Facilities - Animal operating rooms"
       Notes: ""
       Display Text: "Animal Facilities - Animal operating rooms"
-    ANIMAL_FACILITIES_ANIMAL_POSTOPERATIVE_RECOVERY_ROOM
+    ANIMAL_FACILITIES_ANIMAL_POSTOPERATIVE_RECOVERY_ROOM:
       Description: "Animal Facilities - Animal postoperative recovery room"
       Notes: ""
       Display Text: "Animal Facilities - Animal postoperative recovery room"
-    ANIMAL_FACILITIES_ANIMAL_PREPARATION_ROOMS
+    ANIMAL_FACILITIES_ANIMAL_PREPARATION_ROOMS:
       Description: "Animal Facilities - Animal preparation rooms"
       Notes: ""
       Display Text: "Animal Facilities - Animal preparation rooms"
-    ANIMAL_FACILITIES_ANIMAL_PROCEDURE_ROOM
+    ANIMAL_FACILITIES_ANIMAL_PROCEDURE_ROOM:
       Description: "Animal Facilities - Animal procedure room"
       Notes: ""
       Display Text: "Animal Facilities - Animal procedure room"
-    ANIMAL_FACILITIES_ANIMAL_SURGERY_SCRUB
+    ANIMAL_FACILITIES_ANIMAL_SURGERY_SCRUB:
       Description: "Animal Facilities - Animal surgery scrub"
       Notes: ""
       Display Text: "Animal Facilities - Animal surgery scrub"
-    ANIMAL_FACILITIES_LARGE_ANIMAL_HOLDING_ROOM
+    ANIMAL_FACILITIES_LARGE_ANIMAL_HOLDING_ROOM:
       Description: "Animal Facilities - Large-animal holding room"
       Notes: ""
       Display Text: "Animal Facilities - Large-animal holding room"
-    ANIMAL_FACILITIES_NECROPSY
+    ANIMAL_FACILITIES_NECROPSY:
       Description: "Animal Facilities - Necropsy"
       Notes: ""
       Display Text: "Animal Facilities - Necropsy"
-    ANIMAL_FACILITIES_SMALL_ANIMAL_CAGE_ROOM_STATIC_CAGES
+    ANIMAL_FACILITIES_SMALL_ANIMAL_CAGE_ROOM_STATIC_CAGES:
       Description: "Animal Facilities - Small-animal-cage room (static cages)"
       Notes: ""
       Display Text: "Animal Facilities - Small-animal-cage room (static cages)"
-    ANIMAL_FACILITIES_SMALL_ANIMAL_CAGE_ROOM_VENTILATED_CAGES
+    ANIMAL_FACILITIES_SMALL_ANIMAL_CAGE_ROOM_VENTILATED_CAGES:
       Description: "Animal Facilities - Small-animal-cage room (ventilated cages)"
       Notes: ""
       Display Text: "Animal Facilities - Small-animal-cage room (ventilated cages)"
-    CORRECTIONAL_FACILITIES_BOOKING_WAITING
+    CORRECTIONAL_FACILITIES_BOOKING_WAITING:
       Description: "Correctional Facilities - Booking/waiting"
       Notes: ""
       Display Text: "Correctional Facilities - Booking/waiting"
-    CORRECTIONAL_FACILITIES_CELL
+    CORRECTIONAL_FACILITIES_CELL:
       Description: "Correctional Facilities - Cell"
       Notes: ""
       Display Text: "Correctional Facilities - Cell"
-    CORRECTIONAL_FACILITIES_DAYROOM
+    CORRECTIONAL_FACILITIES_DAYROOM:
       Description: "Correctional Facilities - Dayroom"
       Notes: ""
       Display Text: "Correctional Facilities - Dayroom"
-    CORRECTIONAL_FACILITIES_GUARD_STATIONS
+    CORRECTIONAL_FACILITIES_GUARD_STATIONS:
       Description: "Correctional Facilities - Guard stations"
       Notes: ""
       Display Text: "Correctional Facilities - Guard stations"
-    EDUCATIONAL_FACILITIES_ART_CLASSROOM
+    EDUCATIONAL_FACILITIES_ART_CLASSROOM:
       Description: "Educational Facilities - Art classroom"
       Notes: ""
       Display Text: "Educational Facilities - Art classroom"
-    EDUCATIONAL_FACILITIES_CLASSROOMS_AGES_5_TO_8
+    EDUCATIONAL_FACILITIES_CLASSROOMS_AGES_5_TO_8:
       Description: "Educational Facilities - Classrooms (ages 5 to 8)"
       Notes: ""
       Display Text: "Educational Facilities - Classrooms (ages 5 to 8)"
-    EDUCATIONAL_FACILITIES_CLASSROOMS_AGE_9_PLUS
+    EDUCATIONAL_FACILITIES_CLASSROOMS_AGE_9_PLUS:
       Description: "Educational Facilities - Classrooms (age 9 plus)"
       Notes: ""
       Display Text: "Educational Facilities - Classrooms (age 9 plus)"
-    EDUCATIONAL_FACILITIES_COMPUTER_LAB
+    EDUCATIONAL_FACILITIES_COMPUTER_LAB:
       Description: "Educational Facilities - Computer lab"
       Notes: ""
       Display Text: "Educational Facilities - Computer lab"
-    EDUCATIONAL_FACILITIES_DAYCARE_SICKROOM
+    EDUCATIONAL_FACILITIES_DAYCARE_SICKROOM:
       Description: "Educational Facilities - Daycare sickroom"
       Notes: ""
       Display Text: "Educational Facilities - Daycare sickroom"
-    EDUCATIONAL_FACILITIES_DAYCARE_THROUGH_AGE_4
+    EDUCATIONAL_FACILITIES_DAYCARE_THROUGH_AGE_4:
       Description: "Educational Facilities - Daycare (through age 4)"
       Notes: ""
       Display Text: "Educational Facilities - Daycare (through age 4)"
-    EDUCATIONAL_FACILITIES_LECTURE_CLASSROOM
+    EDUCATIONAL_FACILITIES_LECTURE_CLASSROOM:
       Description: "Educational Facilities - Lecture classroom"
       Notes: ""
       Display Text: "Educational Facilities - Lecture classroom"
-    EDUCATIONAL_FACILITIES_LECTURE_HALL_FIXED_SEATS
+    EDUCATIONAL_FACILITIES_LECTURE_HALL_FIXED_SEATS:
       Description: "Educational Facilities - Lecture hall (fixed seats)"
       Notes: ""
       Display Text: "Educational Facilities - Lecture hall (fixed seats)"
-    EDUCATIONAL_FACILITIES_LIBRARIES
+    EDUCATIONAL_FACILITIES_LIBRARIES:
       Description: "Educational Facilities - Libraries"
       Notes: ""
       Display Text: "Educational Facilities - Libraries"
-    EDUCATIONAL_FACILITIES_MEDIA_CENTER
+    EDUCATIONAL_FACILITIES_MEDIA_CENTER:
       Description: "Educational Facilities - Media center"
       Notes: ""
       Display Text: "Educational Facilities - Media center"
-    EDUCATIONAL_FACILITIES_MULTIUSE_ASSEMBLY
+    EDUCATIONAL_FACILITIES_MULTIUSE_ASSEMBLY:
       Description: "Educational Facilities - Multiuse assembly"
       Notes: ""
       Display Text: "Educational Facilities - Multiuse assembly"
-    EDUCATIONAL_FACILITIES_MUSIC_THEATER_DANCE
+    EDUCATIONAL_FACILITIES_MUSIC_THEATER_DANCE:
       Description: "Educational Facilities - Music/theater/dance"
       Notes: ""
       Display Text: "Educational Facilities - Music/theater/dance"
-    EDUCATIONAL_FACILITIES_SCIENCE_LABORATORIES
+    EDUCATIONAL_FACILITIES_SCIENCE_LABORATORIES:
       Description: "Educational Facilities - Science laboratories"
       Notes: ""
       Display Text: "Educational Facilities - Science laboratories"
-    EDUCATIONAL_FACILITIES_UNIVERSITY_COLLEGE_LABORATORIES
+    EDUCATIONAL_FACILITIES_UNIVERSITY_COLLEGE_LABORATORIES:
       Description: "Educational Facilities - University/college laboratories"
       Notes: ""
       Display Text: "Educational Facilities - University/college laboratories"
-    EDUCATIONAL_FACILITIES_WOOD_METAL_SHOP
+    EDUCATIONAL_FACILITIES_WOOD_METAL_SHOP:
       Description: "Educational Facilities - Wood/metal shop"
       Notes: ""
       Display Text: "Educational Facilities - Wood/metal shop"
-    FOOD_AND_BEVERAGE_SERVICE_BARS_COCKTAIL_LOUNGES
+    FOOD_AND_BEVERAGE_SERVICE_BARS_COCKTAIL_LOUNGES:
       Description: "Food and Beverage Service - Bars, cocktail lounges"
       Notes: ""
       Display Text: "Food and Beverage Service - Bars, cocktail lounges"
-    FOOD_AND_BEVERAGE_SERVICE_CAFETERIA_FAST_FOOD_DINING
+    FOOD_AND_BEVERAGE_SERVICE_CAFETERIA_FAST_FOOD_DINING:
       Description: "Food and Beverage Service - Cafeteria/fast-food dining"
       Notes: ""
       Display Text: "Food and Beverage Service - Cafeteria/fast-food dining"
-    FOOD_AND_BEVERAGE_SERVICE_KITCHEN_COOKING
+    FOOD_AND_BEVERAGE_SERVICE_KITCHEN_COOKING:
       Description: "Food and Beverage Service - Kitchen (cooking)"
       Notes: ""
       Display Text: "Food and Beverage Service - Kitchen (cooking)"
-    FOOD_AND_BEVERAGE_SERVICE_RESTAURANT_DINING_ROOMS
+    FOOD_AND_BEVERAGE_SERVICE_RESTAURANT_DINING_ROOMS:
       Description: "Food and Beverage Service - Restaurant dining rooms"
       Notes: ""
       Display Text: "Food and Beverage Service - Restaurant dining rooms"
-    FOOD_AND_BEVERAGE_SERVICE_GENERAL_BREAK_ROOMS
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_BREAK_ROOMS:
       Description: "Food and Beverage Service, General - Break rooms"
       Notes: ""
       Display Text: "Food and Beverage Service, General - Break rooms"
-    FOOD_AND_BEVERAGE_SERVICE_GENERAL_COFFEE_STATIONS
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_COFFEE_STATIONS:
       Description: "Food and Beverage Service, General - Coffee stations"
       Notes: ""
       Display Text: "Food and Beverage Service, General - Coffee stations"
-    FOOD_AND_BEVERAGE_SERVICE_GENERAL_CONFERENCE_MEETING
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_CONFERENCE_MEETING:
       Description: "Food and Beverage Service, General - Conference/meeting"
       Notes: ""
       Display Text: "Food and Beverage Service, General - Conference/meeting"
-    FOOD_AND_BEVERAGE_SERVICE_GENERAL_CORRIDORS
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_CORRIDORS:
       Description: "Food and Beverage Service, General - Corridors"
       Notes: ""
       Display Text: "Food and Beverage Service, General - Corridors"
-    FOOD_AND_BEVERAGE_SERVICE_GENERAL_OCCUPIABLE_STORAGE_ROOMS_FOR_LIQUIDS_OR_GELS
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_OCCUPIABLE_STORAGE_ROOMS_FOR_LIQUIDS_OR_GELS:
       Description: "Food and Beverage Service, General - Occupiable storage rooms for liquids or gels"
       Notes: ""
       Display Text: "Food and Beverage Service, General - Occupiable storage rooms for liquids or gels"
-    HOTELS_MOTELS_RESORTS_DORMITORIES_BARRACKS_SLEEPING_AREAS
+    HOTELS_MOTELS_RESORTS_DORMITORIES_BARRACKS_SLEEPING_AREAS:
       Description: "Hotels, Motels, Resorts, Dormitories - Barracks sleeping areas"
       Notes: ""
       Display Text: "Hotels, Motels, Resorts, Dormitories - Barracks sleeping areas"
-    HOTELS_MOTELS_RESORTS_DORMITORIES_BEDROOM_LIVING_ROOM
+    HOTELS_MOTELS_RESORTS_DORMITORIES_BEDROOM_LIVING_ROOM:
       Description: "Hotels, Motels, Resorts, Dormitories - Bedroom/living room"
       Notes: ""
       Display Text: "Hotels, Motels, Resorts, Dormitories - Bedroom/living room"
-    HOTELS_MOTELS_RESORTS_DORMITORIES_LAUNDRY_ROOMS_CENTRAL
+    HOTELS_MOTELS_RESORTS_DORMITORIES_LAUNDRY_ROOMS_CENTRAL:
       Description: "Hotels, Motels, Resorts, Dormitories - Laundry rooms, central"
       Notes: ""
       Display Text: "Hotels, Motels, Resorts, Dormitories - Laundry rooms, central"
-    HOTELS_MOTELS_RESORTS_DORMITORIES_LAUNDRY_ROOMS_WITHIN_DWELLING_UNITS
+    HOTELS_MOTELS_RESORTS_DORMITORIES_LAUNDRY_ROOMS_WITHIN_DWELLING_UNITS:
       Description: "Hotels, Motels, Resorts, Dormitories - Laundry rooms within dwelling units"
       Notes: ""
       Display Text: "Hotels, Motels, Resorts, Dormitories - Laundry rooms within dwelling units"
-    HOTELS_MOTELS_RESORTS_DORMITORIES_LOBBIES_PREFUNCTION
+    HOTELS_MOTELS_RESORTS_DORMITORIES_LOBBIES_PREFUNCTION:
       Description: "Hotels, Motels, Resorts, Dormitories - Lobbies/prefunction"
       Notes: ""
       Display Text: "Hotels, Motels, Resorts, Dormitories - Lobbies/prefunction"
-    HOTELS_MOTELS_RESORTS_DORMITORIES_MULTIPURPOSE_ASSEMBLY
+    HOTELS_MOTELS_RESORTS_DORMITORIES_MULTIPURPOSE_ASSEMBLY:
       Description: "Hotels, Motels, Resorts, Dormitories - Multipurpose assembly"
       Notes: ""
       Display Text: "Hotels, Motels, Resorts, Dormitories - Multipurpose assembly"
-    MISCELLANEOUS_SPACES_BANKS_OR_BANK_LOBBIES
+    MISCELLANEOUS_SPACES_BANKS_OR_BANK_LOBBIES:
       Description: "Miscellaneous Spaces - Banks or bank lobbies"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Banks or bank lobbies"
-    MISCELLANEOUS_SPACES_BANK_VAULTS_SAFE_DEPOSIT
+    MISCELLANEOUS_SPACES_BANK_VAULTS_SAFE_DEPOSIT:
       Description: "Miscellaneous Spaces - Bank vaults/safe deposit"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Bank vaults/safe deposit"
-    MISCELLANEOUS_SPACES_COMPUTER_NOT_PRINTING
+    MISCELLANEOUS_SPACES_COMPUTER_NOT_PRINTING:
       Description: "Miscellaneous Spaces - Computer (not printing)"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Computer (not printing)"
-    MISCELLANEOUS_SPACES_FREEZER_AND_REFRIGERATED_SPACES_50F_10C
+    MISCELLANEOUS_SPACES_FREEZER_AND_REFRIGERATED_SPACES:
       Description: "Miscellaneous Spaces - Freezer and refrigerated spaces (<50°F [10°C])"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Freezer and refrigerated spaces (<50°F [10°C])"
-    MISCELLANEOUS_SPACES_MANUFACTURING_WHERE_HAZARDOUS_MATERIALS_ARE_NOT_USED
+    MISCELLANEOUS_SPACES_MANUFACTURING_WHERE_HAZARDOUS_MATERIALS_ARE_NOT_USED:
       Description: "Miscellaneous Spaces - Manufacturing where hazardous materials are not used"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Manufacturing where hazardous materials are not used"
-    MISCELLANEOUS_SPACES_MANUFACTURING_WHERE_HAZARDOUS_MATERIALS_ARE_USED_EXCLUDES_HEAVY_INDUSTRIAL_AND_CHEMICAL_PROCESSES
+    MISCELLANEOUS_SPACES_MANUFACTURING_WHERE_HAZARDOUS_MATERIALS_ARE_USED_EXCLUDES_HEAVY_INDUSTRIAL_AND_CHEMICAL_PROCESSES:
       Description: "Miscellaneous Spaces - Manufacturing where hazardous materials are used (excludes heavy industrial and chemical processes)"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Manufacturing where hazardous materials are used (excludes heavy industrial and chemical processes)"
-    MISCELLANEOUS_SPACES_PHARMACY_PREP_AREA
+    MISCELLANEOUS_SPACES_PHARMACY_PREP_AREA:
       Description: "Miscellaneous Spaces - Pharmacy (prep. area)"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Pharmacy (prep. area)"
-    MISCELLANEOUS_SPACES_PHOTO_STUDIOS
+    MISCELLANEOUS_SPACES_PHOTO_STUDIOS:
       Description: "Miscellaneous Spaces - Photo studios"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Photo studios"
-    MISCELLANEOUS_SPACES_SHIPPING_RECEIVING
+    MISCELLANEOUS_SPACES_SHIPPING_RECEIVING:
       Description: "Miscellaneous Spaces - Shipping/receiving"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Shipping/receiving"
-    MISCELLANEOUS_SPACES_SORTING_PACKING_LIGHT_ASSEMBLY
+    MISCELLANEOUS_SPACES_SORTING_PACKING_LIGHT_ASSEMBLY:
       Description: "Miscellaneous Spaces - Sorting, packing, light assembly"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Sorting, packing, light assembly"
-    MISCELLANEOUS_SPACES_TELEPHONE_CLOSETS
+    MISCELLANEOUS_SPACES_TELEPHONE_CLOSETS:
       Description: "Miscellaneous Spaces - Telephone closets"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Telephone closets"
-    MISCELLANEOUS_SPACES_TRANSPORTATION_WAITING
+    MISCELLANEOUS_SPACES_TRANSPORTATION_WAITING:
       Description: "Miscellaneous Spaces - Transportation waiting"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Transportation waiting"
-    MISCELLANEOUS_SPACES_WAREHOUSES
+    MISCELLANEOUS_SPACES_WAREHOUSES:
       Description: "Miscellaneous Spaces - Warehouses"
       Notes: ""
       Display Text: "Miscellaneous Spaces - Warehouses"
-    OFFICE_BUILDINGS_BREAKROOMS
+    OFFICE_BUILDINGS_BREAKROOMS:
       Description: "Office Buildings - Breakrooms"
       Notes: ""
       Display Text: "Office Buildings - Breakrooms"
-    OFFICE_BUILDINGS_MAIN_ENTRY_LOBBIES
+    OFFICE_BUILDINGS_MAIN_ENTRY_LOBBIES:
       Description: "Office Buildings - Main entry lobbies"
       Notes: ""
       Display Text: "Office Buildings - Main entry lobbies"
-    OFFICE_BUILDINGS_OCCUPIABLE_STORAGE_ROOMS_FOR_DRY_MATERIALS
+    OFFICE_BUILDINGS_OCCUPIABLE_STORAGE_ROOMS_FOR_DRY_MATERIALS:
       Description: "Office Buildings - Occupiable storage rooms for dry materials"
       Notes: ""
       Display Text: "Office Buildings - Occupiable storage rooms for dry materials"
-    OFFICE_BUILDINGS_OFFICE_SPACE
+    OFFICE_BUILDINGS_OFFICE_SPACE:
       Description: "Office Buildings - Office space"
       Notes: ""
       Display Text: "Office Buildings - Office space"
-    OFFICE_BUILDINGS_RECEPTION_AREAS
+    OFFICE_BUILDINGS_RECEPTION_AREAS:
       Description: "Office Buildings - Reception areas"
       Notes: ""
       Display Text: "Office Buildings - Reception areas"
-    OFFICE_BUILDINGS_TELEPHONE_DATA_ENTRY
+    OFFICE_BUILDINGS_TELEPHONE_DATA_ENTRY:
       Description: "Office Buildings - Telephone/data entry"
       Notes: ""
       Display Text: "Office Buildings - Telephone/data entry"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_BIRTHING_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_BIRTHING_ROOM:
       Description: "Outpatient Health Care Facilities - Birthing room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Birthing room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_CLASS_1_IMAGING_ROOMS
+    OUTPATIENT_HEALTH_CARE_FACILITIES_CLASS_1_IMAGING_ROOMS:
       Description: "Outpatient Health Care Facilities - Class 1 imaging rooms"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Class 1 imaging rooms"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_DENTAL_OPERATORY
+    OUTPATIENT_HEALTH_CARE_FACILITIES_DENTAL_OPERATORY:
       Description: "Outpatient Health Care Facilities - Dental operatory"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Dental operatory"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_GENERAL_EXAMINATION_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_GENERAL_EXAMINATION_ROOM:
       Description: "Outpatient Health Care Facilities - General examination room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - General examination room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_OTHER_DENTAL_TREATMENT_AREAS
+    OUTPATIENT_HEALTH_CARE_FACILITIES_OTHER_DENTAL_TREATMENT_AREAS:
       Description: "Outpatient Health Care Facilities - Other dental treatment areas"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Other dental treatment areas"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_PHYSICAL_THERAPY_EXERCISE_AREA
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PHYSICAL_THERAPY_EXERCISE_AREA:
       Description: "Outpatient Health Care Facilities - Physical therapy exercise area"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Physical therapy exercise area"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_PHYSICAL_THERAPY_INDIVIDUAL_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PHYSICAL_THERAPY_INDIVIDUAL_ROOM:
       Description: "Outpatient Health Care Facilities - Physical therapy individual room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Physical therapy individual room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_PHYSICAL_THERAPEUTIC_POOL_AREA
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PHYSICAL_THERAPEUTIC_POOL_AREA:
       Description: "Outpatient Health Care Facilities - Physical therapeutic pool area"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Physical therapeutic pool area"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_PROSTHETICS_AND_ORTHOTICS_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PROSTHETICS_AND_ORTHOTICS_ROOM:
       Description: "Outpatient Health Care Facilities - Prosthetics and orthotics room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Prosthetics and orthotics room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_CONSULTATION_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_CONSULTATION_ROOM:
       Description: "Outpatient Health Care Facilities - Psychiatric consultation room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Psychiatric consultation room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_EXAMINATION_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_EXAMINATION_ROOM:
       Description: "Outpatient Health Care Facilities - Psychiatric examination room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Psychiatric examination room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_GROUP_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_GROUP_ROOM:
       Description: "Outpatient Health Care Facilities - Psychiatric group room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Psychiatric group room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_SECLUSION_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_SECLUSION_ROOM:
       Description: "Outpatient Health Care Facilities - Psychiatric seclusion room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Psychiatric seclusion room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_SPEECH_THERAPY_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_SPEECH_THERAPY_ROOM:
       Description: "Outpatient Health Care Facilities - Speech therapy room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Speech therapy room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_EXAMINATION_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_EXAMINATION_ROOM:
       Description: "Outpatient Health Care Facilities - Urgent care examination room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Urgent care examination room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_OBSERVATION_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_OBSERVATION_ROOM:
       Description: "Outpatient Health Care Facilities - Urgent care observation room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Urgent care observation room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_TREATMENT_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_TREATMENT_ROOM:
       Description: "Outpatient Health Care Facilities - Urgent care treatment room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Urgent care treatment room"
-    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_TRIAGE_ROOM
+    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_TRIAGE_ROOM:
       Description: "Outpatient Health Care Facilities - Urgent care triage room"
       Notes: ""
       Display Text: "Outpatient Health Care Facilities - Urgent care triage room"
-    PUBLIC_ASSEMBLY_SPACES_AUDITORIUM_SEATING_AREA
+    PUBLIC_ASSEMBLY_SPACES_AUDITORIUM_SEATING_AREA:
       Description: "Public Assembly Spaces - Auditorium seating area"
       Notes: ""
       Display Text: "Public Assembly Spaces - Auditorium seating area"
-    PUBLIC_ASSEMBLY_SPACES_COURTROOMS
+    PUBLIC_ASSEMBLY_SPACES_COURTROOMS:
       Description: "Public Assembly Spaces - Courtrooms"
       Notes: ""
       Display Text: "Public Assembly Spaces - Courtrooms"
-    PUBLIC_ASSEMBLY_SPACES_LEGISLATIVE_CHAMBERS
+    PUBLIC_ASSEMBLY_SPACES_LEGISLATIVE_CHAMBERS:
       Description: "Public Assembly Spaces - Legislative chambers"
       Notes: ""
       Display Text: "Public Assembly Spaces - Legislative chambers"
-    PUBLIC_ASSEMBLY_SPACES_LIBRARIES
+    PUBLIC_ASSEMBLY_SPACES_LIBRARIES:
       Description: "Public Assembly Spaces - Libraries"
       Notes: ""
       Display Text: "Public Assembly Spaces - Libraries"
-    PUBLIC_ASSEMBLY_SPACES_LOBBIES
+    PUBLIC_ASSEMBLY_SPACES_LOBBIES:
       Description: "Public Assembly Spaces - Lobbies"
       Notes: ""
       Display Text: "Public Assembly Spaces - Lobbies"
-    PUBLIC_ASSEMBLY_SPACES_MUSEUMS_CHILDRENS
+    PUBLIC_ASSEMBLY_SPACES_MUSEUMS_CHILDRENS:
       Description: "Public Assembly Spaces - Museums (children's)"
       Notes: ""
       Display Text: "Public Assembly Spaces - Museums (children's)"
-    PUBLIC_ASSEMBLY_SPACES_MUSEUMS_GALLERIES
+    PUBLIC_ASSEMBLY_SPACES_MUSEUMS_GALLERIES:
       Description: "Public Assembly Spaces - Museums/galleries"
       Notes: ""
       Display Text: "Public Assembly Spaces - Museums/galleries"
-    PUBLIC_ASSEMBLY_SPACES_PLACES_OF_RELIGIOUS_WORSHIP
+    PUBLIC_ASSEMBLY_SPACES_PLACES_OF_RELIGIOUS_WORSHIP:
       Description: "Public Assembly Spaces - Places of religious worship"
       Notes: ""
       Display Text: "Public Assembly Spaces - Places of religious worship"
-    RETAIL_SALES_EXCEPT_OTHER_SPECIFIC_RETAIL
+    RETAIL_SALES_EXCEPT_OTHER_SPECIFIC_RETAIL:
       Description: "Retail - Sales (except other specific retail)"
       Notes: ""
       Display Text: "Retail - Sales (except other specific retail)"
-    RETAIL_BARBERSHOP
+    RETAIL_BARBERSHOP:
       Description: "Retail - Barbershop"
       Notes: ""
       Display Text: "Retail - Barbershop"
-    RETAIL_BEAUTY_AND_NAIL_SALONS
+    RETAIL_BEAUTY_AND_NAIL_SALONS:
       Description: "Retail - Beauty and nail salons"
       Notes: ""
       Display Text: "Retail - Beauty and nail salons"
-    RETAIL_COIN_OPERATED_LAUNDRIES
+    RETAIL_COIN_OPERATED_LAUNDRIES:
       Description: "Retail - Coin-operated laundries"
       Notes: ""
       Display Text: "Retail - Coin-operated laundries"
-    RETAIL_MALL_COMMON_AREAS
+    RETAIL_MALL_COMMON_AREAS:
       Description: "Retail - Mall common areas"
       Notes: ""
       Display Text: "Retail - Mall common areas"
-    RETAIL_PET_SHOPS_ANIMAL_AREAS
+    RETAIL_PET_SHOPS_ANIMAL_AREAS:
       Description: "Retail - Pet shops (animal areas)"
       Notes: ""
       Display Text: "Retail - Pet shops (animal areas)"
-    RETAIL_SUPERMARKET
+    RETAIL_SUPERMARKET:
       Description: "Retail - Supermarket"
       Notes: ""
       Display Text: "Retail - Supermarket"
-    SPORTS_AND_ENTERTAINMENT_BOWLING_ALLEY_SEATING
+    SPORTS_AND_ENTERTAINMENT_BOWLING_ALLEY_SEATING:
       Description: "Sports and Entertainment - Bowling alley (seating)"
       Notes: ""
       Display Text: "Sports and Entertainment - Bowling alley (seating)"
-    SPORTS_AND_ENTERTAINMENT_DISCO_DANCE_FLOORS
+    SPORTS_AND_ENTERTAINMENT_DISCO_DANCE_FLOORS:
       Description: "Sports and Entertainment - Disco/dance floors"
       Notes: ""
       Display Text: "Sports and Entertainment - Disco/dance floors"
-    SPORTS_AND_ENTERTAINMENT_GAMBLING_CASINOS
+    SPORTS_AND_ENTERTAINMENT_GAMBLING_CASINOS:
       Description: "Sports and Entertainment - Gambling casinos"
       Notes: ""
       Display Text: "Sports and Entertainment - Gambling casinos"
-    SPORTS_AND_ENTERTAINMENT_GAME_ARCADES
+    SPORTS_AND_ENTERTAINMENT_GAME_ARCADES:
       Description: "Sports and Entertainment - Game arcades"
       Notes: ""
       Display Text: "Sports and Entertainment - Game arcades"
-    SPORTS_AND_ENTERTAINMENT_GYM_SPORTS_ARENA_PLAY_AREA
+    SPORTS_AND_ENTERTAINMENT_GYM_SPORTS_ARENA_PLAY_AREA:
       Description: "Sports and Entertainment - Gym, sports arena (play area)"
       Notes: ""
       Display Text: "Sports and Entertainment - Gym, sports arena (play area)"
-    SPORTS_AND_ENTERTAINMENT_HEALTH_CLUB_AEROBICS_ROOM
+    SPORTS_AND_ENTERTAINMENT_HEALTH_CLUB_AEROBICS_ROOM:
       Description: "Sports and Entertainment - Health club/aerobics room"
       Notes: ""
       Display Text: "Sports and Entertainment - Health club/aerobics room"
-    SPORTS_AND_ENTERTAINMENT_HEALTH_CLUB_WEIGHT_ROOMS
+    SPORTS_AND_ENTERTAINMENT_HEALTH_CLUB_WEIGHT_ROOMS:
       Description: "Sports and Entertainment - Health club/weight rooms"
       Notes: ""
       Display Text: "Sports and Entertainment - Health club/weight rooms"
-    SPORTS_AND_ENTERTAINMENT_SPECTATOR_AREAS
+    SPORTS_AND_ENTERTAINMENT_SPECTATOR_AREAS:
       Description: "Sports and Entertainment - Spectator areas"
       Notes: ""
       Display Text: "Sports and Entertainment - Spectator areas"
-    SPORTS_AND_ENTERTAINMENT_STAGES_STUDIOS
+    SPORTS_AND_ENTERTAINMENT_STAGES_STUDIOS:
       Description: "Sports and Entertainment - Stages, studios"
       Notes: ""
       Display Text: "Sports and Entertainment - Stages, studios"
-    SPORTS_AND_ENTERTAINMENT_SWIMMING_POOL_AND_DECK
+    SPORTS_AND_ENTERTAINMENT_SWIMMING_POOL_AND_DECK:
       Description: "Sports and Entertainment - Swimming (pool and deck)"
       Notes: ""
       Display Text: "Sports and Entertainment - Swimming (pool and deck)"
-    TRANSIENT_RESIDENTIAL_COMMON_CORRIDORS
+    TRANSIENT_RESIDENTIAL_COMMON_CORRIDORS:
       Description: "Transient Residential - Common corridors"
       Notes: ""
       Display Text: "Transient Residential - Common corridors"
-    TRANSIENT_RESIDENTIAL_DWELLING_UNIT
+    TRANSIENT_RESIDENTIAL_DWELLING_UNIT:
       Description: "Transient Residential - Dwelling unit"
       Notes: ""
       Display Text: "Transient Residential - Dwelling unit"

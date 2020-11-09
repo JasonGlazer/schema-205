@@ -11,6 +11,8 @@ Schema:
   Title: "ASHRAE 229"
   Description: "Base schema for ASHRAE 229 representations"
   Version: "0.0.1"
+  References:
+    - "VentilationSpaceType_62_1_2019"
   Root Data Group: "ASHRAE229"
 
 # Data Types
@@ -151,7 +153,7 @@ Space:
       Notes: ""
     ventilations_space_type:
       Description: "Whether space use types are building area types from Standard 62.1"
-      Data Type: "<VentilationSpaceType>"
+      Data Type: "<VentilationSpaceType6212019>"
       Required: True
       Notes: ""
 

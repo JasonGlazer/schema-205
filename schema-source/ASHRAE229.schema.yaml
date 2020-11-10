@@ -104,15 +104,36 @@ Building:
       Range: ">=0"
       Required: True
       Notes: ""
-    thermal_blocks:
-      Description: "thermal blocks in the building"
-      Data Type: "[{ThermalBlock}]"
-      Notes: "Contains a list of thermal blocks in the building."
+    building_segments:
+      Description: "Large portions of a building that share a building area type"
+      Data Type: "[{BuildingSegment}]"
+      Notes: "Contains a list of building segments in the building."
     is_new:
       Description: "The schedules assume it is a leap year"
       Data Type: "Boolean"
       Required: True
-    
+
+BuildingSegment:    
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+      Notes: ""
+    thermal_blocks:
+      Description: "thermal blocks in the building"
+      Data Type: "[{ThermalBlock}]"
+      Notes: "Contains a list of thermal blocks in the building."
+    heating_ventilation_air_conditioning_systems:
+      Description: "HVAC systems in the building"
+      Data Type: "[{HeatingVentilationAirConditioningSystem}]"
+      Notes: "Contains a list of HVAC systems in the building."
+    area_type_vertical_fenestration:
+      Description: "Building area classification used for vertical fenestration"
+      Data Type: "<VerticalFenestrationBuildingAreaType2019ASHRAE901>"
+      Required: True
+      Notes: "The enumeration is based on the standard used."
 
 ThermalBlock:
   Object Type: "Data Group"
@@ -121,6 +142,10 @@ ThermalBlock:
       Description: "zones in the building"
       Data Type: "[{Zone}]"
       Notes: "Contains a list of zones in the building."
+    served_by_heating_ventilation_air_conditioning_systems:
+      Description: "HVAC systems serving the thermal block"
+      Data Type: "[String]"
+      Notes: "Contains a list of IDs of the HVAC systems serving the thermal block - from Unique Identification Number in HeatingVentilationAirConditioningSystem."
 
 Zone:
   Object Type: "Data Group"
@@ -143,6 +168,10 @@ Space:
       Data Type: "String"
       Required: True
       Notes: ""
+    surfaces:
+      Description: "Surfaces surrounding the space"
+      Data Type: "[{Surface}]"
+      Notes: "Contains a list of surfaces that define the space."
     floor_area:
       Description: "The floor area of a space within the building, including basements, mezzanine and intermediate-floored tiers, and penthouses with a headroom height of 7.5 ft or greater. It is measured from the exterior faces of walls or from the center-line of walls separating buildings, but excluding covered walkways, open roofed-over areas, porches and similar spaces, pipe trenches, exterior terraces or steps, chimneys, roof overhangs, and similar features."
       Data Type: "Numeric"
@@ -165,15 +194,24 @@ Space:
       Required: False
       Notes: ""
     lighting_space_type:
-      Description: "Whether space use types are building area types from Table 9.5.1 or space use types from Table 9.6.1"
+      Description: "Lighting space type classification"
       Data Type: "<LightingSpaceType2019ASHRAE901>"
       Required: True
-      Notes: ""
+      Notes: "The enumeration is based on the standard used."
     ventilations_space_type:
-      Description: "Whether space use types are building area types from Standard 62.1"
-      Data Type: "<VentilationSpaceType2019ASHRAE621>"
+      Description: "Ventilation space type classification"
+      Data Type: "<VentilationSpaceType2019ASHRAE901>"
       Required: True
-      Notes: ""
+      Notes: "The enumeration is based on the standard used."
+    infiltration_modeling_method:
+      Description: "The software methodology chosen for modeling infiltration"
+      Data Type: "String"
+      Required: True
+    infiltration_equivalent_full_load_hours:
+      Description: "Annual sum of hourly fractions of infiltration schedule"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
 
 FloorAreaBasis:
   Object Type: "Enumeration"
@@ -215,6 +253,147 @@ ConditioningType:
       Notes: ""
       Display Text: "Plenum"
 
+Surface:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+      Notes: ""
+    name:
+      Description: "Name fo the Space"
+      Data Type: "String"
+      Required: True
+      Notes: ""
+    fenestration_subsurfaces:
+      Description: "Fenestration suburfaces that are on the surface"
+      Data Type: "[{Fenestration}]"
+      Notes: "Contains a list of surfaces that define the space."
+    tilt:
+      Description: "Angle between vertical and the surface outward normal, e.g. 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)"
+      Data Type: "Numeric"
+      Required: True
+    azimuth:
+      Description: "Clockwise angle between North (0 degrees) and the horizontal projection of the wall's outward normal. 0 = north, 90 = East, 180 = South, 270 = West"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    adjacent_to:
+      Description: "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
+      Data Type: "<SurfaceAdjacentTo>"
+      Required: True
+    adjacent_space_ID:
+      Description: "ID of the adjacent space for interior surface"
+      Data Type: "String"
+      Required: True
+    does_cast_shade:
+      Description: "Determines whether the surface is modeled as casting shade on other exterior surfaces"
+      Data Type: "Boolean"
+      Required: True
+    surfaces:
+      Description: "Surfaces surrounding the space"
+      Data Type: "[{Surface}]"
+      Notes: "Contains a list of surfaces that define the space."
+    surface_construction_input_option:
+      Description: "Identifies whether construction is entered layer-by-layer or simplified (R-value)"
+      Data Type: "<SurfaceConstructionInputOptions>"
+      Required: True
+    area:
+      Description: "area of the surface"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    u_factor:
+      Description: "suface U-factor"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    c_factor:
+      Description: "surface C-factor"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    f_factor:
+      Description: "surface F-factor"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    reflectance:
+      Description: "Reflectance"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    emittance:
+      Description: "Emittance"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    reflectivity:
+      Description: "Reflectivity"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    
+SurfaceAdjacentTo:
+  Object Type: "Enumeration"
+  Enumerators:
+    AMBIENT:
+      Description: "Exterior wall or roof which is adjacent to the exterior ambient environments."
+    GROUND:
+      Description: "Slab-on-grad or below grade surface if adjacent to ground."
+    INTERIOR:
+      Description: "Interior surface if adjacent to another thermal block."
+
+SurfaceConstructionInputOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    LAYERS:
+      Description: "Construction is entered layer-by-layer."
+    SIMPLIFIED:
+      Description: "Construction is entered by R-value only."
+
+Fenestration:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+      Notes: ""
+    name:
+      Description: "Name of the fenestration subsurface"
+      Data Type: "String"
+      Required: True
+      Notes: ""
+    area:
+      Description: "area of fenestration including glass and framing"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    u_factor:
+      Description: "fenestration U-factor"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    solar_heat_gain_coefficient:
+      Description: "fenestration SHGC"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    has_shading_projections:
+      Description: "identifies whether fenestration has side fins, overhangs or not flush with wall"
+      Data Type: "Boolean"
+      Required: True
+    has_manual_interior_shades:
+      Description: "are there manually-operated interior shading such as blinds, curtains or shades"
+      Data Type: "Boolean"
+      Required: True
+    has_automatic_shades:
+      Description: "are there automatic interior shading such as blinds, curtains or shades"
+      Data Type: "Boolean"
+      Required: True
+ 
 Transformer:
   Object Type: "Data Group"
   Data Elements:
@@ -359,7 +538,24 @@ Weather:
       Required: True
     climate_zone:
       Description: "The designation of the climate zone where the building is located"
-      Data Type: "String"
+      Data Type: "<ClimateZone2019ASHRAE901>"
       Required: True
-      Notes: "Not an enumerations because we only care that the type assigned by BEM tool matches across RMR"
+      Notes: "The enumeration is based on the standard used."
 
+HeatingVentilationAirConditioningSystem:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    sensible_cool_output_capacity: 
+      Description: "Result from the simulation of the sensible cooling capacity"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True
+    heat_output_capacity:
+      Description: "Result from the simulation of the heating capacity"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Required: True

@@ -393,17 +393,17 @@ LightingSpaceType2019ASHRAE901:
       Notes: ""
       Display Text: "Facility for the Visually Impaired - Recreatio nroom/common living room (and not used primarily by staff)"
     CONVENTION_CENTER_EXHIBIT_SPACE:
-      Description: "Convention Center — Exhibit Space"
+      Description: "Convention Center â€” Exhibit Space"
       Notes: ""
-      Display Text: "Convention Center — Exhibit Space"
+      Display Text: "Convention Center â€” Exhibit Space"
     DORMITORY_LIVING_QUARTERS:
-      Description: "Dormitory — Living Quarters"
+      Description: "Dormitory â€” Living Quarters"
       Notes: ""
-      Display Text: "Dormitory — Living Quarters"
+      Display Text: "Dormitory â€” Living Quarters"
     FIRE_STATION_SLEEPING_QUARTERS:
-      Description: "Fire Station — Sleeping Quarters"
+      Description: "Fire Station â€” Sleeping Quarters"
       Notes: ""
-      Display Text: "Fire Station — Sleeping Quarters"
+      Display Text: "Fire Station â€” Sleeping Quarters"
     GYMNASIUM_FITNESS_CENTER_EXERCISE_AREA:
       Description: "Gymnasium/Fitness Center - Exercise area"
       Notes: ""
@@ -429,9 +429,9 @@ LightingSpaceType2019ASHRAE901:
       Notes: ""
       Display Text: "Healthcare Facility - Nursery"
     HEALTHCARE_FACILITY_NURSES_STATION:
-      Description: "Healthcare Facility - Nurse’s station"
+      Description: "Healthcare Facility - Nurseâ€™s station"
       Notes: ""
-      Display Text: "Healthcare Facility - Nurse’s station"
+      Display Text: "Healthcare Facility - Nurseâ€™s station"
     HEALTHCARE_FACILITY_OPERATING_ROOM:
       Description: "Healthcare Facility - Operating room"
       Notes: ""
@@ -485,13 +485,13 @@ LightingSpaceType2019ASHRAE901:
       Notes: ""
       Display Text: "Museum - Restoration room"
     PERFORMING_ARTS_THEATER_DRESSING_ROOM:
-      Description: "Performing Arts Theater — Dressing Room"
+      Description: "Performing Arts Theater â€” Dressing Room"
       Notes: ""
-      Display Text: "Performing Arts Theater — Dressing Room"
+      Display Text: "Performing Arts Theater â€” Dressing Room"
     POST_OFFICE_SORTING_AREA:
-      Description: "Post Office — Sorting Area"
+      Description: "Post Office â€” Sorting Area"
       Notes: ""
-      Display Text: "Post Office — Sorting Area"
+      Display Text: "Post Office â€” Sorting Area"
     RELIGIOUS_FACILITY_FELLOWSHIP_HALL:
       Description: "Religious Facility - Fellowship hall"
       Notes: ""
@@ -509,21 +509,21 @@ LightingSpaceType2019ASHRAE901:
       Notes: ""
       Display Text: "Retail Facilities - Mall concourse"
     SPORTS_ARENA_PLAYING_AREA_CLASS_I_FACILITY:
-      Description: "Sports Arena — Playing Area - Class I facility"
+      Description: "Sports Arena â€” Playing Area - Class I facility"
       Notes: ""
-      Display Text: "Sports Arena — Playing Area - Class I facility"
+      Display Text: "Sports Arena â€” Playing Area - Class I facility"
     SPORTS_ARENA_PLAYING_AREA_CLASS_II_FACILITY:
-      Description: "Sports Arena — Playing Area - Class II facility"
+      Description: "Sports Arena â€” Playing Area - Class II facility"
       Notes: ""
-      Display Text: "Sports Arena — Playing Area - Class II facility"
+      Display Text: "Sports Arena â€” Playing Area - Class II facility"
     SPORTS_ARENA_PLAYING_AREA_CLASS_III_FACILITY:
-      Description: "Sports Arena — Playing Area - Class III facility"
+      Description: "Sports Arena â€” Playing Area - Class III facility"
       Notes: ""
-      Display Text: "Sports Arena — Playing Area - Class III facility"
+      Display Text: "Sports Arena â€” Playing Area - Class III facility"
     SPORTS_ARENA_PLAYING_AREA_CLASS_IV_FACILITY:
-      Description: "Sports Arena — Playing Area - Class IV facility"
+      Description: "Sports Arena â€” Playing Area - Class IV facility"
       Notes: ""
-      Display Text: "Sports Arena — Playing Area - Class IV facility"
+      Display Text: "Sports Arena â€” Playing Area - Class IV facility"
     TRANSPORTATION_FACILITY_BAGGAGE_CAROUSEL_AREA:
       Description: "Transportation Facility - Baggage/carousel area"
       Notes: ""
@@ -537,15 +537,18 @@ LightingSpaceType2019ASHRAE901:
       Notes: ""
       Display Text: "Transportation Facility - Ticket counter"
     WAREHOUSE_STORAGE_AREA_MEDIUM_TO_BULKY_PALLETIZED_ITEMS:
-      Description: "Warehouse — Storage Area - Medium to bulky, palletized items"
+      Description: "Warehouse â€” Storage Area - Medium to bulky, palletized items"
       Notes: ""
-      Display Text: "Warehouse — Storage Area - Medium to bulky, palletized items"
+      Display Text: "Warehouse â€” Storage Area - Medium to bulky, palletized items"
     WAREHOUSE_STORAGE_AREA_SMALLER_HAND_CARRIED_ITEMS:
-      Description: "Warehouse — Storage Area - Smaller, hand-carried items"
+      Description: "Warehouse â€” Storage Area - Smaller, hand-carried items"
       Notes: ""
-      Display Text: "Warehouse — Storage Area - Smaller, hand-carried items"
+      Display Text: "Warehouse â€” Storage Area - Smaller, hand-carried items"
 
-VentilationSpaceType2019ASHRAE621:
+
+# These ventilation space types are from ASHRAE Standard 62.1-2016 plus addenda which is referenced in 90.1-2019.
+# Used 62.1-2019 to construct the list
+VentilationSpaceType2019ASHRAE901:
   Object Type: "Enumeration"
   Enumerators:
     ANIMAL_FACILITIES_ANIMAL_EXAM_ROOM_VETERINARY_OFFICE:
@@ -741,9 +744,9 @@ VentilationSpaceType2019ASHRAE621:
       Notes: ""
       Display Text: "Miscellaneous Spaces - Computer (not printing)"
     MISCELLANEOUS_SPACES_FREEZER_AND_REFRIGERATED_SPACES:
-      Description: "Miscellaneous Spaces - Freezer and refrigerated spaces (<50°F [10°C])"
+      Description: "Miscellaneous Spaces - Freezer and refrigerated spaces (<50Â°F [10Â°C])"
       Notes: ""
-      Display Text: "Miscellaneous Spaces - Freezer and refrigerated spaces (<50°F [10°C])"
+      Display Text: "Miscellaneous Spaces - Freezer and refrigerated spaces (<50Â°F [10Â°C])"
     MISCELLANEOUS_SPACES_MANUFACTURING_WHERE_HAZARDOUS_MATERIALS_ARE_NOT_USED:
       Description: "Miscellaneous Spaces - Manufacturing where hazardous materials are not used"
       Notes: ""
@@ -984,6 +987,92 @@ VentilationSpaceType2019ASHRAE621:
       Description: "Transient Residential - Dwelling unit"
       Notes: ""
       Display Text: "Transient Residential - Dwelling unit"
+
+
+ClimateZone2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+    CZ0A:
+      Description: "Extremely Hot - Humid"
+    CZ0B:
+      Description: "Extremely Hot - Dry"
+    CZ1A:
+      Description: "Very Hot - Humid"
+    CZ1B:
+      Description: "Very Hot - Dry"
+    CZ2A:
+      Description: "Hot - Humid"
+    CZ2B:
+      Description: "Hot - Dry"
+    CZ3A:
+      Description: "Warm - Humid"
+    CZ3B:
+      Description: "Warm - Dry"
+    CZ3C:
+      Description: "Warm - Marine"
+    CZ4A:
+      Description: "Mixed - Humid"
+    CZ4B:
+      Description: "Mixed - Dry"
+    CZ4C:
+      Description: "Mixed - Marine"
+    CZ5A:
+      Description: "Cool - Humid"
+    CZ5B:
+      Description: "Cool - Dry"
+    CZ5C:
+      Description: "Cool - Marine"
+    CZ6A:
+      Description: "Cold - Humid"
+    CZ6B:
+      Description: "Cold - Dry"
+    CZ7:
+      Description: "Very cold"
+    CZ8:
+      Description: "Subarctic/arctic"
+
+
+VerticalFenestrationBuildingAreaType2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+    GROCERY_STORE:
+      Description: "Grocery store"
+    HEALTHCARE_OUTPATIENT:
+      Description: "Healthcare (outpatient)"
+    HOSPITAL:
+      Description: "Hospital"
+    HOTEL_MOTEL_SMALL:
+      Description: "Hotel/motel - Small"
+    HOTEL_MOTEL_LARGE:
+      Description: "Hotel/motel - Large"
+    OFFICE_SMALL:
+      Description: "Office - Small"
+    OFFICE_MEDIUM:
+      Description: "Office - Medium"
+    OFFICE_LARGE:
+      Description: "Office - Large"
+    RESTAURANT_QUICK_SERVICE:
+      Description: "Restaurant (quick service)"
+    RESTAURANT_FULL_SERVICE:
+      Description: "Restaurant (full service)"
+    RETAIL_STAND_ALONE:
+      Description: "Retail (stand alone)"
+    RETAIL_STRIP_MALL:
+      Description: "Retail (strip mall)"
+    SCHOOL_PRIMARY:
+      Description: "School (primary)"
+    SCHOOL_SECONDARY_AND_UNIVERSITY:
+      Description: "School (secondary and university)"
+    WAREHOUSE_NONREFRIGERATED:
+      Description: "Warehouse (nonrefrigerated)"
+
+
+
+
+
+
+
+
 
 
 

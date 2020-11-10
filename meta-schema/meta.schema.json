@@ -159,7 +159,14 @@
         "Hz",
         "V",
         "rev/s",
-        "Va"
+        "Va",
+        "m2",
+        "L/s",
+        "m/s",
+        "W/m2",
+        "degrees",
+        "W/m2-K",
+        "C"
       ]
     },
     "RatingUnits": {

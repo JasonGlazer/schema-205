@@ -58,9 +58,6 @@ String:
   Examples:
     - "null"
 
-# Common Enumerations
-
-
 # Common Data Groups
 ASHRAE229:
   Object Type: "Data Group"
@@ -112,6 +109,10 @@ Building:
       Description: "The schedules assume it is a leap year"
       Data Type: "Boolean"
       Required: True
+    elevators:
+      Description: "Elevators"
+      Data Type: "[{Elevator}]"
+      Notes: "Contains a list of elevators in the building."
 
 BuildingSegment:    
   Object Type: "Data Group"
@@ -176,6 +177,7 @@ Space:
       Description: "The floor area of a space within the building, including basements, mezzanine and intermediate-floored tiers, and penthouses with a headroom height of 7.5 ft or greater. It is measured from the exterior faces of walls or from the center-line of walls separating buildings, but excluding covered walkways, open roofed-over areas, porches and similar spaces, pipe trenches, exterior terraces or steps, chimneys, roof overhangs, and similar features."
       Data Type: "Numeric"
       Range: ">=0"
+      Units: "m2"
       Required: True
       Notes: ""
     floor_area_basis_for_exterior:
@@ -273,11 +275,13 @@ Surface:
     tilt:
       Description: "Angle between vertical and the surface outward normal, e.g. 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)"
       Data Type: "Numeric"
+      Units: "degrees"
       Required: True
     azimuth:
       Description: "Clockwise angle between North (0 degrees) and the horizontal projection of the wall's outward normal. 0 = north, 90 = East, 180 = South, 270 = West"
       Data Type: "Numeric"
       Range: ">=0"
+      Units: "degrees"
       Required: True
     adjacent_to:
       Description: "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
@@ -303,11 +307,13 @@ Surface:
       Description: "area of the surface"
       Data Type: "Numeric"
       Range: ">=0"
+      Units: "m2"
       Required: True
     u_factor:
       Description: "suface U-factor"
       Data Type: "Numeric"
       Range: ">=0"
+      Units: "W/m2-K"
       Required: True
     c_factor:
       Description: "surface C-factor"
@@ -370,10 +376,12 @@ Fenestration:
       Description: "area of fenestration including glass and framing"
       Data Type: "Numeric"
       Range: ">=0"
+      Units: "m2"
       Required: True
     u_factor:
       Description: "fenestration U-factor"
       Data Type: "Numeric"
+      Units: "W/m2-K"
       Range: ">=0"
       Required: True
     solar_heat_gain_coefficient:
@@ -535,12 +543,99 @@ Weather:
     monthly_ground_temperature:
       Description: "Modeled monthly ground temperatures"
       Data Type: "[Numeric][1..12]"
+      Units: "C"
       Required: True
     climate_zone:
       Description: "The designation of the climate zone where the building is located"
       Data Type: "<ClimateZone2019ASHRAE901>"
       Required: True
       Notes: "The enumeration is based on the standard used."
+
+Elevator:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+      Notes: ""
+    name:
+      Description: "Name of the elevator"
+      Data Type: "String"
+      Required: True
+      Notes: ""
+    motor_power:
+      Description: "Elevator peak motor power"
+      Data Type: "Numeric"
+      Units: "W"
+      Required: True
+    cab_counterweight:
+      Description: "elevator car counterweight"
+      Data Type: "Numeric"
+      Units: "kg"
+      Required: True
+    cab_weight:
+      Description: "weight of elevator car"
+      Data Type: "Numeric"
+      Units: "kg"
+      Required: True
+    design_elevator_load:
+      Description: "elevator load at which to operate"
+      Data Type: "Numeric"
+      Units: "kg"
+      Required: True
+    speed:
+      Description: "design speed of the elevator"
+      Data Type: "Numeric"
+      Units: "m/s"
+      Required: True
+    cab_area:
+      Description: "floor area of elevator cab"
+      Data Type: "Numeric"
+      Units: "m2"
+      Required: True
+    cab_lighting_power:
+      Description: "lighitng power of cab"
+      Data Type: "Numeric"
+      Units: "W"
+      Required: True
+    cab_ventilation_fan_power:
+      Description: "ventilation fan power of cab"
+      Data Type: "Numeric"
+      Units: "W"
+      Required: True
+    cab_ventilation_fan_flow:
+      Description: "airflow of cab ventfan"
+      Data Type: "Numeric"
+      Units: "L/s"
+      Required: True
+    cab_motor_schedule:
+      Description: "elevator motor operation schedule name"
+      Data Type: "String"
+      Required: True
+    cab_ventilation_fan_schedule:
+      Description: "elevator vventfan operation schedule name"
+      Data Type: "String"
+      Required: True
+    cab_lighting_schedule:
+      Description: "elevator lighting schedule name"
+      Data Type: "String"
+      Required: True
+    cab_motor_schedule_equivalent_full_load_hours:
+      Description: "elevator motor operation schedule equivalent full load hours"
+      Data Type: "Numeric"
+      Range: ">=0, <=8760"
+      Required: True
+    cab_ventilation_fan_schedule_equivalent_full_load_hours:
+      Description: "elevator ventfan operation schedule equivalent full load hours"
+      Data Type: "Numeric"
+      Range: ">=0, <=8760"
+      Required: True
+    cab_lighting_schedule_equivalent_full_load_hours:
+      Description: "elevator lighitng schedule equivalent full load hours"
+      Data Type: "Numeric"
+      Range: ">=0, <=8760"
+      Required: True
 
 HeatingVentilationAirConditioningSystem:
   Object Type: "Data Group"
@@ -553,9 +648,25 @@ HeatingVentilationAirConditioningSystem:
       Description: "Result from the simulation of the sensible cooling capacity"
       Data Type: "Numeric"
       Range: ">=0"
+      Units: "W/m2"
       Required: True
     heat_output_capacity:
       Description: "Result from the simulation of the heating capacity"
       Data Type: "Numeric"
       Range: ">=0"
+      Units: "W/m2"
       Required: True
+
+
+
+
+
+
+
+
+
+
+
+
+
+

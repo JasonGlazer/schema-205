@@ -80,6 +80,9 @@ ASHRAE229:
     weather:
       Description: "Information on the local weather conditions used with the simulation."
       Data Type: "{Weather}"
+    overall_simulation_outputs:
+      Description: "Outputs from the simluation summed for all buildings in the simulation."
+      Data Type: "{OverallSimulationOutputs}"
     
 
 Building:
@@ -113,6 +116,10 @@ Building:
       Description: "Elevators"
       Data Type: "[{Elevator}]"
       Notes: "Contains a list of elevators in the building."
+    refrigeration_components:
+      Description: "Refrigeration"
+      Data Type: "[{Refrigeration}]"
+      Notes: "Contains a list of refrigeration components in the building."
 
 BuildingSegment:    
   Object Type: "Data Group"
@@ -657,9 +664,51 @@ HeatingVentilationAirConditioningSystem:
       Units: "W/m2"
       Required: True
 
+Refrigeration:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+      Notes: ""
+    name:
+      Description: "Name of the refrigeration component"
+      Data Type: "String"
+      Required: True
+      Notes: ""
+    type:
+      Description: "Refrigeration equipment type"
+      Data Type: "<RefrigerationType2019ASHRAE901>"
+      Required: True
+    equipment_class:
+      Description: "Equipment Class from referenced standard"
+      Data Type: "<RefrigerationClass2019ASHRAE901>"
+      Required: True
+    energy_per_day:
+      Description: "Rated electrical energy use per day"
+      Data Type: "Numeric"
+      Units: "kWh"
+      Required: True
+    case_volume:
+      Description: "volume of a refrigerated case in cubic meters"
+      Data Type: "Numeric"
+      Units: "m3"
+      Required: True
+    total_display_area:
+      Description: "display area of a refrigerated case in square meters"
+      Data Type: "Numeric"
+      Units: "m2"
+      Required: True
 
-
-
+OverallSimulationOutputs:
+  Object Type: "Data Group"
+  Data Elements:
+    refrigeration_energy_enduse:
+      Description: "Annual refrigeration energy end use from simulation output"
+      Data Type: "Numeric"
+      Units: "kWh"
+      Required: True
 
 
 

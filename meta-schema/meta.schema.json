@@ -166,7 +166,9 @@
         "W/m2",
         "degrees",
         "W/m2-K",
-        "C"
+        "C",
+        "kWh",
+        "m3"
       ]
     },
     "RatingUnits": {

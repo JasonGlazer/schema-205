@@ -12,7 +12,7 @@ Schema:
   Description: "Base schema for ASHRAE 229 representations"
   Version: "0.0.1"
   References:
-    - "VentilationSpaceType_62_1_2019"
+    - "Enumerations2019ASHRAE901"
   Root Data Group: "ASHRAE229"
 
 # Data Types
@@ -73,10 +73,17 @@ ASHRAE229:
       Description: "Buildings on the site"
       Data Type: "[{Building}]"
       Notes: "Contains a list of buildings on the site (often just one)."
+    calendar:
+      Description: "Information on the calendar used with the simulation."
+      Data Type: "{Calendar}"
     schedules:
       Description: "Schedules for internal loads, thermostats, equipment operation and control, and any other need."
       Data Type: "[{Schedule}]"
       Notes: "Contains a list of schedules used in model."
+    weather:
+      Description: "Information on the local weather conditions used with the simulation."
+      Data Type: "{Weather}"
+    
 
 Building:
   Object Type: "Data Group"
@@ -101,6 +108,11 @@ Building:
       Description: "thermal blocks in the building"
       Data Type: "[{ThermalBlock}]"
       Notes: "Contains a list of thermal blocks in the building."
+    is_new:
+      Description: "The schedules assume it is a leap year"
+      Data Type: "Boolean"
+      Required: True
+    
 
 ThermalBlock:
   Object Type: "Data Group"
@@ -154,12 +166,12 @@ Space:
       Notes: ""
     lighting_space_type:
       Description: "Whether space use types are building area types from Table 9.5.1 or space use types from Table 9.6.1"
-      Data Type: "<LightingSpaceType9012019>"
+      Data Type: "<LightingSpaceType2019ASHRAE901>"
       Required: True
       Notes: ""
     ventilations_space_type:
       Description: "Whether space use types are building area types from Standard 62.1"
-      Data Type: "<VentilationSpaceType6212019>"
+      Data Type: "<VentilationSpaceType2019ASHRAE621>"
       Required: True
       Notes: ""
 
@@ -337,4 +349,17 @@ DayOfWeek:
       Description: "Friday"
     SATURDAY:
       Description: "Saturday"
-    
+
+Weather:
+  Object Type: "Data Group"
+  Data Elements:
+    monthly_ground_temperature:
+      Description: "Modeled monthly ground temperatures"
+      Data Type: "[Numeric][1..12]"
+      Required: True
+    climate_zone:
+      Description: "The designation of the climate zone where the building is located"
+      Data Type: "String"
+      Required: True
+      Notes: "Not an enumerations because we only care that the type assigned by BEM tool matches across RMR"
+

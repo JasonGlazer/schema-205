@@ -40,6 +40,10 @@
                 "weather": {
                     "description": "Information on the local weather conditions used with the simulation.",
                     "$ref": "ASHRAE229.schema.json#/definitions/Weather"
+                },
+                "overall_simulation_outputs": {
+                    "description": "Outputs from the simluation summed for all buildings in the simulation.",
+                    "$ref": "ASHRAE229.schema.json#/definitions/OverallSimulationOutputs"
                 }
             },
             "additionalProperties": false
@@ -75,6 +79,24 @@
                 "is_new": {
                     "description": "The schedules assume it is a leap year",
                     "type": "boolean"
+                },
+                "elevators": {
+                    "description": "Elevators",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "ASHRAE229.schema.json#/definitions/Elevator"
+                    },
+                    "notes": "Contains a list of elevators in the building."
+                },
+                "refrigeration_components": {
+                    "description": "Refrigeration",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "ASHRAE229.schema.json#/definitions/Refrigeration"
+                    },
+                    "notes": "Contains a list of refrigeration components in the building."
                 }
             },
             "required": [
@@ -188,6 +210,7 @@
                     "description": "The floor area of a space within the building, including basements, mezzanine and intermediate-floored tiers, and penthouses with a headroom height of 7.5 ft or greater. It is measured from the exterior faces of walls or from the center-line of walls separating buildings, but excluding covered walkways, open roofed-over areas, porches and similar spaces, pipe trenches, exterior terraces or steps, chimneys, roof overhangs, and similar features.",
                     "type": "number",
                     "minimum": 0.0,
+                    "units": "m2",
                     "notes": ""
                 },
                 "floor_area_basis_for_exterior": {
@@ -305,12 +328,14 @@
                 },
                 "tilt": {
                     "description": "Angle between vertical and the surface outward normal, e.g. 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)",
-                    "type": "number"
+                    "type": "number",
+                    "units": "degrees"
                 },
                 "azimuth": {
                     "description": "Clockwise angle between North (0 degrees) and the horizontal projection of the wall's outward normal. 0 = north, 90 = East, 180 = South, 270 = West",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "degrees"
                 },
                 "adjacent_to": {
                     "description": "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block.",
@@ -340,12 +365,14 @@
                 "area": {
                     "description": "area of the surface",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "m2"
                 },
                 "u_factor": {
                     "description": "suface U-factor",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "W/m2-K"
                 },
                 "c_factor": {
                     "description": "surface C-factor",
@@ -432,12 +459,14 @@
                 "area": {
                     "description": "area of fenestration including glass and framing",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "m2"
                 },
                 "u_factor": {
                     "description": "fenestration U-factor",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "W/m2-K"
                 },
                 "solar_heat_gain_coefficient": {
                     "description": "fenestration SHGC",
@@ -654,7 +683,8 @@
                     "maxItems": 12,
                     "items": {
                         "type": "number"
-                    }
+                    },
+                    "units": "C"
                 },
                 "climate_zone": {
                     "description": "The designation of the climate zone where the building is located",
@@ -668,6 +698,116 @@
             ],
             "additionalProperties": false
         },
+        "Elevator": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Unique Identification Number",
+                    "type": "number",
+                    "notes": ""
+                },
+                "name": {
+                    "description": "Name of the elevator",
+                    "type": "string",
+                    "notes": ""
+                },
+                "motor_power": {
+                    "description": "Elevator peak motor power",
+                    "type": "number",
+                    "units": "W"
+                },
+                "cab_counterweight": {
+                    "description": "elevator car counterweight",
+                    "type": "number",
+                    "units": "kg"
+                },
+                "cab_weight": {
+                    "description": "weight of elevator car",
+                    "type": "number",
+                    "units": "kg"
+                },
+                "design_elevator_load": {
+                    "description": "elevator load at which to operate",
+                    "type": "number",
+                    "units": "kg"
+                },
+                "speed": {
+                    "description": "design speed of the elevator",
+                    "type": "number",
+                    "units": "m/s"
+                },
+                "cab_area": {
+                    "description": "floor area of elevator cab",
+                    "type": "number",
+                    "units": "m2"
+                },
+                "cab_lighting_power": {
+                    "description": "lighitng power of cab",
+                    "type": "number",
+                    "units": "W"
+                },
+                "cab_ventilation_fan_power": {
+                    "description": "ventilation fan power of cab",
+                    "type": "number",
+                    "units": "W"
+                },
+                "cab_ventilation_fan_flow": {
+                    "description": "airflow of cab ventfan",
+                    "type": "number",
+                    "units": "L/s"
+                },
+                "cab_motor_schedule": {
+                    "description": "elevator motor operation schedule name",
+                    "type": "string"
+                },
+                "cab_ventilation_fan_schedule": {
+                    "description": "elevator vventfan operation schedule name",
+                    "type": "string"
+                },
+                "cab_lighting_schedule": {
+                    "description": "elevator lighting schedule name",
+                    "type": "string"
+                },
+                "cab_motor_schedule_equivalent_full_load_hours": {
+                    "description": "elevator motor operation schedule equivalent full load hours",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "maximum": 8760.0
+                },
+                "cab_ventilation_fan_schedule_equivalent_full_load_hours": {
+                    "description": "elevator ventfan operation schedule equivalent full load hours",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "maximum": 8760.0
+                },
+                "cab_lighting_schedule_equivalent_full_load_hours": {
+                    "description": "elevator lighitng schedule equivalent full load hours",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "maximum": 8760.0
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "motor_power",
+                "cab_counterweight",
+                "cab_weight",
+                "design_elevator_load",
+                "speed",
+                "cab_area",
+                "cab_lighting_power",
+                "cab_ventilation_fan_power",
+                "cab_ventilation_fan_flow",
+                "cab_motor_schedule",
+                "cab_ventilation_fan_schedule",
+                "cab_lighting_schedule",
+                "cab_motor_schedule_equivalent_full_load_hours",
+                "cab_ventilation_fan_schedule_equivalent_full_load_hours",
+                "cab_lighting_schedule_equivalent_full_load_hours"
+            ],
+            "additionalProperties": false
+        },
         "HeatingVentilationAirConditioningSystem": {
             "type": "object",
             "properties": {
@@ -678,18 +818,82 @@
                 "sensible_cool_output_capacity": {
                     "description": "Result from the simulation of the sensible cooling capacity",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "W/m2"
                 },
                 "heat_output_capacity": {
                     "description": "Result from the simulation of the heating capacity",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "W/m2"
                 }
             },
             "required": [
                 "id",
                 "sensible_cool_output_capacity",
                 "heat_output_capacity"
+            ],
+            "additionalProperties": false
+        },
+        "Refrigeration": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Unique Identification Number",
+                    "type": "number",
+                    "notes": ""
+                },
+                "name": {
+                    "description": "Name of the refrigeration component",
+                    "type": "string",
+                    "notes": ""
+                },
+                "type": {
+                    "description": "Refrigeration equipment type",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/RefrigerationType2019ASHRAE901"
+                },
+                "equipment_class": {
+                    "description": "Equipment Class from referenced standard",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/RefrigerationClass2019ASHRAE901"
+                },
+                "energy_per_day": {
+                    "description": "Rated electrical energy use per day",
+                    "type": "number",
+                    "units": "kWh"
+                },
+                "case_volume": {
+                    "description": "volume of a refrigerated case in cubic meters",
+                    "type": "number",
+                    "units": "m3"
+                },
+                "total_display_area": {
+                    "description": "display area of a refrigerated case in square meters",
+                    "type": "number",
+                    "units": "m2"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "type",
+                "equipment_class",
+                "energy_per_day",
+                "case_volume",
+                "total_display_area"
+            ],
+            "additionalProperties": false
+        },
+        "OverallSimulationOutputs": {
+            "type": "object",
+            "properties": {
+                "refrigeration_energy_enduse": {
+                    "description": "Annual refrigeration energy end use from simulation output",
+                    "type": "number",
+                    "units": "kWh"
+                }
+            },
+            "required": [
+                "refrigeration_energy_enduse"
             ],
             "additionalProperties": false
         }

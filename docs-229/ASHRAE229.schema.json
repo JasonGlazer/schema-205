@@ -77,8 +77,12 @@
                     "notes": "Contains a list of building segments in the building."
                 },
                 "is_new": {
-                    "description": "The schedules assume it is a leap year",
+                    "description": "Indicates whether building is a new construction (true) or existing (false). Projects that include additions will be modeled as two buildings - one new and one existing, as curtain rules such as baseline fenestration area will apply differently to each portion",
                     "type": "boolean"
+                },
+                "compliance_path": {
+                    "description": "Indicates the chosen compliance path if the ruleset has multiple compliance paths such as 90.1 Appendix G has code compliance and beyond code",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/CompliancePathType2019ASHRAE901"
                 },
                 "elevators": {
                     "description": "Elevators",
@@ -244,6 +248,28 @@
                 },
                 "infiltration_equivalent_full_load_hours": {
                     "description": "Annual sum of hourly fractions of infiltration schedule",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "receptacle_control_credit_taken": {
+                    "description": "The receptacle control credit was taken",
+                    "type": "boolean"
+                },
+                "receptacle_baseline_exception_taken": {
+                    "description": "The excpetion that receptacle power or schedule can be different in the baseline has been taken.",
+                    "type": "boolean"
+                },
+                "receptacle_power": {
+                    "description": "Peak power consumed by the receptacles.",
+                    "type": "number",
+                    "units": "W"
+                },
+                "receptacle_schedule_name": {
+                    "description": "Receptacle schedule name",
+                    "type": "string"
+                },
+                "receptacle_control_credit": {
+                    "description": "A multiplier for the fraction of space plug load power applied tothe receptacle controlled credit.",
                     "type": "number",
                     "minimum": 0.0
                 }
@@ -761,7 +787,7 @@
                     "type": "string"
                 },
                 "cab_ventilation_fan_schedule": {
-                    "description": "elevator vventfan operation schedule name",
+                    "description": "elevator ventilation fan operation schedule name",
                     "type": "string"
                 },
                 "cab_lighting_schedule": {

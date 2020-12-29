@@ -234,9 +234,13 @@ Space:
       Description: "Peak power consumed by the receptacles."
       Data Type: "Numeric"
       Units: "W"
-    receptacle_schedule:
+    receptacle_schedule_name:
       Description: "Receptacle schedule name"
       Data Type: "String"
+    receptacle_control_credit:
+      Description: "A multiplier for the fraction of space plug load power applied tothe receptacle controlled credit."
+      Data Type: "Numeric"
+      Range: ">=0"
 
 FloorAreaBasis:
   Object Type: "Enumeration"

@@ -1,3 +1,9 @@
+# CompliancePathType2019ASHRAE901
+|   Enumerator   |   Description   | Notes |
+|----------------|-----------------|-------|
+| CODE_COMPLIANT | Code Compliance |       |
+| BEYOND_CODE    | Beyond Code     |       |
+
 # LightingSpaceType2019ASHRAE901
 |                              Enumerator                               |                                                Description                                                | Notes |
 |-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|-------|

@@ -109,9 +109,12 @@ Building:
       Data Type: "[{BuildingSegment}]"
       Notes: "Contains a list of building segments in the building."
     is_new:
-      Description: "The schedules assume it is a leap year"
+      Description: "Indicates whether building is a new construction (true) or existing (false). Projects that include additions will be modeled as two buildings - one new and one existing, as curtain rules such as baseline fenestration area will apply differently to each portion"
       Data Type: "Boolean"
       Required: True
+    compliance_path:
+      Description: "Indicates the chosen compliance path if the ruleset has multiple compliance paths such as 90.1 Appendix G has code compliance and beyond code"
+      Data Type: "<CompliancePathType2019ASHRAE901>"
     elevators:
       Description: "Elevators"
       Data Type: "[{Elevator}]"
@@ -221,6 +224,19 @@ Space:
       Data Type: "Numeric"
       Range: ">=0"
       Required: True
+    receptacle_control_credit_taken:
+      Description: "The receptacle control credit was taken"
+      Data Type: "Boolean"
+    receptacle_baseline_exception_taken:
+      Description: "The excpetion that receptacle power or schedule can be different in the baseline has been taken."
+      Data Type: "Boolean"
+    receptacle_power:
+      Description: "Peak power consumed by the receptacles."
+      Data Type: "Numeric"
+      Units: "W"
+    receptacle_schedule:
+      Description: "Receptacle schedule name"
+      Data Type: "String"
 
 FloorAreaBasis:
   Object Type: "Enumeration"
@@ -621,7 +637,7 @@ Elevator:
       Data Type: "String"
       Required: True
     cab_ventilation_fan_schedule:
-      Description: "elevator vventfan operation schedule name"
+      Description: "elevator ventilation fan operation schedule name"
       Data Type: "String"
       Required: True
     cab_lighting_schedule:

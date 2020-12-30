@@ -252,6 +252,45 @@
 | TRANSIENT_RESIDENTIAL_COMMON_CORRIDORS                                                                                 | Transient Residential - Common corridors                                                                                   |       |
 | TRANSIENT_RESIDENTIAL_DWELLING_UNIT                                                                                    | Transient Residential - Dwelling unit                                                                                      |       |
 
+# ServiceWaterHeatingSpaceType2019ASHRAE901
+|           Enumerator            |              Description               | Notes |
+|---------------------------------|----------------------------------------|-------|
+| AUTOMOTIVE_FACILITY             | Automotive facility                    |       |
+| CONVENIENCE_STORE               | Convenience store                      |       |
+| CONVENTION_CENTER               | Convention center                      |       |
+| COURTHOUSE                      | Courthouse                             |       |
+| DINING_BAR_LOUNGE_LEISURE       | Dining: Bar lounge/leisure             |       |
+| DINING_CAFETERIA_FAST_FOOD      | Dining: Cafeteria/fast food            |       |
+| DINING_FAMILY                   | Dining: Family                         |       |
+| DORMITORY                       | Dormitory                              |       |
+| EXERCISE_CENTER                 | Exercise center                        |       |
+| FIRE_STATION                    | Fire station                           |       |
+| GYMNASIUM                       | Gymnasium                              |       |
+| HEALTH_CARE_CLINIC              | Health-care clinic                     |       |
+| HOSPITAL_AND_OUTPATIENT_SURGERY | Hospital and outpatient surgery center |       |
+| HOTEL                           | Hotel                                  |       |
+| LIBRARY                         | Library                                |       |
+| MANUFACTURING_FACILITY          | Manufacturing facility                 |       |
+| MOTEL                           | Motel                                  |       |
+| MOTION_PICTURE_THEATER          | Motion picture theater                 |       |
+| MULTIFAMILY                     | Multifamily                            |       |
+| MUSEUM                          | Museum                                 |       |
+| OFFICE                          | Office                                 |       |
+| PARKING_GARAGE                  | Parking garage                         |       |
+| PENITENTIARY                    | Penitentiary                           |       |
+| PERFORMING_ARTS_THEATER         | Performing arts theater                |       |
+| POLICE_STATION                  | Police station                         |       |
+| POST_OFFICE                     | Post office                            |       |
+| RELIGIOUS_FACILITY              | Religious facility                     |       |
+| RETAIL                          | Retail                                 |       |
+| SCHOOL_UNIVERSITY               | School/university                      |       |
+| SPORTS_ARENA                    | Sports arena                           |       |
+| TOWN_HALL                       | Town hall                              |       |
+| TRANSPORTATION                  | Transportation                         |       |
+| WAREHOUSE                       | Warehouse                              |       |
+| WORKSHOP                        | Workshop                               |       |
+| ALL_OTHERS                      | All others                             |       |
+
 # ClimateZone2019ASHRAE901
 | Enumerator |      Description      | Notes |
 |------------|-----------------------|-------|

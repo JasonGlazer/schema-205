@@ -137,6 +137,15 @@
                     },
                     "notes": "Contains a list of HVAC systems in the building."
                 },
+                "service_water_heating_systems": {
+                    "description": "Service water heating systems in the building",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "ASHRAE229.schema.json#/definitions/ServiceWaterHeatingSystem"
+                    },
+                    "notes": "Contains a list of service water heating systems in the building."
+                },
                 "area_type_vertical_fenestration": {
                     "description": "Building area classification used for vertical fenestration",
                     "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/VerticalFenestrationBuildingAreaType2019ASHRAE901",
@@ -242,6 +251,11 @@
                     "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/VentilationSpaceType2019ASHRAE901",
                     "notes": "The enumeration is based on the standard used."
                 },
+                "service_water_heating_space_type": {
+                    "description": "Service water heating space type classification",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingSpaceType2019ASHRAE901",
+                    "notes": "The enumeration is based on the standard used."
+                },
                 "infiltration_modeling_method": {
                     "description": "The software methodology chosen for modeling infiltration",
                     "type": "string"
@@ -283,6 +297,7 @@
                 "conditioning_type",
                 "lighting_space_type",
                 "ventilations_space_type",
+                "service_water_heating_space_type",
                 "infiltration_modeling_method",
                 "infiltration_equivalent_full_load_hours"
             ],
@@ -861,6 +876,94 @@
             ],
             "additionalProperties": false
         },
+        "ServiceWaterHeatingSystem": {
+            "type": "object",
+            "properties": {
+                "loop_name": {
+                    "description": "Name of service water heating system loop",
+                    "type": "string"
+                },
+                "area_type": {
+                    "description": "Service Water Heating Loop Area Type",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingSpaceType2019ASHRAE901",
+                    "notes": "The enumeration is based on the standard used."
+                },
+                "design_flow": {
+                    "description": "Design Flowrate of service water heating loop",
+                    "type": "number",
+                    "units": "L/s"
+                },
+                "supply_temperature": {
+                    "description": "Design supply temperature setpoint of service water heating loop",
+                    "type": "number",
+                    "units": "C"
+                },
+                "flow_schedule": {
+                    "description": "service water heating Loop flow schedule name",
+                    "type": "string"
+                },
+                "annual_entering_water_temperature": {
+                    "description": "Annual service main or annual ground temperature used for service water heating calculations entering water temperature\tdegrees",
+                    "type": "number",
+                    "units": "C"
+                },
+                "monthly_entering_water_temperature": {
+                    "description": "Monthly service main or ground temperatures used for service water heating entering water temperature\tdegrees",
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 12,
+                    "items": {
+                        "type": "number"
+                    },
+                    "units": "C",
+                    "notes": "Arrayed variable with 12 values for monthly entering water temperature"
+                },
+                "entering_water_temperature_type": {
+                    "description": "Method of determining service water heating entering water temperature",
+                    "$ref": "ASHRAE229.schema.json#/definitions/ServiceWaterHeatingEnteringWaterTemperatureInputOptions"
+                },
+                "heater_name": {
+                    "description": "Service water heating heater name",
+                    "type": "string"
+                },
+                "heater_fuel_type": {
+                    "description": "Service water heating heater fuel type",
+                    "$ref": "ASHRAE229.schema.json#/definitions/FuelTypeOptions"
+                },
+                "heater_efficiency": {
+                    "description": "Service water heating heater efficiency",
+                    "type": "number",
+                    "minimum": 0.0
+                }
+            },
+            "additionalProperties": false
+        },
+        "ServiceWaterHeatingEnteringWaterTemperatureInputOptions": {
+            "type": "string",
+            "enum": [
+                "ANNUAL_MAIN",
+                "MONTHLY_MAIN",
+                "ANNUAL_GROUND",
+                "MONTHLY_GROUND"
+            ],
+            "descriptions": [
+                "Annual main entering water temperature option",
+                "Monthly main entering water temperature option",
+                "Annual ground entering water temperature option",
+                "Monthly ground entering water temperature option"
+            ]
+        },
+        "FuelTypeOptions": {
+            "type": "string",
+            "enum": [
+                "ELECTRICITY",
+                "NATURAL_GAS"
+            ],
+            "descriptions": [
+                "Electricity",
+                "Natural gas"
+            ]
+        },
         "Refrigeration": {
             "type": "object",
             "properties": {
@@ -916,6 +1019,18 @@
                     "description": "Annual refrigeration energy end use from simulation output",
                     "type": "number",
                     "units": "kWh"
+                },
+                "service_water_heating_annual_enduse_electricity": {
+                    "description": "Annual electricity energy end_use for SWH loops",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "kWh"
+                },
+                "service_water_heating_annual_enduse_fossilfuel": {
+                    "description": "Annual fossil fuel energy end_use for SWH loops",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "J"
                 }
             },
             "required": [

@@ -140,6 +140,10 @@ BuildingSegment:
       Description: "HVAC systems in the building"
       Data Type: "[{HeatingVentilationAirConditioningSystem}]"
       Notes: "Contains a list of HVAC systems in the building."
+    service_water_heating_systems:
+      Description: "Service water heating systems in the building"
+      Data Type: "[{ServiceWaterHeatingSystem}]"
+      Notes: "Contains a list of service water heating systems in the building."
     area_type_vertical_fenestration:
       Description: "Building area classification used for vertical fenestration"
       Data Type: "<VerticalFenestrationBuildingAreaType2019ASHRAE901>"
@@ -213,6 +217,11 @@ Space:
     ventilations_space_type:
       Description: "Ventilation space type classification"
       Data Type: "<VentilationSpaceType2019ASHRAE901>"
+      Required: True
+      Notes: "The enumeration is based on the standard used."
+    service_water_heating_space_type:
+      Description: "Service water heating space type classification"
+      Data Type: "<ServiceWaterHeatingSpaceType2019ASHRAE901>"
       Required: True
       Notes: "The enumeration is based on the standard used."
     infiltration_modeling_method:
@@ -684,6 +693,70 @@ HeatingVentilationAirConditioningSystem:
       Units: "W/m2"
       Required: True
 
+ServiceWaterHeatingSystem:
+  Object Type: "Data Group"
+  Data Elements:
+    loop_name:
+      Description: "Name of service water heating system loop"
+      Data Type: "String"
+    area_type:
+      Description: "Service Water Heating Loop Area Type"
+      Data Type: "<ServiceWaterHeatingSpaceType2019ASHRAE901>"
+      Notes: "The enumeration is based on the standard used."
+    design_flow:
+      Description: "Design Flowrate of service water heating loop"
+      Data Type: "Numeric"
+      Units: "L/s" # use gpm for IP
+    supply_temperature:
+      Description: "Design supply temperature setpoint of service water heating loop"
+      Data Type: "Numeric"
+      Units: "C"
+    flow_schedule:
+      Description: "service water heating Loop flow schedule name"
+      Data Type: "String"
+    annual_entering_water_temperature:
+      Description: "Annual service main or annual ground temperature used for service water heating calculations entering water temperature	degrees"
+      Data Type: "Numeric"
+      Units: "C"
+    monthly_entering_water_temperature:
+      Description: "Monthly service main or ground temperatures used for service water heating entering water temperature	degrees"
+      Data Type: "[Numeric][1..12]"
+      Units: "C"
+      Notes: "Arrayed variable with 12 values for monthly entering water temperature"
+    entering_water_temperature_type:
+      Description: "Method of determining service water heating entering water temperature"
+      Data Type: "<ServiceWaterHeatingEnteringWaterTemperatureInputOptions>"
+    heater_name:
+      Description: "Service water heating heater name"
+      Data Type: "String"
+    heater_fuel_type:
+      Description: "Service water heating heater fuel type"
+      Data Type: "<FuelTypeOptions>"
+    heater_efficiency:
+      Description: "Service water heating heater efficiency"
+      Data Type: "Numeric"
+      Range: ">=0"
+
+ServiceWaterHeatingEnteringWaterTemperatureInputOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    ANNUAL_MAIN:
+      Description: "Annual main entering water temperature option"
+    MONTHLY_MAIN:
+      Description: "Monthly main entering water temperature option"
+    ANNUAL_GROUND:
+      Description: "Annual ground entering water temperature option"
+    MONTHLY_GROUND:
+      Description: "Monthly ground entering water temperature option"
+
+FuelTypeOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    ELECTRICITY:
+      Description: "Electricity"
+    NATURAL_GAS:
+      Description: "Natural gas"
+
 Refrigeration:
   Object Type: "Data Group"
   Data Elements:
@@ -729,6 +802,16 @@ OverallSimulationOutputs:
       Data Type: "Numeric"
       Units: "kWh"
       Required: True
+    service_water_heating_annual_enduse_electricity:
+      Description: "Annual electricity energy end_use for SWH loops"
+      Data Type: "Numeric"
+      Units: "kWh"
+      Range: ">=0"
+    service_water_heating_annual_enduse_fossilfuel:
+      Description: "Annual fossil fuel energy end_use for SWH loops"
+      Data Type: "Numeric"
+      Units: "J" # use MMBTU for IP units
+      Range: ">=0"
 
 
 

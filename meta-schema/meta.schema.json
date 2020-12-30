@@ -168,7 +168,8 @@
         "W/m2-K",
         "C",
         "kWh",
-        "m3"
+        "m3",
+        "J"
       ]
     },
     "RatingUnits": {

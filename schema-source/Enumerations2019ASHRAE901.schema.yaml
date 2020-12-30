@@ -150,8 +150,8 @@ LightingSpaceType2019ASHRAE901:
       Description: "Workshop"
       Notes: ""
       Display Text: "Workshop"
-# Table 9.5.1 Building Area Types  
 
+# Table 9.6.1 Space Types  
     ATRIUM_LOW:
       Description: "Atrium - Low"
       Notes: ""
@@ -996,7 +996,82 @@ VentilationSpaceType2019ASHRAE901:
       Notes: ""
       Display Text: "Transient Residential - Dwelling unit"
 
-
+ServiceWaterHeatingSpaceType2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+# Table G3.1.1-2 Baseline Service Water-Heating System  
+# The list is very similar to the first portion of LightingSpaceType2019ASHRAE901 but has a few differences and does not include Table 9.6.1 space types
+    AUTOMOTIVE_FACILITY:
+      Description: "Automotive facility"
+    CONVENIENCE_STORE:   # this does not appear in lighting space types
+      Description: "Convenience store"
+    CONVENTION_CENTER:
+      Description: "Convention center"
+    COURTHOUSE:
+      Description: "Courthouse"
+    DINING_BAR_LOUNGE_LEISURE:
+      Description: "Dining: Bar lounge/leisure"
+    DINING_CAFETERIA_FAST_FOOD:
+      Description: "Dining: Cafeteria/fast food"
+    DINING_FAMILY:
+      Description: "Dining: Family"
+    DORMITORY:
+      Description: "Dormitory"
+    EXERCISE_CENTER:
+      Description: "Exercise center"
+    FIRE_STATION:
+      Description: "Fire station"
+    GYMNASIUM:
+      Description: "Gymnasium"
+    HEALTH_CARE_CLINIC:
+      Description: "Health-care clinic"
+    HOSPITAL_AND_OUTPATIENT_SURGERY:  # this is different in lighting space types
+      Description: "Hospital and outpatient surgery center"
+    HOTEL:  # this is different in lighting space types
+      Description: "Hotel"
+    LIBRARY:
+      Description: "Library"
+    MANUFACTURING_FACILITY:
+      Description: "Manufacturing facility"
+    MOTEL:  # this is different in lighting space types
+      Description: "Motel"
+    MOTION_PICTURE_THEATER:
+      Description: "Motion picture theater"
+    MULTIFAMILY:
+      Description: "Multifamily"
+    MUSEUM:
+      Description: "Museum"
+    OFFICE:
+      Description: "Office"
+    PARKING_GARAGE:
+      Description: "Parking garage"
+    PENITENTIARY:
+      Description: "Penitentiary"
+    PERFORMING_ARTS_THEATER:
+      Description: "Performing arts theater"
+    POLICE_STATION:
+      Description: "Police station"
+    POST_OFFICE:
+      Description: "Post office"
+    RELIGIOUS_FACILITY:
+      Description: "Religious facility"
+    RETAIL:
+      Description: "Retail"
+    SCHOOL_UNIVERSITY:
+      Description: "School/university"
+    SPORTS_ARENA:
+      Description: "Sports arena"
+    TOWN_HALL:
+      Description: "Town hall"
+    TRANSPORTATION:
+      Description: "Transportation"
+    WAREHOUSE:
+      Description: "Warehouse"
+    WORKSHOP:
+      Description: "Workshop"
+    ALL_OTHERS:  # this is different in lighting space types    
+      Description: "All others"
+ 
 ClimateZone2019ASHRAE901:
   Object Type: "Enumeration"
   Enumerators:

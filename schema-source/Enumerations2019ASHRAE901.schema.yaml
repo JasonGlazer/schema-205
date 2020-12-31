@@ -553,6 +553,56 @@ LightingSpaceType2019ASHRAE901:
       Notes: ""
       Display Text: "Warehouse — Storage Area - Smaller, hand-carried items"
 
+ExteriorLightingAreas2019ASHRAE901TableG36:
+  Object Type: "Enumeration"
+  Enumerators:
+# Table G3.6
+    UNCOVERED_PARKING_LOTS_AND_DRIVES:
+      Description: "Uncovered parking lots and drives"
+    WALKWAY_NARROW:
+      Description: "Walkway - narrow"
+      Notes: "Less than 10 ft wide"
+    WALKWAY_WIDE:
+      Description: "Walkway - wide"
+      Notes: "10 ft wide or greater"
+    PLAZA_AREAS:
+      Description: "Plaza Areas"
+    SPECIAL_FEATURE_AREAS:
+      Description: "Special Feature Areas"
+    STAIRWAYS:
+      Description: "Stairways"
+    MAIN_ENTRANCE_DOOR:
+      Description: "Main entrance door"
+    OTHER_ENTRANCE_OR_EXIT_DOORS:
+      Description: "Other entrance or exit doors"
+    EXTERIOR_CANOPIES:
+      Description: "Exterior canopies"
+    OUTDOOR_SALES_OPEN_AREAS:
+      Description: "Outdoor sales - open areas"
+    STREET_FRONTAGE:
+      Description: "Street frontage"
+    NON_TRADABLE_FACADE:
+      Description: "Non-tradable facade"
+
+ExteriorLightingZones2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+# Table 9.4.2-1
+    ZONE_0_UNDEVELOPED:
+      Description: "Zone 0 - undeveloped"
+      Notes: "Undeveloped areas within national parks, state parks, forest land, rural areas, and other undeveloped areas as defined by the authority having jurisdiction"
+    ZONE_1_DEVELOPED_RURAL_AND_PARK:
+      Description: "Zone 1 - developed rural and park"
+      Notes: "Developed areas of national parks, state parks, forest land, and rural areas"
+    ZONE_2_RESIDENTIAL_NEIGHBORHOOD:
+      Description: "Zone 2 - residential neighborhood"
+      Notes: "Areas predominantly consisting of residential zoning, neighborhood business districts, light industrial with limited nighttime use and residential mixed use areas"
+    ZONE_3_ALL_OTHER_AREAS:
+      Description: "Zone 3 - all other areas"
+    ZONE_4_HIGH_ACTIVITY_COMMERCIAL:
+      Description: "Zone 4 - high-activity commercial"
+      Notes: "High-activity commercial districts in major metropolitan areas as designated by the local jurisdiction"
+
 
 # These ventilation space types are from ASHRAE Standard 62.1-2016 plus addenda which is referenced in 90.1-2019.
 # Used 62.1-2019 to construct the list

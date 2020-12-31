@@ -123,6 +123,12 @@ Building:
       Description: "Refrigeration"
       Data Type: "[{Refrigeration}]"
       Notes: "Contains a list of refrigeration components in the building."
+    open_time:
+      Description: "Time that the building opens."
+      Notes: "The general time that the building is first opened during normal weekdays from 1 to 24"
+    close_time:
+      Description: "Time that the building closes."
+      Notes: "The general time that the building is closed during normal weekdays from 1 to 24"
 
 BuildingSegment:    
   Object Type: "Data Group"
@@ -194,6 +200,11 @@ Space:
       Units: "m2"
       Required: True
       Notes: ""
+    floor_to_ceiling_height:
+      Description: "The height from the floor of the space to the ceiling"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m"
     floor_area_basis_for_exterior:
       Description: "The basis of the measurement location related to floor area for exterior walls."
       Data Type: "<FloorAreaBasis>"
@@ -535,7 +546,7 @@ Schedule:
       Description: "Hourly Values of Schedule"
       Data Type: "[Numeric][1..8760]"
       Required: True
-      Notes: ""
+      Notes: "Can also use functions like EFLH(), MAX(), MIN() to determine overall characteristics for the list of schedule values."
     
 Calendar:
   Object Type: "Data Group"

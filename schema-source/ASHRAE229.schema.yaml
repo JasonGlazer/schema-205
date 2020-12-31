@@ -100,7 +100,6 @@ Building:
       Description: "Number of floors"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     building_segments:
       Description: "Large portions of a building that share a building area type"
       Data Type: "[{BuildingSegment}]"
@@ -108,7 +107,6 @@ Building:
     is_new:
       Description: "Indicates whether building is a new construction (true) or existing (false). Projects that include additions will be modeled as two buildings - one new and one existing, as curtain rules such as baseline fenestration area will apply differently to each portion"
       Data Type: "Boolean"
-      Required: True
     compliance_path:
       Description: "Indicates the chosen compliance path if the ruleset has multiple compliance paths such as 90.1 Appendix G has code compliance and beyond code"
       Data Type: "<CompliancePathType2019ASHRAE901>"
@@ -149,7 +147,6 @@ BuildingSegment:
     area_type_vertical_fenestration:
       Description: "Building area classification used for vertical fenestration"
       Data Type: "<VerticalFenestrationBuildingAreaType2019ASHRAE901>"
-      Required: True
       Notes: "The enumeration is based on the standard used."
 
 ThermalBlock:
@@ -192,7 +189,6 @@ Space:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "m2"
-      Required: True
     floor_to_ceiling_height:
       Description: "The height from the floor of the space to the ceiling"
       Data Type: "Numeric"
@@ -201,39 +197,31 @@ Space:
     floor_area_basis_for_exterior:
       Description: "The basis of the measurement location related to floor area for exterior walls."
       Data Type: "<FloorAreaBasis>"
-      Required: True
     floor_area_basis_for_interior:
       Description: "The basis of the measurement location related to floor area for interior walls."
       Data Type: "<FloorAreaBasis>"
-      Required: True
     conditioning_type:
       Description: "Space conditioning category"
       Data Type: "<ConditioningType>"
-      Required: False
     lighting_space_type:
       Description: "Lighting space type classification"
       Data Type: "<LightingSpaceType2019ASHRAE901>"
-      Required: True
       Notes: "The enumeration is based on the standard used."
     ventilations_space_type:
       Description: "Ventilation space type classification"
       Data Type: "<VentilationSpaceType2019ASHRAE901>"
-      Required: True
       Notes: "The enumeration is based on the standard used."
     service_water_heating_space_type:
       Description: "Service water heating space type classification"
       Data Type: "<ServiceWaterHeatingSpaceType2019ASHRAE901>"
-      Required: True
       Notes: "The enumeration is based on the standard used."
     infiltration_modeling_method:
       Description: "The software methodology chosen for modeling infiltration"
       Data Type: "String"
-      Required: True
     infiltration_equivalent_full_load_hours:
       Description: "Annual sum of hourly fractions of infiltration schedule"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     receptacle_control_credit_taken:
       Description: "The receptacle control credit was taken"
       Data Type: "Boolean"
@@ -298,25 +286,20 @@ Surface:
       Description: "Angle between vertical and the surface outward normal, e.g. 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)"
       Data Type: "Numeric"
       Units: "degrees"
-      Required: True
     azimuth:
       Description: "Clockwise angle between North (0 degrees) and the horizontal projection of the wall's outward normal. 0 = north, 90 = East, 180 = South, 270 = West"
       Data Type: "Numeric"
       Range: ">=0"
       Units: "degrees"
-      Required: True
     adjacent_to:
       Description: "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
       Data Type: "<SurfaceAdjacentTo>"
-      Required: True
     adjacent_space_ID:
       Description: "ID of the adjacent space for interior surface"
       Data Type: "String"
-      Required: True
     does_cast_shade:
       Description: "Determines whether the surface is modeled as casting shade on other exterior surfaces"
       Data Type: "Boolean"
-      Required: True
     surfaces:
       Description: "Surfaces surrounding the space"
       Data Type: "[{Surface}]"
@@ -324,44 +307,36 @@ Surface:
     surface_construction_input_option:
       Description: "Identifies whether construction is entered layer-by-layer or simplified (R-value)"
       Data Type: "<SurfaceConstructionInputOptions>"
-      Required: True
     area:
       Description: "area of the surface"
       Data Type: "Numeric"
       Range: ">=0"
       Units: "m2"
-      Required: True
     u_factor:
       Description: "suface U-factor"
       Data Type: "Numeric"
       Range: ">=0"
       Units: "W/m2-K"
-      Required: True
     c_factor:
       Description: "surface C-factor"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     f_factor:
       Description: "surface F-factor"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     reflectance:
       Description: "Reflectance"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     emittance:
       Description: "Emittance"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     reflectivity:
       Description: "Reflectivity"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     
 SurfaceAdjacentTo:
   Object Type: "Enumeration"
@@ -397,30 +372,24 @@ Fenestration:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "m2"
-      Required: True
     u_factor:
       Description: "fenestration U-factor"
       Data Type: "Numeric"
       Units: "W/m2-K"
       Range: ">=0"
-      Required: True
     solar_heat_gain_coefficient:
       Description: "fenestration SHGC"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     has_shading_projections:
       Description: "identifies whether fenestration has side fins, overhangs or not flush with wall"
       Data Type: "Boolean"
-      Required: True
     has_manual_interior_shades:
       Description: "are there manually-operated interior shading such as blinds, curtains or shades"
       Data Type: "Boolean"
-      Required: True
     has_automatic_shades:
       Description: "are there automatic interior shading such as blinds, curtains or shades"
       Data Type: "Boolean"
-      Required: True
  
 Transformer:
   Object Type: "Data Group"
@@ -432,33 +401,27 @@ Transformer:
     type:
       Description: "The type of transformer"
       Data Type: "<TransformerType>"
-      Required: True
     phase:
       Description: "The number of electrical phases"
       Data Type: "<TransformerPhase>"
-      Required: True
     efficiency:
       Description: "Transformer efficiency"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     capacity:
       Description: "Rated Capacity of the Transformer"
       Data Type: "Numeric"
       Units: "Va"
       Range: ">=0"
-      Required: True
     peak_load:
       Description: "Annual Peak electric load on the transformer"
       Data Type: "Numeric"
       Units: "W"
       Range: ">=0"
-      Required: True
     capacity_ratio:
       Description: "Annual Peak electric load of the transformer divided by the capacity"
       Data Type: "Numeric"
       Range: ">=0"
-      Required: True
     
 TransformerType:
   Object Type: "Enumeration"
@@ -492,12 +455,10 @@ Schedule:
     type:
       Description: "The type of schedule"
       Data Type: "String"
-      Required: True
       Notes: "Not an enumerations because we only care that the type assigned by BEM tool matches across RMR"
     values:
       Description: "Hourly Values of Schedule"
       Data Type: "[Numeric][1..8760]"
-      Required: True
       Notes: "Can also use functions like EFLH(), MAX(), MIN() to determine overall characteristics for the list of schedule values."
     
 Calendar:
@@ -510,15 +471,12 @@ Calendar:
     day_of_week_for_january_1:
       Description: "Day of the Week for January 1"
       Data Type: "<DayOfWeek>"
-      Required: True
     is_leap_year:
       Description: "The schedules assume it is a leap year"
       Data Type: "Boolean"
-      Required: True
     is_daylight_savings_time:
       Description: "The schedules adjust for daylight Savings Time"
       Data Type: "Boolean"
-      Required: True
 
 DayOfWeek:
   Object Type: "Enumeration"
@@ -545,7 +503,6 @@ Weather:
       Description: "Modeled monthly ground temperatures"
       Data Type: "[Numeric][1..12]"
       Units: "C"
-      Required: True
     climate_zone:
       Description: "The designation of the climate zone where the building is located"
       Data Type: "<ClimateZone2019ASHRAE901>"
@@ -567,74 +524,59 @@ Elevator:
       Description: "Elevator peak motor power"
       Data Type: "Numeric"
       Units: "W"
-      Required: True
     cab_counterweight:
       Description: "elevator car counterweight"
       Data Type: "Numeric"
       Units: "kg"
-      Required: True
     cab_weight:
       Description: "weight of elevator car"
       Data Type: "Numeric"
       Units: "kg"
-      Required: True
     design_elevator_load:
       Description: "elevator load at which to operate"
       Data Type: "Numeric"
       Units: "kg"
-      Required: True
     speed:
       Description: "design speed of the elevator"
       Data Type: "Numeric"
       Units: "m/s"
-      Required: True
     cab_area:
       Description: "floor area of elevator cab"
       Data Type: "Numeric"
       Units: "m2"
-      Required: True
     cab_lighting_power:
       Description: "lighitng power of cab"
       Data Type: "Numeric"
       Units: "W"
-      Required: True
     cab_ventilation_fan_power:
       Description: "ventilation fan power of cab"
       Data Type: "Numeric"
       Units: "W"
-      Required: True
     cab_ventilation_fan_flow:
       Description: "airflow of cab ventfan"
       Data Type: "Numeric"
       Units: "L/s"
-      Required: True
     cab_motor_schedule:
       Description: "elevator motor operation schedule name"
       Data Type: "String"
-      Required: True
     cab_ventilation_fan_schedule:
       Description: "elevator ventilation fan operation schedule name"
       Data Type: "String"
-      Required: True
     cab_lighting_schedule:
       Description: "elevator lighting schedule name"
       Data Type: "String"
-      Required: True
     cab_motor_schedule_equivalent_full_load_hours:
       Description: "elevator motor operation schedule equivalent full load hours"
       Data Type: "Numeric"
       Range: ">=0, <=8760"
-      Required: True
     cab_ventilation_fan_schedule_equivalent_full_load_hours:
       Description: "elevator ventfan operation schedule equivalent full load hours"
       Data Type: "Numeric"
       Range: ">=0, <=8760"
-      Required: True
     cab_lighting_schedule_equivalent_full_load_hours:
       Description: "elevator lighitng schedule equivalent full load hours"
       Data Type: "Numeric"
       Range: ">=0, <=8760"
-      Required: True
 
 HeatingVentilationAirConditioningSystem:
   Object Type: "Data Group"
@@ -648,13 +590,11 @@ HeatingVentilationAirConditioningSystem:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "W/m2"
-      Required: True
     heat_output_capacity:
       Description: "Result from the simulation of the heating capacity"
       Data Type: "Numeric"
       Range: ">=0"
       Units: "W/m2"
-      Required: True
 
 ServiceWaterHeatingSystem:
   Object Type: "Data Group"
@@ -873,26 +813,21 @@ Refrigeration:
     type:
       Description: "Refrigeration equipment type"
       Data Type: "<RefrigerationType2019ASHRAE901>"
-      Required: True
     equipment_class:
       Description: "Equipment Class from referenced standard"
       Data Type: "<RefrigerationClass2019ASHRAE901>"
-      Required: True
     energy_per_day:
       Description: "Rated electrical energy use per day"
       Data Type: "Numeric"
       Units: "kWh"
-      Required: True
     case_volume:
       Description: "volume of a refrigerated case in cubic meters"
       Data Type: "Numeric"
       Units: "m3"
-      Required: True
     total_display_area:
       Description: "display area of a refrigerated case in square meters"
       Data Type: "Numeric"
       Units: "m2"
-      Required: True
 
 OverallSimulationOutputs:
   Object Type: "Data Group"
@@ -901,7 +836,6 @@ OverallSimulationOutputs:
       Description: "Annual refrigeration energy end use from simulation output"
       Data Type: "Numeric"
       Units: "kWh"
-      Required: True
     service_water_heating_annual_enduse_electricity:
       Description: "Annual electricity energy end_use for SWH loops"
       Data Type: "Numeric"

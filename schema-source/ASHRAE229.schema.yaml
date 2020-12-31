@@ -83,6 +83,11 @@ ASHRAE229:
     overall_simulation_outputs:
       Description: "Outputs from the simluation summed for all buildings in the simulation."
       Data Type: "{OverallSimulationOutputs}"
+    building_rotation_angle: 
+      Description: "Result from the simulation of the sensible cooling capacity"
+      Data Type: "[Numeric]"
+      Units: "degrees"
+      Note: "List of angles that the building has been rotated."
     
 
 Building:
@@ -203,6 +208,10 @@ Space:
     conditioning_type:
       Description: "Space conditioning category"
       Data Type: "<ConditioningType>"
+    space_function:
+      Description: "Generic function for the space."
+      Data Type: "<SpaceFunctionType>"
+      Notes: "The enumeration is based on the standard used."
     lighting_space_type:
       Description: "Lighting space type classification"
       Data Type: "<LightingSpaceType2019ASHRAE901>"
@@ -268,6 +277,16 @@ ConditioningType:
     PLENUM:
       Description: "Plenum"
 
+SpaceFunctionType:
+  Object Type: "Enumeration"
+  Enumerators:
+    LABORATORY:
+      Description: "Laboratory"
+    KITCHEN:
+      Description: "Kitchen"
+    OTHER:
+      Description: "Other"
+
 Surface:
   Object Type: "Data Group"
   Data Elements:
@@ -283,6 +302,9 @@ Surface:
       Description: "Fenestration suburfaces that are on the surface"
       Data Type: "[{Fenestration}]"
       Notes: "Contains a list of surfaces that define the space."
+    classification: 
+      Description: "Classification for the surface being interior or exterior wall, floor, or ceiling."
+      Data Type: "<SurfaceClassificationType>"
     tilt:
       Description: "Angle between vertical and the surface outward normal, e.g. 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)"
       Data Type: "Numeric"
@@ -301,10 +323,6 @@ Surface:
     does_cast_shade:
       Description: "Determines whether the surface is modeled as casting shade on other exterior surfaces"
       Data Type: "Boolean"
-    surfaces:
-      Description: "Surfaces surrounding the space"
-      Data Type: "[{Surface}]"
-      Notes: "Contains a list of surfaces that define the space."
     surface_construction_input_option:
       Description: "Identifies whether construction is entered layer-by-layer or simplified (R-value)"
       Data Type: "<SurfaceConstructionInputOptions>"
@@ -340,6 +358,28 @@ Surface:
       Description: "Reflectivity"
       Data Type: "Numeric"
       Range: ">=0"
+
+SurfaceClassificationType:
+  Object Type: "Enumeration"
+  Enumerators:
+    INTERIOR_WALL:
+      Description: "Interior Wall"
+    INTERIOR_FLOOR:
+      Description: "Interior Floor"
+    INTERIOR_CEILING:
+      Description: "Interior Ceiling"
+    EXTERIOR_WALL:
+      Description: "Exterior Wall"
+    EXTERIOR_FLOOR:
+      Description: "Exterior Floor"
+    EXTERIOR_CEILING:
+      Description: "Exterior Ceiling"
+    UNDERGROUND_WALL:
+      Description: "Underground Wall"
+    UNDERGROUND_FLOOR:
+      Description: "Underground Floor"
+    UNDERGROUND_CEILING:
+      Description: "Underground Ceiling"
     
 SurfaceAdjacentTo:
   Object Type: "Enumeration"
@@ -458,7 +498,7 @@ Schedule:
     type:
       Description: "The type of schedule"
       Data Type: "String"
-      Notes: "Not an enumerations because we only care that the type assigned by BEM tool matches across RMR"
+      Notes: "Describe the purpose of the schedule and how it can be used. Not an enumerations because we only care that the type assigned by BEM tool matches across RMR. Examples include thermostat, multiplier for lighting, availability for equipment."
     values:
       Description: "Hourly Values of Schedule"
       Data Type: "[Numeric][1..8760]"
@@ -593,14 +633,16 @@ HeatingVentilationAirConditioningSystem:
       Required: True
     sensible_cool_output_capacity: 
       Description: "Result from the simulation of the sensible cooling capacity"
-      Data Type: "Numeric"
+      Data Type: "[Numeric]"
       Range: ">=0"
       Units: "W/m2"
+      Note: "If multiple values are provided, they correspond to rotated building orientations"
     heat_output_capacity:
       Description: "Result from the simulation of the heating capacity"
-      Data Type: "Numeric"
+      Data Type: "[Numeric]"
       Range: ">=0"
       Units: "W/m2"
+      Note: "If multiple values are provided, they correspond to rotated building orientations"
 
 ServiceWaterHeatingSystem:
   Object Type: "Data Group"

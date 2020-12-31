@@ -92,18 +92,15 @@ Building:
       Description: "Unique Identification Number"
       Data Type: "Numeric"
       Required: True
-      Notes: ""
     name:
       Description: "Name of the Building"
       Data Type: "String"
       Required: True
-      Notes: ""
     number_of_floors:
       Description: "Number of floors"
       Data Type: "Numeric"
       Range: ">=0"
       Required: True
-      Notes: ""
     building_segments:
       Description: "Large portions of a building that share a building area type"
       Data Type: "[{BuildingSegment}]"
@@ -137,7 +134,6 @@ BuildingSegment:
       Description: "Unique Identification Number"
       Data Type: "Numeric"
       Required: True
-      Notes: ""
     thermal_blocks:
       Description: "thermal blocks in the building"
       Data Type: "[{ThermalBlock}]"
@@ -183,12 +179,10 @@ Space:
       Description: "Unique Identification Number"
       Data Type: "Numeric"
       Required: True
-      Notes: ""
     name:
       Description: "Name fo the Space"
       Data Type: "String"
       Required: True
-      Notes: ""
     surfaces:
       Description: "Surfaces surrounding the space"
       Data Type: "[{Surface}]"
@@ -199,7 +193,6 @@ Space:
       Range: ">=0"
       Units: "m2"
       Required: True
-      Notes: ""
     floor_to_ceiling_height:
       Description: "The height from the floor of the space to the ceiling"
       Data Type: "Numeric"
@@ -209,17 +202,14 @@ Space:
       Description: "The basis of the measurement location related to floor area for exterior walls."
       Data Type: "<FloorAreaBasis>"
       Required: True
-      Notes: ""
     floor_area_basis_for_interior:
       Description: "The basis of the measurement location related to floor area for interior walls."
       Data Type: "<FloorAreaBasis>"
       Required: True
-      Notes: ""
     conditioning_type:
       Description: "Space conditioning category"
       Data Type: "<ConditioningType>"
       Required: False
-      Notes: ""
     lighting_space_type:
       Description: "Lighting space type classification"
       Data Type: "<LightingSpaceType2019ASHRAE901>"
@@ -267,15 +257,12 @@ FloorAreaBasis:
   Enumerators:
     CENTER:
       Description: "Center line of the wall"
-      Notes: ""
       Display Text: "The area is measured to the center line of the wall"
     NEAR_SIDE:
       Description: "Near side of the wall"
-      Notes: ""
       Display Text: "The area is measured to the line on the near side wall"
     FAR_SIDE:
       Description: "Far side of the wall"
-      Notes: ""
       Display Text: "The area is measured to the line on the far side wall"
 
 ConditioningType:
@@ -283,26 +270,14 @@ ConditioningType:
   Enumerators:
     HEATED_AND_COOLED:
       Description: "Heated and cooled"
-      Notes: ""
-      Display Text: "Heated and cooled"
     HEATED_ONLY:
       Description: "Heated only"
-      Notes: ""
-      Display Text: "Heated only"
     SEMIHEATED:
       Description: "Semiheated"
-      Notes: ""
-      Display Text: "Semiheated"
     UNCONDITIONED:
       Description: "Unconditioned"
-      Notes: ""
-      Display Text: "Unconditioned"
     PLENUM:
       Description: "Plenum"
-      Notes: ""
-      Display Text: "Plenum"
-
-
 
 Surface:
   Object Type: "Data Group"
@@ -311,12 +286,10 @@ Surface:
       Description: "Unique Identification Number"
       Data Type: "Numeric"
       Required: True
-      Notes: ""
     name:
       Description: "Name fo the Space"
       Data Type: "String"
       Required: True
-      Notes: ""
     fenestration_subsurfaces:
       Description: "Fenestration suburfaces that are on the surface"
       Data Type: "[{Fenestration}]"
@@ -415,12 +388,10 @@ Fenestration:
       Description: "Unique Identification Number"
       Data Type: "Numeric"
       Required: True
-      Notes: ""
     name:
       Description: "Name of the fenestration subsurface"
       Data Type: "String"
       Required: True
-      Notes: ""
     area:
       Description: "area of fenestration including glass and framing"
       Data Type: "Numeric"
@@ -458,71 +429,54 @@ Transformer:
       Description: "Transformer Name"
       Data Type: "String"
       Required: True
-      Notes: ""
     type:
       Description: "The type of transformer"
       Data Type: "<TransformerType>"
       Required: True
-      Notes: ""
     phase:
       Description: "The number of electrical phases"
       Data Type: "<TransformerPhase>"
       Required: True
-      Notes: ""
     efficiency:
       Description: "Transformer efficiency"
       Data Type: "Numeric"
       Range: ">=0"
       Required: True
-      Notes: ""
     capacity:
       Description: "Rated Capacity of the Transformer"
       Data Type: "Numeric"
       Units: "Va"
       Range: ">=0"
       Required: True
-      Notes: ""
     peak_load:
       Description: "Annual Peak electric load on the transformer"
       Data Type: "Numeric"
       Units: "W"
       Range: ">=0"
       Required: True
-      Notes: ""
     capacity_ratio:
       Description: "Annual Peak electric load of the transformer divided by the capacity"
       Data Type: "Numeric"
       Range: ">=0"
       Required: True
-      Notes: ""
     
 TransformerType:
   Object Type: "Enumeration"
   Enumerators:
     DRY_TYPE:
       Description: "Dry Type"
-      Notes: ""
-      Display Text: "Dry Type"
     FLUID_FILLED:
       Description: "Fluid Filled"
-      Notes: ""
-      Display Text: "Fluid Filled"
     OTHER:
       Description: "Other"
-      Notes: ""
-      Display Text: "Other"
 
 TransformerPhase:
   Object Type: "Enumeration"
   Enumerators:
     SINGLE_PHASE:
       Description: "Single Phase"
-      Notes: ""
-      Display Text: "Single Phase"
     THREE_PHASE:
       Description: "Three Phase"
-      Notes: ""
-      Display Text: "Three Phase"
 
 Schedule:
   Object Type: "Data Group"
@@ -531,12 +485,10 @@ Schedule:
       Description: "Unique Identification Number"
       Data Type: "Numeric"
       Required: True
-      Notes: ""
     name:
       Description: "Name of the Schedule"
       Data Type: "String"
       Required: True
-      Notes: ""
     type:
       Description: "The type of schedule"
       Data Type: "String"
@@ -607,12 +559,10 @@ Elevator:
       Description: "Unique Identification Number"
       Data Type: "Numeric"
       Required: True
-      Notes: ""
     name:
       Description: "Name of the elevator"
       Data Type: "String"
       Required: True
-      Notes: ""
     motor_power:
       Description: "Elevator peak motor power"
       Data Type: "Numeric"
@@ -916,12 +866,10 @@ Refrigeration:
       Description: "Unique Identification Number"
       Data Type: "Numeric"
       Required: True
-      Notes: ""
     name:
       Description: "Name of the refrigeration component"
       Data Type: "String"
       Required: True
-      Notes: ""
     type:
       Description: "Refrigeration equipment type"
       Data Type: "<RefrigerationType2019ASHRAE901>"

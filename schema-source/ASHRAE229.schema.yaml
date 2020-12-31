@@ -221,6 +221,7 @@ Space:
     infiltration_equivalent_full_load_hours:
       Description: "Annual sum of hourly fractions of infiltration schedule"
       Data Type: "Numeric"
+      Units: "hr"
       Range: ">=0"
     receptacle_control_credit_taken:
       Description: "The receptacle control credit was taken"
@@ -321,10 +322,12 @@ Surface:
       Description: "surface C-factor"
       Data Type: "Numeric"
       Range: ">=0"
+      Units: "W/m2-K"
     f_factor:
       Description: "surface F-factor"
       Data Type: "Numeric"
       Range: ">=0"
+      Units: "W/m-K"
     reflectance:
       Description: "Reflectance"
       Data Type: "Numeric"
@@ -569,14 +572,17 @@ Elevator:
       Description: "elevator motor operation schedule equivalent full load hours"
       Data Type: "Numeric"
       Range: ">=0, <=8760"
+      Units: "hr"
     cab_ventilation_fan_schedule_equivalent_full_load_hours:
       Description: "elevator ventfan operation schedule equivalent full load hours"
       Data Type: "Numeric"
       Range: ">=0, <=8760"
+      Units: "hr"
     cab_lighting_schedule_equivalent_full_load_hours:
       Description: "elevator lighitng schedule equivalent full load hours"
       Data Type: "Numeric"
       Range: ">=0, <=8760"
+      Units: "hr"
 
 HeatingVentilationAirConditioningSystem:
   Object Type: "Data Group"

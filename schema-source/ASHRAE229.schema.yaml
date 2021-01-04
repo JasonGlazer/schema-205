@@ -83,8 +83,8 @@ ASHRAE229:
     overall_simulation_outputs:
       Description: "Outputs from the simluation summed for all buildings in the simulation."
       Data Type: "{OverallSimulationOutputs}"
-    building_rotation_angle: 
-      Description: "Result from the simulation of the sensible cooling capacity"
+    building_rotation_angles: 
+      Description: "A list of angles that building simulations are performed and results are provided."
       Data Type: "[Numeric]"
       Units: "degrees"
       Note: "List of angles that the building has been rotated."
@@ -125,9 +125,13 @@ Building:
       Notes: "Contains a list of refrigeration components in the building."
     open_time:
       Description: "Time that the building opens."
+      Data Type: "Numeric"
+      Range: ">=1, <=24"
       Notes: "The general time that the building is first opened during normal weekdays from 1 to 24"
     close_time:
       Description: "Time that the building closes."
+      Data Type: "Numeric"
+      Range: ">=1, <=24"
       Notes: "The general time that the building is closed during normal weekdays from 1 to 24"
 
 BuildingSegment:    
@@ -138,7 +142,7 @@ BuildingSegment:
       Data Type: "Numeric"
       Required: True
     thermal_blocks:
-      Description: "thermal blocks in the building"
+      Description: "Thermal blocks in the building"
       Data Type: "[{ThermalBlock}]"
       Notes: "Contains a list of thermal blocks in the building."
     heating_ventilation_air_conditioning_systems:
@@ -158,7 +162,7 @@ ThermalBlock:
   Object Type: "Data Group"
   Data Elements:
     zones:
-      Description: "zones in the building"
+      Description: "Zones in the building"
       Data Type: "[{Zone}]"
       Notes: "Contains a list of zones in the building."
     served_by_heating_ventilation_air_conditioning_systems:
@@ -214,7 +218,7 @@ Space:
       Notes: "The enumeration is based on the standard used."
     lighting_space_type:
       Description: "Lighting space type classification"
-      Data Type: "<LightingSpaceType2019ASHRAE901>"
+      Data Type: "(<LightingSpaceType2019ASHRAE901T951>, <LightingSpaceType2019ASHRAE901T961>)"
       Notes: "The enumeration is based on the standard used."
     ventilations_space_type:
       Description: "Ventilation space type classification"
@@ -229,6 +233,7 @@ Space:
       Data Type: "String"
     infiltration_equivalent_full_load_hours:
       Description: "Annual sum of hourly fractions of infiltration schedule"
+      # this field may be replaced by a function EFLH()
       Data Type: "Numeric"
       Units: "hr"
       Range: ">=0"
@@ -255,13 +260,13 @@ FloorAreaBasis:
   Enumerators:
     CENTER:
       Description: "Center line of the wall"
-      Display Text: "The area is measured to the center line of the wall"
+      Display Text: "The area is measured to the center line of the wall when standing within the space."
     NEAR_SIDE:
       Description: "Near side of the wall"
-      Display Text: "The area is measured to the line on the near side wall"
+      Display Text: "The area is measured to the line on the near side of the wall when standing within the space."
     FAR_SIDE:
       Description: "Far side of the wall"
-      Display Text: "The area is measured to the line on the far side wall"
+      Display Text: "The area is measured to the line on the far side of the wall when standing within the space."
 
 ConditioningType:
   Object Type: "Enumeration"
@@ -303,20 +308,24 @@ Surface:
       Data Type: "[{Fenestration}]"
       Notes: "Contains a list of surfaces that define the space."
     classification: 
-      Description: "Classification for the surface being interior or exterior wall, floor, or ceiling."
+      Description: "Classification for the surface."
       Data Type: "<SurfaceClassificationType>"
+      Notes: "Options for surface being interior or exterior wall, floor, or ceiling."
     tilt:
-      Description: "Angle between vertical and the surface outward normal, e.g. 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)"
+      Description: "Angle between vertical and the surface outward normal" 
       Data Type: "Numeric"
       Units: "degrees"
+      Notes: "Example value would be 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)"
     azimuth:
-      Description: "Clockwise angle between North (0 degrees) and the horizontal projection of the wall's outward normal. 0 = north, 90 = East, 180 = South, 270 = West"
+      Description: "Clockwise angle between North and the horizontal projection of the wall's outward normal."
       Data Type: "Numeric"
       Range: ">=0"
       Units: "degrees"
+      Notes: "Example values would be 0 = north, 90 = East, 180 = South, 270 = West"
     adjacent_to:
-      Description: "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
+      Description: "Used to classify the conditions on the surface."
       Data Type: "<SurfaceAdjacentTo>"
+      Notes: "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
     adjacent_space_ID:
       Description: "ID of the adjacent space for interior surface"
       Data Type: "String"
@@ -331,7 +340,13 @@ Surface:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "m2"
-      Note: "Measured from interior face area"
+      Note: "Measured from interior face area. It is the gross area of the wall and includes the area of all subsurfaces."
+    layers:
+      Description: "List of names of layer descriptions starting from the outside surface"
+      Data Type: "[String]"
+    insulation_location:
+      Description: "The location of the insulation related to the surface"
+      Data Type: "String"  # this might make sense as an enumeration but I'm not sure the source of the options
     u_factor:
       Description: "suface U-factor"
       Data Type: "Numeric"
@@ -420,7 +435,7 @@ Fenestration:
       Description: "Classification for the fenestration being window, skylight, door."
       Data Type: "<FenestrationClassificationType>"
     area:
-      Description: "area of fenestration including glass and framing"
+      Description: "Area of fenestration including glass and framing"
       Data Type: "Numeric"
       Range: ">=0"
       Units: "m2"
@@ -430,20 +445,20 @@ Fenestration:
       Range: ">=0"
       Notes: "See https://windows.lbl.gov/software/igdb for ID numbers"
     u_factor:
-      Description: "fenestration U-factor"
+      Description: "Fenestration U-factor"
       Data Type: "Numeric"
       Units: "W/m2-K"
       Range: ">=0"
     solar_heat_gain_coefficient:
-      Description: "fenestration SHGC"
+      Description: "Fenestration SHGC"
       Data Type: "Numeric"
       Range: ">=0"
     visible_transmittance:
-      Description: "fenestration VT"
+      Description: "Fenestration VT"
       Data Type: "Numeric"
       Range: ">=0"
     light_to_solar_gain_ratio:
-      Description: "fenestration LSG"
+      Description: "Fenestration LSG"
       Data Type: "Numeric"
       Range: ">=0"
     depth_of_overhang:
@@ -452,13 +467,13 @@ Fenestration:
       Units: "m"
       Range: ">=0"
     has_shading_projections:
-      Description: "identifies whether fenestration has side fins, overhangs or not flush with wall"
+      Description: "Identifies whether fenestration has side fins, overhangs or not flush with wall"
       Data Type: "Boolean"
     has_manual_interior_shades:
-      Description: "are there manually-operated interior shading such as blinds, curtains or shades"
+      Description: "Are there manually-operated interior shading such as blinds, curtains or shades"
       Data Type: "Boolean"
     has_automatic_shades:
-      Description: "are there automatic interior shading such as blinds, curtains or shades"
+      Description: "Are there automatic interior shading such as blinds, curtains or shades"
       Data Type: "Boolean"
     
 FenestrationClassificationType:
@@ -541,14 +556,22 @@ Schedule:
       Description: "Name of the Schedule"
       Data Type: "String"
       Required: True
-    type:
-      Description: "The type of schedule"
+    purpose:
+      Description: "The purpose of schedule"
       Data Type: "String"
-      Notes: "Describe the purpose of the schedule and how it can be used. Not an enumerations because we only care that the type assigned by BEM tool matches across RMR. Examples include thermostat, multiplier for lighting, availability for equipment."
+      Notes: "Describe the purpose of the schedule and how it can be used. Not an enumerations. The purpose assigned by BEM tool should match across RMRs. Examples include thermostat, multiplier for lighting, availability for equipment."
     values:
       Description: "Hourly Values of Schedule"
       Data Type: "[Numeric][1..8760]"
       Notes: "Can also use functions like EFLH(), MAX(), MIN() to determine overall characteristics for the list of schedule values."
+    units_of_values:
+      Description: "The units associated witht the values of the schedule"
+      Data Type: "String"
+      Notes: "For certain schedule purposes, the values may be represented by units such as C for temperature or W for power."
+    modified_from_library:
+      Description: "True if any schedule values have changed from what appears in the schedule library"
+      Data Type: "Boolean"
+    
     
 Calendar:
   Object Type: "Data Group"
@@ -558,7 +581,7 @@ Calendar:
       Data Type: "Numeric"
       Required: True
     day_of_week_for_january_1:
-      Description: "Day of the Week for January 1"
+      Description: "Day of the week for January 1"
       Data Type: "<DayOfWeek>"
     is_leap_year:
       Description: "The schedules assume it is a leap year"
@@ -614,59 +637,59 @@ Elevator:
       Data Type: "Numeric"
       Units: "W"
     cab_counterweight:
-      Description: "elevator car counterweight"
+      Description: "Elevator car counterweight"
       Data Type: "Numeric"
       Units: "kg"
     cab_weight:
-      Description: "weight of elevator car"
+      Description: "Weight of elevator car"
       Data Type: "Numeric"
       Units: "kg"
     design_elevator_load:
-      Description: "elevator load at which to operate"
+      Description: "Elevator load at which to operate"
       Data Type: "Numeric"
       Units: "kg"
     speed:
-      Description: "design speed of the elevator"
+      Description: "Design speed of the elevator"
       Data Type: "Numeric"
       Units: "m/s"
     cab_area:
-      Description: "floor area of elevator cab"
+      Description: "Floor area of elevator cab"
       Data Type: "Numeric"
       Units: "m2"
     cab_lighting_power:
-      Description: "lighitng power of cab"
+      Description: "Lighitng power of cab"
       Data Type: "Numeric"
       Units: "W"
     cab_ventilation_fan_power:
-      Description: "ventilation fan power of cab"
+      Description: "Ventilation fan power of cab"
       Data Type: "Numeric"
       Units: "W"
     cab_ventilation_fan_flow:
-      Description: "airflow of cab ventfan"
+      Description: "Airflow of cab ventfan"
       Data Type: "Numeric"
       Units: "L/s"
     cab_motor_schedule:
-      Description: "elevator motor operation schedule name"
+      Description: "Elevator motor operation schedule name"
       Data Type: "String"
     cab_ventilation_fan_schedule:
-      Description: "elevator ventilation fan operation schedule name"
+      Description: "Elevator ventilation fan operation schedule name"
       Data Type: "String"
     cab_lighting_schedule:
-      Description: "elevator lighting schedule name"
+      Description: "Elevator lighting schedule name"
       Data Type: "String"
     cab_motor_schedule_equivalent_full_load_hours:
-      Description: "elevator motor operation schedule equivalent full load hours"
-      Data Type: "Numeric"
+      Description: "Elevator motor operation schedule equivalent full load hours"
+      Data Type: "Numeric"  # this field may be replaced by a function EFLH()
       Range: ">=0, <=8760"
       Units: "hr"
     cab_ventilation_fan_schedule_equivalent_full_load_hours:
-      Description: "elevator ventfan operation schedule equivalent full load hours"
-      Data Type: "Numeric"
+      Description: "Elevator ventfan operation schedule equivalent full load hours"
+      Data Type: "Numeric"  # this field may be replaced by a function EFLH()
       Range: ">=0, <=8760"
       Units: "hr"
     cab_lighting_schedule_equivalent_full_load_hours:
-      Description: "elevator lighitng schedule equivalent full load hours"
-      Data Type: "Numeric"
+      Description: "Elevator lighitng schedule equivalent full load hours"
+      Data Type: "Numeric"  # this field may be replaced by a function EFLH()
       Range: ">=0, <=8760"
       Units: "hr"
 

@@ -18,10 +18,10 @@ CompliancePathType2019ASHRAE901:
     BEYOND_CODE:
       Description: "Beyond Code"
 
-LightingSpaceType2019ASHRAE901:
+LightingSpaceType2019ASHRAE901T951:
+  # Table 9.5.1 Building Area Types  
   Object Type: "Enumeration"
   Enumerators:
-# Table 9.5.1 Building Area Types  
     AUTOMOTIVE_FACILITY:
       Description: "Automotive facility"
     CONVENTION_CENTER:
@@ -87,7 +87,10 @@ LightingSpaceType2019ASHRAE901:
     WORKSHOP:
       Description: "Workshop"
 
-# Table 9.6.1 Space Types  
+LightingSpaceType2019ASHRAE901T961:
+  # Table 9.6.1 Space Types  
+  Object Type: "Enumeration"
+  Enumerators:
     ATRIUM_LOW:
       Description: "Atrium - Low"
     ATRIUM_MEDIUM:

@@ -331,6 +331,7 @@ Surface:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "m2"
+      Note: "Measured from interior face area"
     u_factor:
       Description: "suface U-factor"
       Data Type: "Numeric"
@@ -346,6 +347,11 @@ Surface:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "W/m-K"
+    r_value:
+      Description: "r-value of the insulation for the surface"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "K-m2/W"
     reflectance:
       Description: "Reflectance"
       Data Type: "Numeric"
@@ -410,11 +416,19 @@ Fenestration:
       Description: "Name of the fenestration subsurface"
       Data Type: "String"
       Required: True
+    classification:
+      Description: "Classification for the fenestration being window, skylight, door."
+      Data Type: "<FenestrationClassificationType>"
     area:
       Description: "area of fenestration including glass and framing"
       Data Type: "Numeric"
       Range: ">=0"
       Units: "m2"
+    international_glazing_database_ID:
+      Description: "International Glazing Database ID Number"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Notes: "See https://windows.lbl.gov/software/igdb for ID numbers"
     u_factor:
       Description: "fenestration U-factor"
       Data Type: "Numeric"
@@ -423,6 +437,19 @@ Fenestration:
     solar_heat_gain_coefficient:
       Description: "fenestration SHGC"
       Data Type: "Numeric"
+      Range: ">=0"
+    visible_transmittance:
+      Description: "fenestration VT"
+      Data Type: "Numeric"
+      Range: ">=0"
+    light_to_solar_gain_ratio:
+      Description: "fenestration LSG"
+      Data Type: "Numeric"
+      Range: ">=0"
+    depth_of_overhang:
+      Description: "Distance from the edge of the overhang to the fenestration surface."
+      Data Type: "Numeric"
+      Units: "m"
       Range: ">=0"
     has_shading_projections:
       Description: "identifies whether fenestration has side fins, overhangs or not flush with wall"
@@ -433,6 +460,25 @@ Fenestration:
     has_automatic_shades:
       Description: "are there automatic interior shading such as blinds, curtains or shades"
       Data Type: "Boolean"
+    
+FenestrationClassificationType:
+  Object Type: "Enumeration"
+  Enumerators:
+    WINDOW:
+      Description: "Window"
+    SKYLIGHT:
+      Description: "Skylight"
+    DOOR:
+      Description: "Door"
+      # Usually a substantial fraction of the door needs to be glazed to be considered fenestration
+    PLASTIC_PANEL:
+      Description: "Plastic panel"
+    CLERESTORIES:
+      Description: "Clerestories"
+    ROOF_MONITOR:
+      Description: "Roof monitor"
+    GLASS_BLOCK:
+      Description: "Glass block"
  
 Transformer:
   Object Type: "Data Group"

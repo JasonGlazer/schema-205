@@ -44,6 +44,15 @@
                 "overall_simulation_outputs": {
                     "description": "Outputs from the simluation summed for all buildings in the simulation.",
                     "$ref": "ASHRAE229.schema.json#/definitions/OverallSimulationOutputs"
+                },
+                "building_rotation_angles": {
+                    "description": "A list of angles that building simulations are performed and results are provided.",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "number"
+                    },
+                    "units": "degrees"
                 }
             },
             "additionalProperties": false
@@ -53,19 +62,16 @@
             "properties": {
                 "id": {
                     "description": "Unique Identification Number",
-                    "type": "number",
-                    "notes": ""
+                    "type": "number"
                 },
                 "name": {
                     "description": "Name of the Building",
-                    "type": "string",
-                    "notes": ""
+                    "type": "string"
                 },
                 "number_of_floors": {
                     "description": "Number of floors",
                     "type": "number",
-                    "minimum": 0.0,
-                    "notes": ""
+                    "minimum": 0.0
                 },
                 "building_segments": {
                     "description": "Large portions of a building that share a building area type",
@@ -101,13 +107,25 @@
                         "$ref": "ASHRAE229.schema.json#/definitions/Refrigeration"
                     },
                     "notes": "Contains a list of refrigeration components in the building."
+                },
+                "open_time": {
+                    "description": "Time that the building opens.",
+                    "type": "number",
+                    "minimum": 1.0,
+                    "maximum": 24.0,
+                    "notes": "The general time that the building is first opened during normal weekdays from 1 to 24"
+                },
+                "close_time": {
+                    "description": "Time that the building closes.",
+                    "type": "number",
+                    "minimum": 1.0,
+                    "maximum": 24.0,
+                    "notes": "The general time that the building is closed during normal weekdays from 1 to 24"
                 }
             },
             "required": [
                 "id",
-                "name",
-                "number_of_floors",
-                "is_new"
+                "name"
             ],
             "additionalProperties": false
         },
@@ -116,11 +134,10 @@
             "properties": {
                 "id": {
                     "description": "Unique Identification Number",
-                    "type": "number",
-                    "notes": ""
+                    "type": "number"
                 },
                 "thermal_blocks": {
-                    "description": "thermal blocks in the building",
+                    "description": "Thermal blocks in the building",
                     "type": "array",
                     "minItems": 1,
                     "items": {
@@ -153,8 +170,7 @@
                 }
             },
             "required": [
-                "id",
-                "area_type_vertical_fenestration"
+                "id"
             ],
             "additionalProperties": false
         },
@@ -162,7 +178,7 @@
             "type": "object",
             "properties": {
                 "zones": {
-                    "description": "zones in the building",
+                    "description": "Zones in the building",
                     "type": "array",
                     "minItems": 1,
                     "items": {
@@ -202,13 +218,11 @@
             "properties": {
                 "id": {
                     "description": "Unique Identification Number",
-                    "type": "number",
-                    "notes": ""
+                    "type": "number"
                 },
                 "name": {
                     "description": "Name fo the Space",
-                    "type": "string",
-                    "notes": ""
+                    "type": "string"
                 },
                 "surfaces": {
                     "description": "Surfaces surrounding the space",
@@ -223,27 +237,41 @@
                     "description": "The floor area of a space within the building, including basements, mezzanine and intermediate-floored tiers, and penthouses with a headroom height of 7.5 ft or greater. It is measured from the exterior faces of walls or from the center-line of walls separating buildings, but excluding covered walkways, open roofed-over areas, porches and similar spaces, pipe trenches, exterior terraces or steps, chimneys, roof overhangs, and similar features.",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "m2",
-                    "notes": ""
+                    "units": "m2"
+                },
+                "floor_to_ceiling_height": {
+                    "description": "The height from the floor of the space to the ceiling",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "m"
                 },
                 "floor_area_basis_for_exterior": {
                     "description": "The basis of the measurement location related to floor area for exterior walls.",
-                    "$ref": "ASHRAE229.schema.json#/definitions/FloorAreaBasis",
-                    "notes": ""
+                    "$ref": "ASHRAE229.schema.json#/definitions/FloorAreaBasis"
                 },
                 "floor_area_basis_for_interior": {
                     "description": "The basis of the measurement location related to floor area for interior walls.",
-                    "$ref": "ASHRAE229.schema.json#/definitions/FloorAreaBasis",
-                    "notes": ""
+                    "$ref": "ASHRAE229.schema.json#/definitions/FloorAreaBasis"
                 },
                 "conditioning_type": {
                     "description": "Space conditioning category",
-                    "$ref": "ASHRAE229.schema.json#/definitions/ConditioningType",
-                    "notes": ""
+                    "$ref": "ASHRAE229.schema.json#/definitions/ConditioningType"
+                },
+                "space_function": {
+                    "description": "Generic function for the space.",
+                    "$ref": "ASHRAE229.schema.json#/definitions/SpaceFunctionType",
+                    "notes": "The enumeration is based on the standard used."
                 },
                 "lighting_space_type": {
                     "description": "Lighting space type classification",
-                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/LightingSpaceType2019ASHRAE901",
+                    "oneOf": [
+                        {
+                            "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/LightingSpaceType2019ASHRAE901T951"
+                        },
+                        {
+                            "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/LightingSpaceType2019ASHRAE901T961"
+                        }
+                    ],
                     "notes": "The enumeration is based on the standard used."
                 },
                 "ventilations_space_type": {
@@ -263,7 +291,8 @@
                 "infiltration_equivalent_full_load_hours": {
                     "description": "Annual sum of hourly fractions of infiltration schedule",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "hr"
                 },
                 "receptacle_control_credit_taken": {
                     "description": "The receptacle control credit was taken",
@@ -290,16 +319,7 @@
             },
             "required": [
                 "id",
-                "name",
-                "floor_area",
-                "floor_area_basis_for_exterior",
-                "floor_area_basis_for_interior",
-                "conditioning_type",
-                "lighting_space_type",
-                "ventilations_space_type",
-                "service_water_heating_space_type",
-                "infiltration_modeling_method",
-                "infiltration_equivalent_full_load_hours"
+                "name"
             ],
             "additionalProperties": false
         },
@@ -311,9 +331,9 @@
                 "FAR_SIDE"
             ],
             "enum_text": [
-                "The area is measured to the center line of the wall",
-                "The area is measured to the line on the near side wall",
-                "The area is measured to the line on the far side wall"
+                "The area is measured to the center line of the wall when standing within the space.",
+                "The area is measured to the line on the near side of the wall when standing within the space.",
+                "The area is measured to the line on the far side of the wall when standing within the space."
             ],
             "descriptions": [
                 "Center line of the wall",
@@ -330,13 +350,6 @@
                 "UNCONDITIONED",
                 "PLENUM"
             ],
-            "enum_text": [
-                "Heated and cooled",
-                "Heated only",
-                "Semiheated",
-                "Unconditioned",
-                "Plenum"
-            ],
             "descriptions": [
                 "Heated and cooled",
                 "Heated only",
@@ -345,18 +358,29 @@
                 "Plenum"
             ]
         },
+        "SpaceFunctionType": {
+            "type": "string",
+            "enum": [
+                "LABORATORY",
+                "KITCHEN",
+                "OTHER"
+            ],
+            "descriptions": [
+                "Laboratory",
+                "Kitchen",
+                "Other"
+            ]
+        },
         "Surface": {
             "type": "object",
             "properties": {
                 "id": {
                     "description": "Unique Identification Number",
-                    "type": "number",
-                    "notes": ""
+                    "type": "number"
                 },
                 "name": {
                     "description": "Name fo the Space",
-                    "type": "string",
-                    "notes": ""
+                    "type": "string"
                 },
                 "fenestration_subsurfaces": {
                     "description": "Fenestration suburfaces that are on the surface",
@@ -367,20 +391,28 @@
                     },
                     "notes": "Contains a list of surfaces that define the space."
                 },
+                "classification": {
+                    "description": "Classification for the surface.",
+                    "$ref": "ASHRAE229.schema.json#/definitions/SurfaceClassificationType",
+                    "notes": "Options for surface being interior or exterior wall, floor, or ceiling."
+                },
                 "tilt": {
-                    "description": "Angle between vertical and the surface outward normal, e.g. 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)",
+                    "description": "Angle between vertical and the surface outward normal",
                     "type": "number",
-                    "units": "degrees"
+                    "units": "degrees",
+                    "notes": "Example value would be 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)"
                 },
                 "azimuth": {
-                    "description": "Clockwise angle between North (0 degrees) and the horizontal projection of the wall's outward normal. 0 = north, 90 = East, 180 = South, 270 = West",
+                    "description": "Clockwise angle between North and the horizontal projection of the wall's outward normal.",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "degrees"
+                    "units": "degrees",
+                    "notes": "Example values would be 0 = north, 90 = East, 180 = South, 270 = West"
                 },
                 "adjacent_to": {
-                    "description": "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block.",
-                    "$ref": "ASHRAE229.schema.json#/definitions/SurfaceAdjacentTo"
+                    "description": "Used to classify the conditions on the surface.",
+                    "$ref": "ASHRAE229.schema.json#/definitions/SurfaceAdjacentTo",
+                    "notes": "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
                 },
                 "adjacent_space_ID": {
                     "description": "ID of the adjacent space for interior surface",
@@ -389,15 +421,6 @@
                 "does_cast_shade": {
                     "description": "Determines whether the surface is modeled as casting shade on other exterior surfaces",
                     "type": "boolean"
-                },
-                "surfaces": {
-                    "description": "Surfaces surrounding the space",
-                    "type": "array",
-                    "minItems": 1,
-                    "items": {
-                        "$ref": "ASHRAE229.schema.json#/definitions/Surface"
-                    },
-                    "notes": "Contains a list of surfaces that define the space."
                 },
                 "surface_construction_input_option": {
                     "description": "Identifies whether construction is entered layer-by-layer or simplified (R-value)",
@@ -409,6 +432,18 @@
                     "minimum": 0.0,
                     "units": "m2"
                 },
+                "layers": {
+                    "description": "List of names of layer descriptions starting from the outside surface",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "insulation_location": {
+                    "description": "The location of the insulation related to the surface",
+                    "type": "string"
+                },
                 "u_factor": {
                     "description": "suface U-factor",
                     "type": "number",
@@ -418,12 +453,20 @@
                 "c_factor": {
                     "description": "surface C-factor",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "W/m2-K"
                 },
                 "f_factor": {
                     "description": "surface F-factor",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "units": "W/m-K"
+                },
+                "r_value": {
+                    "description": "r-value of the insulation for the surface",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "K-m2/W"
                 },
                 "reflectance": {
                     "description": "Reflectance",
@@ -443,22 +486,34 @@
             },
             "required": [
                 "id",
-                "name",
-                "tilt",
-                "azimuth",
-                "adjacent_to",
-                "adjacent_space_ID",
-                "does_cast_shade",
-                "surface_construction_input_option",
-                "area",
-                "u_factor",
-                "c_factor",
-                "f_factor",
-                "reflectance",
-                "emittance",
-                "reflectivity"
+                "name"
             ],
             "additionalProperties": false
+        },
+        "SurfaceClassificationType": {
+            "type": "string",
+            "enum": [
+                "INTERIOR_WALL",
+                "INTERIOR_FLOOR",
+                "INTERIOR_CEILING",
+                "EXTERIOR_WALL",
+                "EXTERIOR_FLOOR",
+                "EXTERIOR_CEILING",
+                "UNDERGROUND_WALL",
+                "UNDERGROUND_FLOOR",
+                "UNDERGROUND_CEILING"
+            ],
+            "descriptions": [
+                "Interior Wall",
+                "Interior Floor",
+                "Interior Ceiling",
+                "Exterior Wall",
+                "Exterior Floor",
+                "Exterior Ceiling",
+                "Underground Wall",
+                "Underground Floor",
+                "Underground Ceiling"
+            ]
         },
         "SurfaceAdjacentTo": {
             "type": "string",
@@ -489,109 +544,135 @@
             "properties": {
                 "id": {
                     "description": "Unique Identification Number",
-                    "type": "number",
-                    "notes": ""
+                    "type": "number"
                 },
                 "name": {
                     "description": "Name of the fenestration subsurface",
-                    "type": "string",
-                    "notes": ""
+                    "type": "string"
+                },
+                "classification": {
+                    "description": "Classification for the fenestration being window, skylight, door.",
+                    "$ref": "ASHRAE229.schema.json#/definitions/FenestrationClassificationType"
                 },
                 "area": {
-                    "description": "area of fenestration including glass and framing",
+                    "description": "Area of fenestration including glass and framing",
                     "type": "number",
                     "minimum": 0.0,
                     "units": "m2"
                 },
+                "international_glazing_database_ID": {
+                    "description": "International Glazing Database ID Number",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "notes": "See https://windows.lbl.gov/software/igdb for ID numbers"
+                },
                 "u_factor": {
-                    "description": "fenestration U-factor",
+                    "description": "Fenestration U-factor",
                     "type": "number",
                     "minimum": 0.0,
                     "units": "W/m2-K"
                 },
                 "solar_heat_gain_coefficient": {
-                    "description": "fenestration SHGC",
+                    "description": "Fenestration SHGC",
                     "type": "number",
                     "minimum": 0.0
                 },
+                "visible_transmittance": {
+                    "description": "Fenestration VT",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "light_to_solar_gain_ratio": {
+                    "description": "Fenestration LSG",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "depth_of_overhang": {
+                    "description": "Distance from the edge of the overhang to the fenestration surface.",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "m"
+                },
                 "has_shading_projections": {
-                    "description": "identifies whether fenestration has side fins, overhangs or not flush with wall",
+                    "description": "Identifies whether fenestration has side fins, overhangs or not flush with wall",
                     "type": "boolean"
                 },
                 "has_manual_interior_shades": {
-                    "description": "are there manually-operated interior shading such as blinds, curtains or shades",
+                    "description": "Are there manually-operated interior shading such as blinds, curtains or shades",
                     "type": "boolean"
                 },
                 "has_automatic_shades": {
-                    "description": "are there automatic interior shading such as blinds, curtains or shades",
+                    "description": "Are there automatic interior shading such as blinds, curtains or shades",
                     "type": "boolean"
                 }
             },
             "required": [
                 "id",
-                "name",
-                "area",
-                "u_factor",
-                "solar_heat_gain_coefficient",
-                "has_shading_projections",
-                "has_manual_interior_shades",
-                "has_automatic_shades"
+                "name"
             ],
             "additionalProperties": false
+        },
+        "FenestrationClassificationType": {
+            "type": "string",
+            "enum": [
+                "WINDOW",
+                "SKYLIGHT",
+                "DOOR",
+                "PLASTIC_PANEL",
+                "CLERESTORIES",
+                "ROOF_MONITOR",
+                "GLASS_BLOCK"
+            ],
+            "descriptions": [
+                "Window",
+                "Skylight",
+                "Door",
+                "Plastic panel",
+                "Clerestories",
+                "Roof monitor",
+                "Glass block"
+            ]
         },
         "Transformer": {
             "type": "object",
             "properties": {
                 "name": {
                     "description": "Transformer Name",
-                    "type": "string",
-                    "notes": ""
+                    "type": "string"
                 },
                 "type": {
                     "description": "The type of transformer",
-                    "$ref": "ASHRAE229.schema.json#/definitions/TransformerType",
-                    "notes": ""
+                    "$ref": "ASHRAE229.schema.json#/definitions/TransformerType"
                 },
                 "phase": {
                     "description": "The number of electrical phases",
-                    "$ref": "ASHRAE229.schema.json#/definitions/TransformerPhase",
-                    "notes": ""
+                    "$ref": "ASHRAE229.schema.json#/definitions/TransformerPhase"
                 },
                 "efficiency": {
                     "description": "Transformer efficiency",
                     "type": "number",
-                    "minimum": 0.0,
-                    "notes": ""
+                    "minimum": 0.0
                 },
                 "capacity": {
                     "description": "Rated Capacity of the Transformer",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "Va",
-                    "notes": ""
+                    "units": "Va"
                 },
                 "peak_load": {
                     "description": "Annual Peak electric load on the transformer",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "W",
-                    "notes": ""
+                    "units": "W"
                 },
                 "capacity_ratio": {
                     "description": "Annual Peak electric load of the transformer divided by the capacity",
                     "type": "number",
-                    "minimum": 0.0,
-                    "notes": ""
+                    "minimum": 0.0
                 }
             },
             "required": [
-                "name",
-                "type",
-                "phase",
-                "efficiency",
-                "capacity",
-                "peak_load",
-                "capacity_ratio"
+                "name"
             ],
             "additionalProperties": false
         },
@@ -601,11 +682,6 @@
                 "DRY_TYPE",
                 "FLUID_FILLED",
                 "OTHER"
-            ],
-            "enum_text": [
-                "Dry Type",
-                "Fluid Filled",
-                "Other"
             ],
             "descriptions": [
                 "Dry Type",
@@ -619,10 +695,6 @@
                 "SINGLE_PHASE",
                 "THREE_PHASE"
             ],
-            "enum_text": [
-                "Single Phase",
-                "Three Phase"
-            ],
             "descriptions": [
                 "Single Phase",
                 "Three Phase"
@@ -633,18 +705,16 @@
             "properties": {
                 "id": {
                     "description": "Unique Identification Number",
-                    "type": "number",
-                    "notes": ""
+                    "type": "number"
                 },
                 "name": {
                     "description": "Name of the Schedule",
-                    "type": "string",
-                    "notes": ""
+                    "type": "string"
                 },
-                "type": {
-                    "description": "The type of schedule",
+                "purpose": {
+                    "description": "The purpose of schedule",
                     "type": "string",
-                    "notes": "Not an enumerations because we only care that the type assigned by BEM tool matches across RMR"
+                    "notes": "Describe the purpose of the schedule and how it can be used. Not an enumerations. The purpose assigned by BEM tool should match across RMRs. Examples include thermostat, multiplier for lighting, availability for equipment."
                 },
                 "values": {
                     "description": "Hourly Values of Schedule",
@@ -654,14 +724,21 @@
                     "items": {
                         "type": "number"
                     },
-                    "notes": ""
+                    "notes": "Can also use functions like EFLH(), MAX(), MIN() to determine overall characteristics for the list of schedule values."
+                },
+                "units_of_values": {
+                    "description": "The units associated witht the values of the schedule",
+                    "type": "string",
+                    "notes": "For certain schedule purposes, the values may be represented by units such as C for temperature or W for power."
+                },
+                "modified_from_library": {
+                    "description": "True if any schedule values have changed from what appears in the schedule library",
+                    "type": "boolean"
                 }
             },
             "required": [
                 "id",
-                "name",
-                "type",
-                "values"
+                "name"
             ],
             "additionalProperties": false
         },
@@ -673,7 +750,7 @@
                     "type": "number"
                 },
                 "day_of_week_for_january_1": {
-                    "description": "Day of the Week for January 1",
+                    "description": "Day of the week for January 1",
                     "$ref": "ASHRAE229.schema.json#/definitions/DayOfWeek"
                 },
                 "is_leap_year": {
@@ -686,10 +763,7 @@
                 }
             },
             "required": [
-                "id",
-                "day_of_week_for_january_1",
-                "is_leap_year",
-                "is_daylight_savings_time"
+                "id"
             ],
             "additionalProperties": false
         },
@@ -734,7 +808,6 @@
                 }
             },
             "required": [
-                "monthly_ground_temperature",
                 "climate_zone"
             ],
             "additionalProperties": false
@@ -744,13 +817,11 @@
             "properties": {
                 "id": {
                     "description": "Unique Identification Number",
-                    "type": "number",
-                    "notes": ""
+                    "type": "number"
                 },
                 "name": {
                     "description": "Name of the elevator",
-                    "type": "string",
-                    "notes": ""
+                    "type": "string"
                 },
                 "motor_power": {
                     "description": "Elevator peak motor power",
@@ -758,94 +829,82 @@
                     "units": "W"
                 },
                 "cab_counterweight": {
-                    "description": "elevator car counterweight",
+                    "description": "Elevator car counterweight",
                     "type": "number",
                     "units": "kg"
                 },
                 "cab_weight": {
-                    "description": "weight of elevator car",
+                    "description": "Weight of elevator car",
                     "type": "number",
                     "units": "kg"
                 },
                 "design_elevator_load": {
-                    "description": "elevator load at which to operate",
+                    "description": "Elevator load at which to operate",
                     "type": "number",
                     "units": "kg"
                 },
                 "speed": {
-                    "description": "design speed of the elevator",
+                    "description": "Design speed of the elevator",
                     "type": "number",
                     "units": "m/s"
                 },
                 "cab_area": {
-                    "description": "floor area of elevator cab",
+                    "description": "Floor area of elevator cab",
                     "type": "number",
                     "units": "m2"
                 },
                 "cab_lighting_power": {
-                    "description": "lighitng power of cab",
+                    "description": "Lighitng power of cab",
                     "type": "number",
                     "units": "W"
                 },
                 "cab_ventilation_fan_power": {
-                    "description": "ventilation fan power of cab",
+                    "description": "Ventilation fan power of cab",
                     "type": "number",
                     "units": "W"
                 },
                 "cab_ventilation_fan_flow": {
-                    "description": "airflow of cab ventfan",
+                    "description": "Airflow of cab ventfan",
                     "type": "number",
                     "units": "L/s"
                 },
                 "cab_motor_schedule": {
-                    "description": "elevator motor operation schedule name",
+                    "description": "Elevator motor operation schedule name",
                     "type": "string"
                 },
                 "cab_ventilation_fan_schedule": {
-                    "description": "elevator ventilation fan operation schedule name",
+                    "description": "Elevator ventilation fan operation schedule name",
                     "type": "string"
                 },
                 "cab_lighting_schedule": {
-                    "description": "elevator lighting schedule name",
+                    "description": "Elevator lighting schedule name",
                     "type": "string"
                 },
                 "cab_motor_schedule_equivalent_full_load_hours": {
-                    "description": "elevator motor operation schedule equivalent full load hours",
+                    "description": "Elevator motor operation schedule equivalent full load hours",
                     "type": "number",
                     "minimum": 0.0,
-                    "maximum": 8760.0
+                    "maximum": 8760.0,
+                    "units": "hr"
                 },
                 "cab_ventilation_fan_schedule_equivalent_full_load_hours": {
-                    "description": "elevator ventfan operation schedule equivalent full load hours",
+                    "description": "Elevator ventfan operation schedule equivalent full load hours",
                     "type": "number",
                     "minimum": 0.0,
-                    "maximum": 8760.0
+                    "maximum": 8760.0,
+                    "units": "hr"
                 },
                 "cab_lighting_schedule_equivalent_full_load_hours": {
-                    "description": "elevator lighitng schedule equivalent full load hours",
+                    "description": "Elevator lighitng schedule equivalent full load hours",
                     "type": "number",
                     "minimum": 0.0,
-                    "maximum": 8760.0
+                    "maximum": 8760.0,
+                    "units": "hr"
                 }
             },
             "required": [
                 "id",
-                "name",
-                "motor_power",
-                "cab_counterweight",
-                "cab_weight",
-                "design_elevator_load",
-                "speed",
-                "cab_area",
-                "cab_lighting_power",
-                "cab_ventilation_fan_power",
-                "cab_ventilation_fan_flow",
-                "cab_motor_schedule",
-                "cab_ventilation_fan_schedule",
-                "cab_lighting_schedule",
-                "cab_motor_schedule_equivalent_full_load_hours",
-                "cab_ventilation_fan_schedule_equivalent_full_load_hours",
-                "cab_lighting_schedule_equivalent_full_load_hours"
+                "name"
             ],
             "additionalProperties": false
         },
@@ -858,21 +917,27 @@
                 },
                 "sensible_cool_output_capacity": {
                     "description": "Result from the simulation of the sensible cooling capacity",
-                    "type": "number",
-                    "minimum": 0.0,
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "number",
+                        "minimum": 0.0
+                    },
                     "units": "W/m2"
                 },
                 "heat_output_capacity": {
                     "description": "Result from the simulation of the heating capacity",
-                    "type": "number",
-                    "minimum": 0.0,
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "number",
+                        "minimum": 0.0
+                    },
                     "units": "W/m2"
                 }
             },
             "required": [
-                "id",
-                "sensible_cool_output_capacity",
-                "heat_output_capacity"
+                "id"
             ],
             "additionalProperties": false
         },
@@ -964,18 +1029,188 @@
                 "Natural gas"
             ]
         },
+        "InteriorLighting": {
+            "type": "object",
+            "properties": {
+                "ID": {
+                    "description": "Unique ID assigned to each interior lighting fixture(s) reported in an RMR",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0
+                },
+                "name": {
+                    "description": "Interior lighting fixture name",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of interior lighting fixture"
+                },
+                "norminal_wattage": {
+                    "description": "Nominal capacity of interior lighting fixtures",
+                    "type": "number",
+                    "units": "W"
+                },
+                "power": {
+                    "description": "Total power of all fixtures in a specific functional area",
+                    "type": "number",
+                    "units": "W"
+                },
+                "designed_power": {
+                    "description": "Total designed power of all fixtures in a specific functional area",
+                    "type": "number",
+                    "units": "W"
+                },
+                "with_occupancy_sensor": {
+                    "description": "The flag for occ sensor is modeled with interior lighting",
+                    "type": "boolean"
+                },
+                "with_auto_controls": {
+                    "description": "The flag for automatic lighting control is modeled with interior lighting\tnone",
+                    "type": "boolean"
+                },
+                "with_manual_on_sensor": {
+                    "description": "The flag for manual-on automatic lighting control for interior lighting",
+                    "type": "boolean"
+                },
+                "with_partial_auto_on_sensor": {
+                    "description": "The flag for partial-auto-on automatic lighting control for interior lighting",
+                    "type": "boolean"
+                },
+                "multiplier": {
+                    "description": "Multiplier for interior lighting specifications",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0
+                },
+                "area": {
+                    "description": "Space area for interior lighting",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0,
+                    "units": "m2"
+                },
+                "with_other_auto_controls": {
+                    "description": "Automatic interial lighting controls other than occupancy sensor",
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "ExteriorLighting": {
+            "type": "object",
+            "properties": {
+                "ID": {
+                    "description": "Unique ID assigned to each exterior lighting fixture(s) reported in an RMR",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0
+                },
+                "name": {
+                    "description": "Exterior lighting fixture name",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of exterior lighting fixture\tnone",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ExteriorLightingAreas2019ASHRAE901TableG36"
+                },
+                "area": {
+                    "description": "Area of the exterior functional space.",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0,
+                    "units": "m2"
+                },
+                "norminal_wattage": {
+                    "description": "Nominal capacity of exterior lighting fixtures",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0,
+                    "units": "W"
+                },
+                "fixture_height": {
+                    "description": "Installation height of exterior fixture",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0,
+                    "units": "m"
+                },
+                "power": {
+                    "description": "Total exterior lighting power of all fixtures in a specific functional area",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0,
+                    "units": "W"
+                },
+                "designed_power": {
+                    "description": "Total designed exterior lighting power of all fixtures in a specific functional area",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0,
+                    "units": "W"
+                },
+                "trade_light_power": {
+                    "description": "Exterior Lighting power for tradable surface",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "W"
+                },
+                "non_trade_light_power": {
+                    "description": "Exterior Lighting power for non-tradable surface",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "W"
+                },
+                "site_zone_type": {
+                    "description": "Site zone type for Sec 9.4.2",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ExteriorLightingZones2019ASHRAE901"
+                },
+                "parking_area": {
+                    "description": "Area of exterior parking space",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "m2"
+                },
+                "tradable_surface_type": {
+                    "description": "Type of tradable surfaces for exterior lighting",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ExteriorLightingAreas2019ASHRAE901TableG36"
+                },
+                "tradable_surface_area": {
+                    "description": "Area of tradable surface",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "m2"
+                },
+                "tradable_surface_linear_footage": {
+                    "description": "Linear feet of tradable surface",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "m"
+                },
+                "has_walkway": {
+                    "description": "If the building has an exterior walkway",
+                    "type": "boolean"
+                },
+                "tradable_walkway_width_footage": {
+                    "description": "Width of the exterior walkway",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "m"
+                },
+                "tradable_opening_width_footage": {
+                    "description": "Width of an exterior opening",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "units": "m"
+                },
+                "multiplier": {
+                    "description": "Multiplier for exterior lighting specifications",
+                    "type": "number",
+                    "exclusiveMinimum": 0.0
+                }
+            },
+            "additionalProperties": false
+        },
         "Refrigeration": {
             "type": "object",
             "properties": {
                 "id": {
                     "description": "Unique Identification Number",
-                    "type": "number",
-                    "notes": ""
+                    "type": "number"
                 },
                 "name": {
                     "description": "Name of the refrigeration component",
-                    "type": "string",
-                    "notes": ""
+                    "type": "string"
                 },
                 "type": {
                     "description": "Refrigeration equipment type",
@@ -1003,12 +1238,7 @@
             },
             "required": [
                 "id",
-                "name",
-                "type",
-                "equipment_class",
-                "energy_per_day",
-                "case_volume",
-                "total_display_area"
+                "name"
             ],
             "additionalProperties": false
         },
@@ -1033,9 +1263,6 @@
                     "units": "J"
                 }
             },
-            "required": [
-                "refrigeration_energy_enduse"
-            ],
             "additionalProperties": false
         }
     },

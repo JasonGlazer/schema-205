@@ -4,41 +4,45 @@
 | CODE_COMPLIANT | Code Compliance |       |
 | BEYOND_CODE    | Beyond Code     |       |
 
-# LightingSpaceType2019ASHRAE901
+# LightingSpaceType2019ASHRAE901T951
+|         Enumerator         |         Description         | Notes |
+|----------------------------|-----------------------------|-------|
+| AUTOMOTIVE_FACILITY        | Automotive facility         |       |
+| CONVENTION_CENTER          | Convention center           |       |
+| COURTHOUSE                 | Courthouse                  |       |
+| DINING_BAR_LOUNGE_LEISURE  | Dining: Bar lounge/leisure  |       |
+| DINING_CAFETERIA_FAST_FOOD | Dining: Cafeteria/fast food |       |
+| DINING_FAMILY              | Dining: Family              |       |
+| DORMITORY                  | Dormitory                   |       |
+| EXERCISE_CENTER            | Exercise center             |       |
+| FIRE_STATION               | Fire station                |       |
+| GYMNASIUM                  | Gymnasium                   |       |
+| HEALTH_CARE_CLINIC         | Health-care clinic          |       |
+| HOSPITAL                   | Hospital                    |       |
+| HOTEL_MOTEL                | Hotel/motel                 |       |
+| LIBRARY                    | Library                     |       |
+| MANUFACTURING_FACILITY     | Manufacturing facility      |       |
+| MOTION_PICTURE_THEATER     | Motion picture theater      |       |
+| MULTIFAMILY                | Multifamily                 |       |
+| MUSEUM                     | Museum                      |       |
+| OFFICE                     | Office                      |       |
+| PARKING_GARAGE             | Parking garage              |       |
+| PENITENTIARY               | Penitentiary                |       |
+| PERFORMING_ARTS_THEATER    | Performing arts theater     |       |
+| POLICE_STATION             | Police station              |       |
+| POST_OFFICE                | Post office                 |       |
+| RELIGIOUS_FACILITY         | Religious facility          |       |
+| RETAIL                     | Retail                      |       |
+| SCHOOL_UNIVERSITY          | School/university           |       |
+| SPORTS_ARENA               | Sports arena                |       |
+| TOWN_HALL                  | Town hall                   |       |
+| TRANSPORTATION             | Transportation              |       |
+| WAREHOUSE                  | Warehouse                   |       |
+| WORKSHOP                   | Workshop                    |       |
+
+# LightingSpaceType2019ASHRAE901T961
 |                              Enumerator                               |                                                Description                                                | Notes |
 |-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|-------|
-| AUTOMOTIVE_FACILITY                                                   | Automotive facility                                                                                       |       |
-| CONVENTION_CENTER                                                     | Convention center                                                                                         |       |
-| COURTHOUSE                                                            | Courthouse                                                                                                |       |
-| DINING_BAR_LOUNGE_LEISURE                                             | Dining: Bar lounge/leisure                                                                                |       |
-| DINING_CAFETERIA_FAST_FOOD                                            | Dining: Cafeteria/fast food                                                                               |       |
-| DINING_FAMILY                                                         | Dining: Family                                                                                            |       |
-| DORMITORY                                                             | Dormitory                                                                                                 |       |
-| EXERCISE_CENTER                                                       | Exercise center                                                                                           |       |
-| FIRE_STATION                                                          | Fire station                                                                                              |       |
-| GYMNASIUM                                                             | Gymnasium                                                                                                 |       |
-| HEALTH_CARE_CLINIC                                                    | Health-care clinic                                                                                        |       |
-| HOSPITAL                                                              | Hospital                                                                                                  |       |
-| HOTEL_MOTEL                                                           | Hotel/motel                                                                                               |       |
-| LIBRARY                                                               | Library                                                                                                   |       |
-| MANUFACTURING_FACILITY                                                | Manufacturing facility                                                                                    |       |
-| MOTION_PICTURE_THEATER                                                | Motion picture theater                                                                                    |       |
-| MULTIFAMILY                                                           | Multifamily                                                                                               |       |
-| MUSEUM                                                                | Museum                                                                                                    |       |
-| OFFICE                                                                | Office                                                                                                    |       |
-| PARKING_GARAGE                                                        | Parking garage                                                                                            |       |
-| PENITENTIARY                                                          | Penitentiary                                                                                              |       |
-| PERFORMING_ARTS_THEATER                                               | Performing arts theater                                                                                   |       |
-| POLICE_STATION                                                        | Police station                                                                                            |       |
-| POST_OFFICE                                                           | Post office                                                                                               |       |
-| RELIGIOUS_FACILITY                                                    | Religious facility                                                                                        |       |
-| RETAIL                                                                | Retail                                                                                                    |       |
-| SCHOOL_UNIVERSITY                                                     | School/university                                                                                         |       |
-| SPORTS_ARENA                                                          | Sports arena                                                                                              |       |
-| TOWN_HALL                                                             | Town hall                                                                                                 |       |
-| TRANSPORTATION                                                        | Transportation                                                                                            |       |
-| WAREHOUSE                                                             | Warehouse                                                                                                 |       |
-| WORKSHOP                                                              | Workshop                                                                                                  |       |
 | ATRIUM_LOW                                                            | Atrium - Low                                                                                              |       |
 | ATRIUM_MEDIUM                                                         | Atrium - Medium                                                                                           |       |
 | ATRIUM_HIGH                                                           | Atrium - High                                                                                             |       |
@@ -98,6 +102,7 @@
 | STORAGE_ROOM_SMALL                                                    | Storage Room - Small                                                                                      |       |
 | STORAGE_ROOM_LARGE                                                    | Storage Room - Large                                                                                      |       |
 | VEHICULAR_MAINTENANCE_AREA                                            | Vehicular Maintenance Area                                                                                |       |
+| WORKSHOP                                                              | Workshop                                                                                                  |       |
 | FACILITY_FOR_THE_VISUALLY_IMPAIRED_CHAPEL                             | Facility for the Visually Impaired - Chapel (used primarily by residents)                                 |       |
 | FACILITY_FOR_THE_VISUALLY_IMPAIRED_RECREATION_ROOM_COMMON_LIVING_ROOM | Facility for the Visually Impaired - Recreatio nroom/common living room (and not used primarily by staff) |       |
 | CONVENTION_CENTER_EXHIBIT_SPACE                                       | Convention Center â€” Exhibit Space                                                                       |       |
@@ -138,6 +143,31 @@
 | TRANSPORTATION_FACILITY_TICKET_COUNTER                                | Transportation Facility - Ticket counter                                                                  |       |
 | WAREHOUSE_STORAGE_AREA_MEDIUM_TO_BULKY_PALLETIZED_ITEMS               | Warehouse â€” Storage Area - Medium to bulky, palletized items                                            |       |
 | WAREHOUSE_STORAGE_AREA_SMALLER_HAND_CARRIED_ITEMS                     | Warehouse â€” Storage Area - Smaller, hand-carried items                                                  |       |
+
+# ExteriorLightingAreas2019ASHRAE901TableG36
+|            Enumerator             |            Description            |         Notes         |
+|-----------------------------------|-----------------------------------|-----------------------|
+| UNCOVERED_PARKING_LOTS_AND_DRIVES | Uncovered parking lots and drives |                       |
+| WALKWAY_NARROW                    | Walkway - narrow                  | Less than 10 ft wide  |
+| WALKWAY_WIDE                      | Walkway - wide                    | 10 ft wide or greater |
+| PLAZA_AREAS                       | Plaza Areas                       |                       |
+| SPECIAL_FEATURE_AREAS             | Special Feature Areas             |                       |
+| STAIRWAYS                         | Stairways                         |                       |
+| MAIN_ENTRANCE_DOOR                | Main entrance door                |                       |
+| OTHER_ENTRANCE_OR_EXIT_DOORS      | Other entrance or exit doors      |                       |
+| EXTERIOR_CANOPIES                 | Exterior canopies                 |                       |
+| OUTDOOR_SALES_OPEN_AREAS          | Outdoor sales - open areas        |                       |
+| STREET_FRONTAGE                   | Street frontage                   |                       |
+| NON_TRADABLE_FACADE               | Non-tradable facade               |                       |
+
+# ExteriorLightingZones2019ASHRAE901
+|           Enumerator            |            Description            |                                                                               Notes                                                                                |
+|---------------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ZONE_0_UNDEVELOPED              | Zone 0 - undeveloped              | Undeveloped areas within national parks, state parks, forest land, rural areas, and other undeveloped areas as defined by the authority having jurisdiction        |
+| ZONE_1_DEVELOPED_RURAL_AND_PARK | Zone 1 - developed rural and park | Developed areas of national parks, state parks, forest land, and rural areas                                                                                       |
+| ZONE_2_RESIDENTIAL_NEIGHBORHOOD | Zone 2 - residential neighborhood | Areas predominantly consisting of residential zoning, neighborhood business districts, light industrial with limited nighttime use and residential mixed use areas |
+| ZONE_3_ALL_OTHER_AREAS          | Zone 3 - all other areas          |                                                                                                                                                                    |
+| ZONE_4_HIGH_ACTIVITY_COMMERCIAL | Zone 4 - high-activity commercial | High-activity commercial districts in major metropolitan areas as designated by the local jurisdiction                                                             |
 
 # VentilationSpaceType2019ASHRAE901
 |                                                       Enumerator                                                       |                                                        Description                                                         | Notes |

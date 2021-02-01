@@ -9,7 +9,6 @@
                 "transformers": {
                     "description": "Electrical transformers at the building site",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Transformer"
                     },
@@ -18,7 +17,6 @@
                 "buildings": {
                     "description": "Buildings on the site",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Building"
                     },
@@ -31,7 +29,6 @@
                 "schedules": {
                     "description": "Schedules for internal loads, thermostats, equipment operation and control, and any other need.",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Schedule"
                     },
@@ -48,7 +45,6 @@
                 "building_rotation_angles": {
                     "description": "A list of angles that building simulations are performed and results are provided.",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "type": "number"
                     },
@@ -76,7 +72,6 @@
                 "building_segments": {
                     "description": "Large portions of a building that share a building area type",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/BuildingSegment"
                     },
@@ -93,7 +88,6 @@
                 "elevators": {
                     "description": "Elevators",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Elevator"
                     },
@@ -102,7 +96,6 @@
                 "refrigeration_components": {
                     "description": "Refrigeration",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Refrigeration"
                     },
@@ -139,7 +132,6 @@
                 "thermal_blocks": {
                     "description": "Thermal blocks in the building",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/ThermalBlock"
                     },
@@ -148,7 +140,6 @@
                 "heating_ventilation_air_conditioning_systems": {
                     "description": "HVAC systems in the building",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/HeatingVentilationAirConditioningSystem"
                     },
@@ -157,7 +148,6 @@
                 "service_water_heating_systems": {
                     "description": "Service water heating systems in the building",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/ServiceWaterHeatingSystem"
                     },
@@ -180,7 +170,6 @@
                 "zones": {
                     "description": "Zones in the building",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Zone"
                     },
@@ -189,7 +178,6 @@
                 "served_by_heating_ventilation_air_conditioning_systems": {
                     "description": "HVAC systems serving the thermal block",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "type": "string"
                     },
@@ -204,7 +192,6 @@
                 "spaces": {
                     "description": "Spaces in the building",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Space"
                     },
@@ -227,7 +214,6 @@
                 "surfaces": {
                     "description": "Surfaces surrounding the space",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Surface"
                     },
@@ -385,7 +371,6 @@
                 "fenestration_subsurfaces": {
                     "description": "Fenestration suburfaces that are on the surface",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Fenestration"
                     },
@@ -414,7 +399,7 @@
                     "$ref": "ASHRAE229.schema.json#/definitions/SurfaceAdjacentTo",
                     "notes": "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
                 },
-                "adjacent_space_ID": {
+                "adjacent_space_id": {
                     "description": "ID of the adjacent space for interior surface",
                     "type": "string"
                 },
@@ -435,7 +420,6 @@
                 "layers": {
                     "description": "List of names of layer descriptions starting from the outside surface",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "type": "string"
                     }
@@ -560,7 +544,7 @@
                     "minimum": 0.0,
                     "units": "m2"
                 },
-                "international_glazing_database_ID": {
+                "international_glazing_database_id": {
                     "description": "International Glazing Database ID Number",
                     "type": "number",
                     "minimum": 0.0,
@@ -918,7 +902,6 @@
                 "sensible_cool_output_capacity": {
                     "description": "Result from the simulation of the sensible cooling capacity",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "type": "number",
                         "minimum": 0.0
@@ -928,7 +911,6 @@
                 "heat_output_capacity": {
                     "description": "Result from the simulation of the heating capacity",
                     "type": "array",
-                    "minItems": 1,
                     "items": {
                         "type": "number",
                         "minimum": 0.0
@@ -1032,7 +1014,7 @@
         "InteriorLighting": {
             "type": "object",
             "properties": {
-                "ID": {
+                "id": {
                     "description": "Unique ID assigned to each interior lighting fixture(s) reported in an RMR",
                     "type": "number",
                     "exclusiveMinimum": 0.0
@@ -1096,7 +1078,7 @@
         "ExteriorLighting": {
             "type": "object",
             "properties": {
-                "ID": {
+                "id": {
                     "description": "Unique ID assigned to each exterior lighting fixture(s) reported in an RMR",
                     "type": "number",
                     "exclusiveMinimum": 0.0

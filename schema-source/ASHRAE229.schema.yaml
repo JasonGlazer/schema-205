@@ -560,15 +560,15 @@ Schedule:
       Notes: "Describe the purpose of the schedule and how it can be used. Not an enumerations. The purpose assigned by BEM tool should match across RMRs. Examples include thermostat, multiplier for lighting, availability for equipment."
     values:
       Description: "Hourly Values of Schedule"
-      Data Type: "[Numeric][1..8760]"
+      Data Type: "[Numeric][8760]"
       Notes: "Can also use functions like EFLH(), MAX(), MIN() to determine overall characteristics for the list of schedule values."
     units_of_values:
       Description: "The units associated witht the values of the schedule"
       Data Type: "String"
       Notes: "For certain schedule purposes, the values may be represented by units such as C for temperature or W for power."
-    modified_from_library:
+    prescribed_schedule:
       Description: "True if any schedule values have changed from what appears in the schedule library"
-      Data Type: "Boolean"
+      Data Type: "<PrescribedSchedules2019ASHRAE901>"
     
     
 Calendar:

@@ -326,7 +326,7 @@ Surface:
       Description: "Used to classify the conditions on the surface."
       Data Type: "<SurfaceAdjacentTo>"
       Notes: "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
-    adjacent_space_ID:
+    adjacent_space_id:
       Description: "ID of the adjacent space for interior surface"
       Data Type: "String"
     does_cast_shade:
@@ -439,7 +439,7 @@ Fenestration:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "m2"
-    international_glazing_database_ID:
+    international_glazing_database_id:
       Description: "International Glazing Database ID Number"
       Data Type: "Numeric"
       Range: ">=0"
@@ -780,7 +780,7 @@ FuelTypeOptions:
 InteriorLighting:
   Object Type: "Data Group"
   Data Elements:
-    ID:
+    id:
       Description: "Unique ID assigned to each interior lighting fixture(s) reported in an RMR"
       Data Type: "Numeric"
       Range: ">0"
@@ -830,7 +830,7 @@ InteriorLighting:
 ExteriorLighting:
   Object Type: "Data Group"
   Data Elements:
-    ID:
+    id:
       Description: "Unique ID assigned to each exterior lighting fixture(s) reported in an RMR"
       Data Type: "Numeric"
       Range: ">0"

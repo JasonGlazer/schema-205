@@ -507,25 +507,23 @@ Transformer:
       Data Type: "<TransformerType>"
     phase:
       Description: "The number of electrical phases"
-      Data Type: "<TransformerPhase>"
+      Data Type: "<ElectricalPhase>"
     efficiency:
       Description: "Transformer efficiency"
       Data Type: "Numeric"
-      Range: ">=0"
+      Range: ">=0, <=1"
+      Notes: "Expresses the efficiency of the transformer as a fraction from 0 to 1, where 1 would represent 100% efficiency."
     capacity:
       Description: "Rated Capacity of the Transformer"
       Data Type: "Numeric"
-      Units: "Va"
+      Units: "V-A"
       Range: ">=0"
     peak_load:
       Description: "Annual Peak electric load on the transformer"
       Data Type: "Numeric"
       Units: "W"
       Range: ">=0"
-    capacity_ratio:
-      Description: "Annual Peak electric load of the transformer divided by the capacity"
-      Data Type: "Numeric"
-      Range: ">=0"
+      Notes: "Peak electric load on the transfomer based on an annual simulation with typical weather file."
     
 TransformerType:
   Object Type: "Enumeration"
@@ -537,7 +535,7 @@ TransformerType:
     OTHER:
       Description: "Other"
 
-TransformerPhase:
+ElectricalPhase:
   Object Type: "Enumeration"
   Enumerators:
     SINGLE_PHASE:

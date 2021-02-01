@@ -87,7 +87,7 @@ ASHRAE229:
       Description: "A list of angles that building simulations are performed and results are provided."
       Data Type: "[Numeric]"
       Units: "degrees"
-      Note: "List of angles that the building has been rotated."
+      Notes: "List of angles that the building has been rotated."
     
 
 Building:
@@ -332,6 +332,13 @@ Surface:
     does_cast_shade:
       Description: "Determines whether the surface is modeled as casting shade on other exterior surfaces"
       Data Type: "Boolean"
+    construction:
+      Description: "Construction description of surface."
+      Data Type: "{Construction}"
+      
+Construction:
+  Object Type: "Data Group"
+  Data Elements:
     surface_construction_input_option:
       Description: "Identifies whether construction is entered layer-by-layer or simplified (R-value)"
       Data Type: "<SurfaceConstructionInputOptions>"
@@ -340,7 +347,7 @@ Surface:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "m2"
-      Note: "Measured from interior face area. It is the gross area of the wall and includes the area of all subsurfaces."
+      Notes: "Measured from interior face area. It is the gross area of the wall and includes the area of all subsurfaces."
     layers:
       Description: "List of names of layer descriptions starting from the outside surface"
       Data Type: "[String]"
@@ -367,40 +374,70 @@ Surface:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "K-m2/W"
-    reflectance:
-      Description: "Reflectance"
+    reflectance_thermal_exterior:
+      Description: "Thermal reflectance of long wavelength radiation on the exterior surface."
       Data Type: "Numeric"
       Range: ">=0"
-    emittance:
-      Description: "Emittance"
+    absorptance_thermal_exterior:
+      Description: "Thermal absorptance of long wavelength radiation on the exterior surface."
       Data Type: "Numeric"
       Range: ">=0"
-    reflectivity:
-      Description: "Reflectivity"
+    reflectance_solar_exterior:
+      Description: "Thermal reflectance of short wavelength radiation on the exterior surface."
       Data Type: "Numeric"
       Range: ">=0"
+    absorptance_solar_exterior:
+      Description: "Thermal absorptance of short wavelength radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    reflectance_visible_exterior:
+      Description: "Thermal reflectance of visible radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_visible_exterior:
+      Description: "Thermal absorptance of visible radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    reflectance_thermal_interior:
+      Description: "Thermal reflectance of long wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_thermal_interior:
+      Description: "Thermal absorptance of long wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    reflectance_solar_interior:
+      Description: "Thermal reflectance of short wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_solar_interior:
+      Description: "Thermal absorptance of short wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    reflectance_visible_interior:
+      Description: "Thermal reflectance of visible radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_visible_interior:
+      Description: "Thermal absorptance of visible radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    has_radiant_heating:
+      Description: "Includes embedded radiant heating elements"
+      Data Type: "Boolean"
+    has_radiant_cooling:
+      Description: "Includes embedded radiant cooling elements"
+      Data Type: "Boolean"
 
 SurfaceClassificationType:
   Object Type: "Enumeration"
   Enumerators:
-    INTERIOR_WALL:
-      Description: "Interior Wall"
-    INTERIOR_FLOOR:
-      Description: "Interior Floor"
-    INTERIOR_CEILING:
-      Description: "Interior Ceiling"
-    EXTERIOR_WALL:
-      Description: "Exterior Wall"
-    EXTERIOR_FLOOR:
-      Description: "Exterior Floor"
-    EXTERIOR_CEILING:
-      Description: "Exterior Ceiling"
-    UNDERGROUND_WALL:
-      Description: "Underground Wall"
-    UNDERGROUND_FLOOR:
-      Description: "Underground Floor"
-    UNDERGROUND_CEILING:
-      Description: "Underground Ceiling"
+    WALL:
+      Description: "Vertical or nearly vertical wall"
+    FLOOR:
+      Description: "Floor"
+    CEILING:
+      Description: "Ceiling"
     
 SurfaceAdjacentTo:
   Object Type: "Enumeration"
@@ -411,6 +448,10 @@ SurfaceAdjacentTo:
       Description: "Slab-on-grad or below grade surface if adjacent to ground."
     INTERIOR:
       Description: "Interior surface if adjacent to another thermal block."
+    IDENTICAL:
+      Description: "Surface adjacent to a environment identical to the zone."
+    UNHEATED:
+      Description: "Surface adjacent to a environment that is not heated but enclosed."
 
 SurfaceConstructionInputOptions:
   Object Type: "Enumeration"
@@ -703,13 +744,13 @@ HeatingVentilationAirConditioningSystem:
       Data Type: "[Numeric]"
       Range: ">=0"
       Units: "W/m2"
-      Note: "If multiple values are provided, they correspond to rotated building orientations"
+      Notes: "If multiple values are provided, they correspond to rotated building orientations"
     heat_output_capacity:
       Description: "Result from the simulation of the heating capacity"
       Data Type: "[Numeric]"
       Range: ">=0"
       Units: "W/m2"
-      Note: "If multiple values are provided, they correspond to rotated building orientations"
+      Notes: "If multiple values are provided, they correspond to rotated building orientations"
 
 ServiceWaterHeatingSystem:
   Object Type: "Data Group"

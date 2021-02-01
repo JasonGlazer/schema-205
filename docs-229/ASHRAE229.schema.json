@@ -48,7 +48,8 @@
                     "items": {
                         "type": "number"
                     },
-                    "units": "degrees"
+                    "units": "degrees",
+                    "notes": "List of angles that the building has been rotated."
                 }
             },
             "additionalProperties": false
@@ -407,6 +408,20 @@
                     "description": "Determines whether the surface is modeled as casting shade on other exterior surfaces",
                     "type": "boolean"
                 },
+                "construction": {
+                    "description": "Construction description of surface.",
+                    "$ref": "ASHRAE229.schema.json#/definitions/Construction"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "additionalProperties": false
+        },
+        "Construction": {
+            "type": "object",
+            "properties": {
                 "surface_construction_input_option": {
                     "description": "Identifies whether construction is entered layer-by-layer or simplified (R-value)",
                     "$ref": "ASHRAE229.schema.json#/definitions/SurfaceConstructionInputOptions"
@@ -415,7 +430,8 @@
                     "description": "area of the surface",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "m2"
+                    "units": "m2",
+                    "notes": "Measured from interior face area. It is the gross area of the wall and includes the area of all subsurfaces."
                 },
                 "layers": {
                     "description": "List of names of layer descriptions starting from the outside surface",
@@ -452,51 +468,88 @@
                     "minimum": 0.0,
                     "units": "K-m2/W"
                 },
-                "reflectance": {
-                    "description": "Reflectance",
+                "reflectance_thermal_exterior": {
+                    "description": "Thermal reflectance of long wavelength radiation on the exterior surface.",
                     "type": "number",
                     "minimum": 0.0
                 },
-                "emittance": {
-                    "description": "Emittance",
+                "absorptance_thermal_exterior": {
+                    "description": "Thermal absorptance of long wavelength radiation on the exterior surface.",
                     "type": "number",
                     "minimum": 0.0
                 },
-                "reflectivity": {
-                    "description": "Reflectivity",
+                "reflectance_solar_exterior": {
+                    "description": "Thermal reflectance of short wavelength radiation on the exterior surface.",
                     "type": "number",
                     "minimum": 0.0
+                },
+                "absorptance_solar_exterior": {
+                    "description": "Thermal absorptance of short wavelength radiation on the exterior surface.",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "reflectance_visible_exterior": {
+                    "description": "Thermal reflectance of visible radiation on the exterior surface.",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "absorptance_visible_exterior": {
+                    "description": "Thermal absorptance of visible radiation on the exterior surface.",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "reflectance_thermal_interior": {
+                    "description": "Thermal reflectance of long wavelength radiation on the interior surface.",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "absorptance_thermal_interior": {
+                    "description": "Thermal absorptance of long wavelength radiation on the interior surface.",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "reflectance_solar_interior": {
+                    "description": "Thermal reflectance of short wavelength radiation on the interior surface.",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "absorptance_solar_interior": {
+                    "description": "Thermal absorptance of short wavelength radiation on the interior surface.",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "reflectance_visible_interior": {
+                    "description": "Thermal reflectance of visible radiation on the interior surface.",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "absorptance_visible_interior": {
+                    "description": "Thermal absorptance of visible radiation on the interior surface.",
+                    "type": "number",
+                    "minimum": 0.0
+                },
+                "has_radiant_heating": {
+                    "description": "Includes embedded radiant heating elements",
+                    "type": "boolean"
+                },
+                "has_radiant_cooling": {
+                    "description": "Includes embedded radiant cooling elements",
+                    "type": "boolean"
                 }
             },
-            "required": [
-                "id",
-                "name"
-            ],
             "additionalProperties": false
         },
         "SurfaceClassificationType": {
             "type": "string",
             "enum": [
-                "INTERIOR_WALL",
-                "INTERIOR_FLOOR",
-                "INTERIOR_CEILING",
-                "EXTERIOR_WALL",
-                "EXTERIOR_FLOOR",
-                "EXTERIOR_CEILING",
-                "UNDERGROUND_WALL",
-                "UNDERGROUND_FLOOR",
-                "UNDERGROUND_CEILING"
+                "WALL",
+                "FLOOR",
+                "CEILING"
             ],
             "descriptions": [
-                "Interior Wall",
-                "Interior Floor",
-                "Interior Ceiling",
-                "Exterior Wall",
-                "Exterior Floor",
-                "Exterior Ceiling",
-                "Underground Wall",
-                "Underground Floor",
-                "Underground Ceiling"
+                "Vertical or nearly vertical wall",
+                "Floor",
+                "Ceiling"
             ]
         },
         "SurfaceAdjacentTo": {
@@ -504,12 +557,16 @@
             "enum": [
                 "AMBIENT",
                 "GROUND",
-                "INTERIOR"
+                "INTERIOR",
+                "IDENTICAL",
+                "UNHEATED"
             ],
             "descriptions": [
                 "Exterior wall or roof which is adjacent to the exterior ambient environments.",
                 "Slab-on-grad or below grade surface if adjacent to ground.",
-                "Interior surface if adjacent to another thermal block."
+                "Interior surface if adjacent to another thermal block.",
+                "Surface adjacent to a environment identical to the zone.",
+                "Surface adjacent to a environment that is not heated but enclosed."
             ]
         },
         "SurfaceConstructionInputOptions": {
@@ -630,29 +687,27 @@
                 },
                 "phase": {
                     "description": "The number of electrical phases",
-                    "$ref": "ASHRAE229.schema.json#/definitions/TransformerPhase"
+                    "$ref": "ASHRAE229.schema.json#/definitions/ElectricalPhase"
                 },
                 "efficiency": {
                     "description": "Transformer efficiency",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "maximum": 1.0,
+                    "notes": "Expresses the efficiency of the transformer as a fraction from 0 to 1, where 1 would represent 100% efficiency."
                 },
                 "capacity": {
                     "description": "Rated Capacity of the Transformer",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "Va"
+                    "units": "V-A"
                 },
                 "peak_load": {
                     "description": "Annual Peak electric load on the transformer",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "W"
-                },
-                "capacity_ratio": {
-                    "description": "Annual Peak electric load of the transformer divided by the capacity",
-                    "type": "number",
-                    "minimum": 0.0
+                    "units": "W",
+                    "notes": "Peak electric load on the transfomer based on an annual simulation with typical weather file."
                 }
             },
             "required": [
@@ -673,7 +728,7 @@
                 "Other"
             ]
         },
-        "TransformerPhase": {
+        "ElectricalPhase": {
             "type": "string",
             "enum": [
                 "SINGLE_PHASE",
@@ -703,7 +758,7 @@
                 "values": {
                     "description": "Hourly Values of Schedule",
                     "type": "array",
-                    "minItems": 1,
+                    "minItems": 8760,
                     "maxItems": 8760,
                     "items": {
                         "type": "number"
@@ -715,9 +770,9 @@
                     "type": "string",
                     "notes": "For certain schedule purposes, the values may be represented by units such as C for temperature or W for power."
                 },
-                "modified_from_library": {
+                "prescribed_schedule": {
                     "description": "True if any schedule values have changed from what appears in the schedule library",
-                    "type": "boolean"
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/PrescribedSchedules2019ASHRAE901"
                 }
             },
             "required": [
@@ -906,7 +961,8 @@
                         "type": "number",
                         "minimum": 0.0
                     },
-                    "units": "W/m2"
+                    "units": "W/m2",
+                    "notes": "If multiple values are provided, they correspond to rotated building orientations"
                 },
                 "heat_output_capacity": {
                     "description": "Result from the simulation of the heating capacity",
@@ -915,7 +971,8 @@
                         "type": "number",
                         "minimum": 0.0
                     },
-                    "units": "W/m2"
+                    "units": "W/m2",
+                    "notes": "If multiple values are provided, they correspond to rotated building orientations"
                 }
             },
             "required": [

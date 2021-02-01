@@ -417,3 +417,8 @@
 | `SOC_SC_I` | Service over counter - Self-contained - Ice cream                    |       |
 | `HCS_SC_I` | Horizontal solid door - Self-contained - Ice cream                   |       |
 
+# PrescribedSchedules2019ASHRAE901
+|    Enumerator    |                                                     Description                                                     | Notes |
+|------------------|---------------------------------------------------------------------------------------------------------------------|-------|
+| `NOT_APPLICABLE` | No prescribed schedules for Appendix G of ASHRAE Standard 90.1-2019. This field may be relavent for other rulesets. |       |
+

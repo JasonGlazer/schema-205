@@ -311,6 +311,12 @@ Surface:
       Description: "Classification for the surface."
       Data Type: "<SurfaceClassificationType>"
       Notes: "Options for surface being interior or exterior wall, floor, or ceiling."
+    area:
+      Description: "area of the surface"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m2"
+      Notes: "Measured from interior face area. It is the gross area of the wall and includes the area of all subsurfaces."
     tilt:
       Description: "Angle between vertical and the surface outward normal" 
       Data Type: "Numeric"
@@ -335,6 +341,9 @@ Surface:
     construction:
       Description: "Construction description of surface."
       Data Type: "{Construction}"
+    surface_optics:
+      Description: "Optical properties of the surface."
+      Data Type: "{Optical}"
       
 Construction:
   Object Type: "Data Group"
@@ -342,12 +351,6 @@ Construction:
     surface_construction_input_option:
       Description: "Identifies whether construction is entered layer-by-layer or simplified (R-value)"
       Data Type: "<SurfaceConstructionInputOptions>"
-    area:
-      Description: "area of the surface"
-      Data Type: "Numeric"
-      Range: ">=0"
-      Units: "m2"
-      Notes: "Measured from interior face area. It is the gross area of the wall and includes the area of all subsurfaces."
     layers:
       Description: "List of names of layer descriptions starting from the outside surface"
       Data Type: "[String]"
@@ -359,6 +362,7 @@ Construction:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "W/m2-K"
+      Notes: "Includes interior and exterior air films as specified by the referenced standard."
     c_factor:
       Description: "surface C-factor"
       Data Type: "Numeric"
@@ -374,60 +378,41 @@ Construction:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "K-m2/W"
-    reflectance_thermal_exterior:
-      Description: "Thermal reflectance of long wavelength radiation on the exterior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    absorptance_thermal_exterior:
-      Description: "Thermal absorptance of long wavelength radiation on the exterior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    reflectance_solar_exterior:
-      Description: "Thermal reflectance of short wavelength radiation on the exterior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    absorptance_solar_exterior:
-      Description: "Thermal absorptance of short wavelength radiation on the exterior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    reflectance_visible_exterior:
-      Description: "Thermal reflectance of visible radiation on the exterior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    absorptance_visible_exterior:
-      Description: "Thermal absorptance of visible radiation on the exterior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    reflectance_thermal_interior:
-      Description: "Thermal reflectance of long wavelength radiation on the interior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    absorptance_thermal_interior:
-      Description: "Thermal absorptance of long wavelength radiation on the interior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    reflectance_solar_interior:
-      Description: "Thermal reflectance of short wavelength radiation on the interior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    absorptance_solar_interior:
-      Description: "Thermal absorptance of short wavelength radiation on the interior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    reflectance_visible_interior:
-      Description: "Thermal reflectance of visible radiation on the interior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
-    absorptance_visible_interior:
-      Description: "Thermal absorptance of visible radiation on the interior surface."
-      Data Type: "Numeric"
-      Range: ">=0"
     has_radiant_heating:
       Description: "Includes embedded radiant heating elements"
       Data Type: "Boolean"
     has_radiant_cooling:
       Description: "Includes embedded radiant cooling elements"
       Data Type: "Boolean"
+
+SurfaceOptics:
+  Object Type: "Data Group"
+  Data Elements:
+    absorptance_thermal_exterior:
+      Description: "Thermal absorptance of long wavelength radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_solar_exterior:
+      Description: "Thermal absorptance of short wavelength radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_visible_exterior:
+      Description: "Thermal absorptance of visible radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_thermal_interior:
+      Description: "Thermal absorptance of long wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_solar_interior:
+      Description: "Thermal absorptance of short wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_visible_interior:
+      Description: "Thermal absorptance of visible radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+
 
 SurfaceClassificationType:
   Object Type: "Enumeration"

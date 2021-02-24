@@ -322,23 +322,6 @@
 | `heater_fuel_type`                   | Service water heating heater fuel type                                                                                           | `<FuelTypeOptions>`                                         |       |       |     |                                                                        |
 | `heater_efficiency`                  | Service water heating heater efficiency                                                                                          | `Numeric`                                                   |       | `≥0`  |     |                                                                        |
 
-# InteriorLighting
-|             Name              |                                   Description                                   |             Data Type              | Units | Range | Req | Notes |
-|-------------------------------|---------------------------------------------------------------------------------|------------------------------------|-------|-------|-----|-------|
-| `id`                          | Unique ID assigned to each interior lighting fixture(s) reported in an RMR      | `Numeric`                          |       | `>0`  |     |       |
-| `name`                        | Interior lighting fixture name                                                  | `String`                           |       |       |     |       |
-| `type`                        | The type of interior lighting fixture                                           | `<LightingSpaceType2019ASHRAE901>` |       |       |     |       |
-| `norminal_wattage`            | Nominal capacity of interior lighting fixtures                                  | `Numeric`                          | W     |       |     |       |
-| `power`                       | Total power of all fixtures in a specific functional area                       | `Numeric`                          | W     |       |     |       |
-| `designed_power`              | Total designed power of all fixtures in a specific functional area              | `Numeric`                          | W     |       |     |       |
-| `with_occupancy_sensor`       | The flag for occ sensor is modeled with interior lighting                       | `Boolean`                          |       |       |     |       |
-| `with_auto_controls`          | The flag for automatic lighting control is modeled with interior lighting  none | `Boolean`                          |       |       |     |       |
-| `with_manual_on_sensor`       | The flag for manual-on automatic lighting control for interior lighting         | `Boolean`                          |       |       |     |       |
-| `with_partial_auto_on_sensor` | The flag for partial-auto-on automatic lighting control for interior lighting   | `Boolean`                          |       |       |     |       |
-| `multiplier`                  | Multiplier for interior lighting specifications                                 | `Numeric`                          |       | `>0`  |     |       |
-| `area`                        | Space area for interior lighting                                                | `Numeric`                          | m2    | `>0`  |     |       |
-| `with_other_auto_controls`    | Automatic interial lighting controls other than occupancy sensor                | `Boolean`                          |       |       |     |       |
-
 # ExteriorLighting
 |               Name                |                                     Description                                      |                   Data Type                    | Units | Range | Req | Notes |
 |-----------------------------------|--------------------------------------------------------------------------------------|------------------------------------------------|-------|-------|-----|-------|

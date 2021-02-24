@@ -863,56 +863,6 @@ FuelTypeOptions:
     NATURAL_GAS:
       Description: "Natural gas"
 
-InteriorLighting:
-  Object Type: "Data Group"
-  Data Elements:
-    id:
-      Description: "Unique ID assigned to each interior lighting fixture(s) reported in an RMR"
-      Data Type: "Numeric"
-      Range: ">0"
-    name:
-      Description: "Interior lighting fixture name"
-      Data Type: "String"
-    type:
-      Description: "The type of interior lighting fixture"
-      Data Type: "<LightingSpaceType2019ASHRAE901>"
-    norminal_wattage:
-      Description: "Nominal capacity of interior lighting fixtures"
-      Data Type: "Numeric"
-      Units: "W"
-    power:
-      Description: "Total power of all fixtures in a specific functional area"
-      Data Type: "Numeric"
-      Units: "W"
-    designed_power:
-      Description: "Total designed power of all fixtures in a specific functional area"
-      Data Type: "Numeric"
-      Units: "W"
-    with_occupancy_sensor:
-      Description: "The flag for occ sensor is modeled with interior lighting"
-      Data Type: "Boolean"
-    with_auto_controls:
-      Description: "The flag for automatic lighting control is modeled with interior lighting	none"
-      Data Type: "Boolean"
-    with_manual_on_sensor:
-      Description: "The flag for manual-on automatic lighting control for interior lighting"
-      Data Type: "Boolean"
-    with_partial_auto_on_sensor:
-      Description: "The flag for partial-auto-on automatic lighting control for interior lighting"
-      Data Type: "Boolean"
-    multiplier:
-      Description: "Multiplier for interior lighting specifications"
-      Data Type: "Numeric"
-      Range: ">0"
-    area:
-      Description: "Space area for interior lighting"
-      Data Type: "Numeric"
-      Units: "m2"    # use ft2 for IP units
-      Range: ">0"
-    with_other_auto_controls:
-      Description: "Automatic interial lighting controls other than occupancy sensor"
-      Data Type: "Boolean"
-
 ExteriorLighting:
   Object Type: "Data Group"
   Data Elements:

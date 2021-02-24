@@ -110,9 +110,10 @@ Building:
       Description: "Large portions of a building that share a building area type"
       Data Type: "[{BuildingSegment}]"
       Notes: "Contains a list of building segments in the building."
-    is_new:
-      Description: "Indicates whether building is a new construction (true) or existing (false). Projects that include additions will be modeled as two buildings - one new and one existing, as curtain rules such as baseline fenestration area will apply differently to each portion"
+    is_all_new:
+      Description: "Indicates whether building is completely new construction (true) or existing (false). "
       Data Type: "Boolean"
+      Notes: "Projects that include additions should be False. Projects with additional instead may be modeled as two buildings - one new and one existing, as curtain rules such as baseline fenestration area will apply differently to each portion."
     compliance_path:
       Description: "Indicates the chosen compliance path if the ruleset has multiple compliance paths such as 90.1 Appendix G has code compliance and beyond code"
       Data Type: "<CompliancePathType2019ASHRAE901>"
@@ -158,6 +159,9 @@ BuildingSegment:
       Description: "Building area classification used for vertical fenestration"
       Data Type: "<VerticalFenestrationBuildingAreaType2019ASHRAE901>"
       Notes: "The enumeration is based on the standard used."
+    lighting_building_area_type:
+      Description: "Building area lighting area type"
+      Data Type: "<LightingSpaceType2019ASHRAE901T961>"
 
 ThermalBlock:
   Object Type: "Data Group"
@@ -208,14 +212,60 @@ Space:
     conditioning_type:
       Description: "Space conditioning category"
       Data Type: "<ConditioningType>"
+    status_type:
+      Description: "Choice of new, existing, addition, or alteration."
+      Data Type: "<SpaceStatusType>"
     space_function:
       Description: "Generic function for the space."
       Data Type: "<SpaceFunctionType>"
       Notes: "The enumeration is based on the standard used."
     lighting_space_type:
       Description: "Lighting space type classification"
-      Data Type: "(<LightingSpaceType2019ASHRAE901T951>, <LightingSpaceType2019ASHRAE901T961>)"
+      Data Type: "<LightingSpaceType2019ASHRAE901T951>"
       Notes: "The enumeration is based on the standard used."
+    lighting_power:
+      Description: "Total power for lights in the spac."
+      Data Type: "Numeric"
+      Units: "W"
+    has_primary_daylighting_control:
+      Description: "Includes daylighting controls for primary daylit areas"
+      Data Type: "Boolean"
+    has_secondary_daylighting_control:
+      Description: "Includes daylighting controls for secondary daylit areas"
+      Data Type: "Boolean"
+    has_toplighting_control:
+      Description: "Includes daylighting controls for toplit areas"
+      Data Type: "Boolean"
+    primary_daylit_area:
+      Description: "Primary daylit area of the space."
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m2"
+    secondary_daylit_area:
+      Description: "Secondary daylit area of the space."
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m2"
+    toplit_area:
+      Description: "Toplit area of the space."
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m2"
+    has_additional_occupancy_sensor_control_credit:
+      Description: "Includes credit for occupancy sensor controls. "
+      Data Type: "Boolean"
+    has_additional_programmable_lighting_control_credit:
+      Description: "Includes credit for programmable lighting controls. "
+      Data Type: "Boolean"
+    lighting_schedule_name:
+      Description: "Lighting schedule name"
+      Data Type: "String"
+    lighting_equivalent_full_load_hours:
+      Description: "Annual sum of hourly fractions of lighting schedule"
+      # this field may be replaced by a function EFLH()
+      Data Type: "Numeric"
+      Units: "hr"
+      Range: ">=0"
     ventilations_space_type:
       Description: "Ventilation space type classification"
       Data Type: "<VentilationSpaceType2019ASHRAE901>"
@@ -274,6 +324,18 @@ SpaceFunctionType:
       Description: "Kitchen"
     OTHER:
       Description: "Other"
+
+SpaceStatusType:
+  Object Type: "Enumeration"
+  Enumerators:
+    NEW:
+      Description: "New"
+    EXISTING:
+      Description: "Existing"
+    ADDITION:
+      Description: "Addition"
+    ALTERATION:
+      Description: "Alteration"
 
 Surface:
   Object Type: "Data Group"

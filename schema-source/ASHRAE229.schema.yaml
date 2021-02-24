@@ -13,6 +13,7 @@ Schema:
   Version: "0.0.1"
   References:
     - "Enumerations2019ASHRAE901"
+    - "EnumerationsRESNET"
   Root Data Group: "ASHRAE229"
 
 # Data Types
@@ -330,7 +331,7 @@ Surface:
       Notes: "Example values would be 0 = north, 90 = East, 180 = South, 270 = West"
     adjacent_to:
       Description: "Used to classify the conditions on the surface."
-      Data Type: "<SurfaceAdjacentTo>"
+      Data Type: "(<SurfaceAdjacentTo>,<AdditionalSurfaceAdjacentToRESNET>)"
       Notes: "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
     adjacent_space_id:
       Description: "ID of the adjacent space for interior surface"

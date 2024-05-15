@@ -215,7 +215,25 @@
         "m2-K/W",
         "Hz",
         "V",
-        "rev/s"
+        "rev/s",
+        "W/m-K",
+        "W/m-K2",
+        "W/m-K3",
+        "W/m2-K",
+        "kg/m3",
+        "1/m",
+        "J/kg-K",
+        "J/kg-K2",
+        "J/kg-K3",
+        "N-s/kg-m",
+        "kg/m3-K",
+        "kg/m3-K2",
+        "g/mol",
+        "1/K",
+        "1/K2",
+        "kg/m-s",
+        "kg/m-s-K",
+        "kg/m-s-K2"
       ]
     },
     "RatingUnits": {
@@ -246,7 +264,9 @@
         "kW",
         "m2-K/kW",
         "kPa",
-        "l/s"
+        "l/s", 
+        "ft3/min-ft2",
+        "Btu/h-ft2-F"
       ]
     },
     "DataTypePattern": {

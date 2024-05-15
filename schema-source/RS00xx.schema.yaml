@@ -1,0 +1,550 @@
+Schema:
+  Object Type: "Meta"
+  References:
+    - "ASHRAE205"
+  Title: "Fenestration"
+  Description: "Schema for ASHRAE 205 annex RS00xx: Fenestration" 
+  Version: "2.0.0"
+  Root Data Group: "RS00xx"
+
+# Local Enumerations
+NRFC100TestStandardYear:
+  Object Type: "Enumeration"
+  Enumerators:
+    Y2023:
+      Description: "Ratings of the standard, 2023 edition"
+      Display Text: "NFRC 100 2023"
+
+# Local Enumerations
+NRFC200TestStandardYear:
+  Object Type: "Enumeration"
+  Enumerators:
+    Y2023:
+      Description: "Ratings of the standard, 2023 edition"
+      Display Text: "NFRC 200 2023"
+
+LayerType:
+  Object Type: "Enumeration"
+  Enumerators:
+    GLAZING:
+      Display Text: "Glazing"
+      Description: "Glass or plastic transparent panel "
+    GAP:
+      Display Text: "Gap"
+      Description: "Space between glass or plastic panels often filled with a gas"
+
+
+# Data Groups
+RS00xx:
+  Object Type: "Data Group"
+  Data Elements:
+    metadata:
+      Description: "Metadata data group"
+      Data Type: "{Metadata}"
+      Constraints: "schema=RS00xx"
+      Required: True
+    description:
+      Description: "Data group describing product and rating information"
+      Data Type: "{Description}"
+    performance:
+      Description: "Data group containing performance information"
+      Data Type: "{Performance}"
+      Required: True
+
+Description:
+  Object Type: "Data Group"
+  Data Elements:
+    product_information:
+      Description: "Data group describing product information"
+      Data Type: "{ProductInformation}"
+    rating_nfrc:
+      Description: "Data group containing information relevant to products rated under AHRI 210/240"
+      Data Type: "{RatingNFRC}"
+
+ProductInformation:
+  Object Type: "Data Group"
+  Data Elements:
+    manufacturer:
+      Description: "Manufacturer name"
+      Data Type: "String"
+    model_number:
+      Description: "Model number"
+      Data Type: "Pattern"
+      Notes: "Pattern shall match all model numbers that can be represented by the representation"
+
+RatingNFRC:
+  Object Type: "Rating Data Group"
+  Data Elements:
+    nfrc_id:
+      Description: "ID used by NFRC Rating"
+      Data Type: "String"
+    nfrc_100_test_standard_year:
+      Description: "Year of the AHRI test standard"
+      Data Type: "<NRFC100TestStandardYear>"
+    nfrc_200_test_standard_year:
+      Description: "Year of the AHRI test standard"
+      Data Type: "<NRFC200TestStandardYear>"
+    rating_source:
+      Description: "Source of this rating data"
+      Data Type: "String"
+      Notes: "Used by data publisher to document methods (e.g., software and version) used to generate rating data"
+    u_factor:
+      Description: "Rated U-Factor"
+      Data Type: "Numeric"
+      Units: "Btu/h-ft2-F"
+      Constraints: ">=0.0"
+    shgc:
+      Description: "Solar Heat Gain Coefficient"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: ">=0.0"
+    g_factor:
+      Description: "Solar Factor"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: ">=0.0"
+      Notes: "Used in Europe and sometimes called the Total Solar Energy Transmittance"
+    vt:
+      Description: "Visible Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: ">0.0"
+    air_leakage:
+      Description: "The Integrated Part-Load Value efficiency of merit calculated at the standard rating conditions"
+      Data Type: "Numeric"
+      Units: "ft3/min-ft2"
+
+Performance:
+  Object Type: "Data Group"
+  Data Elements:
+    thickness:
+      Description: "The total thickness of the glazing."
+      Data Type: "Numeric"
+      Units: "m"
+    conductivity:
+      Description: "Overall conductivity of the glazing."
+      Data Type: "Numeric"
+      Units: "W/m-K"
+    u_value_center_of_glass:
+      Description: "Center of glass U-Value"
+      Data Type: "Numeric"
+      Units: "W/m2-K"
+      Constraints: ">=0.0"
+    layer_components:
+      Description: "An array of layers associated with the transparent portion of the fenestration such as glass layers and gas layers"
+      Data Type: "[{LayerComponent}]"
+      
+LayerComponent:
+  Object Type: "Data Group"
+  Data Elements:
+    type:
+      Description: "Type of lauer"
+      Data Type: "<LayerType>"
+      Required: True
+    description:
+      Description: "Informative description of the component"
+      Data Type: "String"
+    thickness:
+      Description: "Thickness"
+      Data Type: "Numeric"
+      Units: "m"
+    thermal_conductivity:
+      Description: "Thermal conductivity"
+      Data Type: "Numeric"
+      Units: "W/m-K"
+    thermal_conductivity_temperature_coefficent:
+      Description: "Thermal conductivity temperature coefficient"
+      Data Type: "Numeric"
+      Units: "W/m-K2"
+    thermal_conductivity_temperature_squared_coefficent:
+      Description: "Thermal conductivity temperature squared coefficient"
+      Data Type: "Numeric"
+      Units: "W/m-K3"
+    density:
+      Description: "Density"
+      Data Type: "Numeric"
+      Units: "kg/m3"
+    density_temperature_coefficent:
+      Description: "Density temperature coefficient"
+      Data Type: "Numeric"
+      Units: "kg/m3-K"
+    density_temperature_squared_coefficent:
+      Description: "Density temperature squared coefficient"
+      Data Type: "Numeric"
+      Units: "kg/m3-K2"
+    gas_components:
+      Description: "An array of gas components for gap"
+      Data Type: "[{GasComponent}]"
+    gas_pressure:
+      Description: "Refactive index"
+      Data Type: "Numeric"
+      Units: "Pa"
+      Constraints: ">=0.0"
+    refractive_index:
+      Description: "Refactive index"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: ">=0.0"
+    specific_heat:
+      Description: "Specific heat"
+      Data Type: "Numeric"
+      Units: "J/kg-K"
+    specific_heat_temperature_coefficent:
+      Description: "Specific heat temperature coefficient"
+      Data Type: "Numeric"
+      Units: "J/kg-K2"
+    specific_heat_temperature_squared_coefficent:
+      Description: "Specific heat temperature squared coefficient"
+      Data Type: "Numeric"
+      Units: "J/kg-K3"
+    specific_heat_ratio:
+      Description: "Specific heat ratio"
+      Data Type: "Numeric"
+      Units: "J/kg-K"
+      Notes: "The ratio of the specific heat at constant pressure to the specific heat at constant volume"
+    viscosity:
+      Description: "Viscosity"
+      Data Type: "Numeric"
+      Units: "kg/m-s"
+    viscosity_temperature_coefficent:
+      Description: "Viscosity temperature coefficient"
+      Data Type: "Numeric"
+      Units: "kg/m-s-K"
+    viscosity_temperature_squared_coefficent:
+      Description: "Viscosity temperature squared coefficient"
+      Data Type: "Numeric"
+      Units: "kg/m-s-K2"
+    prandtl_number:
+      Description: "Prandtl number"
+      Data Type: "Numeric"
+      Units: "-"
+    prandtl_number_temperature_coefficent:
+      Description: "Prandtl number temperature coefficient"
+      Data Type: "Numeric"
+      Units: "1/K"
+    prandtl_number_temperature_squared_coefficent:
+      Description: "Prandtl number temperature squared coefficient"
+      Data Type: "Numeric"
+      Units: "1/K2"
+    vapour_resistivity:
+      Description: "Vapour reistivity"
+      Data Type: "Numeric"
+      Units: "N-s/kg-m"
+      Constraints: ">=0.0"
+    molecular_weight:
+      Description: "Molecular weight"
+      Data Type: "Numeric"
+      Units: "g/mol"
+      Constraints: ">=0.0"
+    youngs_modulus:
+      Description: "Young's modulus"
+      Data Type: "Numeric"
+      Units: "Pa"
+      Notes: "Material stiffness"
+    poissons_ratio:
+      Description: "Poisson's ratio"
+      Data Type: "Numeric"
+      Units: "-"
+      Notes: "Traverse contraction during stretching"
+    spectral_characteristics:
+      Description: "An array of spectral characteristics"
+      Data Type: "[{SpectralCharacteristic}]"
+    solar_index_of_refraction:
+      Description: "Solar index of refraction"
+      Data Type: "Numeric"
+      Units: "-"
+      Notes: "Used in software using the refraction extinction algorithm"
+    solar_extinction_coefficient:
+      Description: "Solar extinction coefficient"
+      Data Type: "Numeric"
+      Units: "1/m"
+      Notes: "Used in software using the refraction extinction algorithm"
+    visible_index_of_refraction:
+      Description: "Visible index of refraction"
+      Data Type: "Numeric"
+      Units: "-"
+      Notes: "Used in software using the refraction extinction algorithm"
+    visible_extinction_coefficient:
+      Description: "Visible extinction coefficient"
+      Data Type: "Numeric"
+      Units: "1/m"
+      Notes: "Used in software using the refraction extinction algorithm"
+    front_side_beam_beam_solar_transmittance:      
+      Description: "Front Side Beam-Beam Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+      Notes: "This and the following data elements are based on the ASHWAT inputs"
+    back_side_beam_beam_solar_transmittance:
+      Description: "Back Side Beam-Beam Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_beam_beam_solar_reflectance:
+      Description: "Front Side Beam-Beam Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_beam_beam_solar_reflectance:
+      Description: "Back Side Beam-Beam Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_beam_beam_visible_solar_transmittance:
+      Description: "Front Side Beam-Beam Visible Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_beam_beam_visible_solar_transmittance:
+      Description: "Back Side Beam-Beam Visible Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_beam_beam_visible_solar_reflectance:
+      Description: "Front Side Beam-Beam Visible Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_beam_beam_visible_solar_reflectance:
+      Description: "Back Side Beam-Beam Visible Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_beam_diffuse_solar_transmittance:
+      Description: "Front Side Beam-Diffuse Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_beam_diffuse_solar_transmittance:
+      Description: "Back Side Beam-Diffuse Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_beam_diffuse_solar_reflectance:
+      Description: "Front Side Beam-Diffuse Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_beam_diffuse_solar_reflectance:
+      Description: "Back Side Beam-Diffuse Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_beam_diffuse_visible_solar_transmittance:
+      Description: "Front Side Beam-Diffuse Visible Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_beam_diffuse_visible_solar_transmittance:
+      Description: "Back Side Beam-Diffuse Visible Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_beam_diffuse_visible_solar_reflectance:
+      Description: "Front Side Beam-Diffuse Visible Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_beam_diffuse_visible_solar_reflectance:
+      Description: "Back Side Beam-Diffuse Visible Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    diffuse_diffuse_solar_transmittance:
+      Description: "Diffuse-Diffuse Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_diffuse_diffuse_solar_reflectance:
+      Description: "Front Side Diffuse-Diffuse Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_diffuse_diffuse_solar_reflectance:
+      Description: "Back Side Diffuse-Diffuse Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    diffuse_diffuse_visible_solar_transmittance:
+      Description: "Diffuse-Diffuse Visible Solar Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_diffuse_diffuse_visible_solar_reflectance:
+      Description: "Front Side Diffuse-Diffuse Visible Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_diffuse_diffuse_visible_solar_reflectance:
+      Description: "Back Side Diffuse-Diffuse Visible Solar Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_infrared_transmittance:
+      Description: "Front Side Infrared Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_infrared_transmittance:
+      Description: "Back Side Infrared Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_infrared_emissivity:
+      Description: "Front Side Infrared Emissivity"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_infrared_emissivity:
+      Description: "Back Side Infrared Emissivity"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_damage_weighted:
+      Description: "Transmittance damage weighted"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_ultra_violet:
+      Description: "Transmittance ultra violet"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_solar_protection_factor:
+      Description: "Transmittance solar protection factor"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_krochman_damage:
+      Description: "Transmittance krochman damage"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_cie_x:
+      Description: "Transmittance CIE x"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_cie_y:
+      Description: "Transmittance CIE y"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_cie_z:
+      Description: "Transmittance CIE z"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_front_red:
+      Description: "Transmittance Front Red"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_front_green:
+      Description: "Transmittance Front Green"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    transmittance_front_blue:
+      Description: "Transmittance Front Blue"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_front_cie_x:
+      Description: "Reflectance Front CIE x"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_front_cie_y:
+      Description: "Reflectance Front CIE y"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_front_cie_z:
+      Description: "Reflectance Front CIE z"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_back_cie_x:
+      Description: "Reflectance Back CIE x"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_back_cie_y:
+      Description: "Reflectance Back CIE y"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_back_cie_z:
+      Description: "Reflectance Back CIE z"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_front_red:
+      Description: "Reflectance Front Red"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_front_green:
+      Description: "Reflectance Front Green"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_front_bblue:
+      Description: "Reflectance Front Blue"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_back_red:
+      Description: "Reflectance Back Red"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_back_green:
+      Description: "Reflectance Back Green"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    reflectance_back_bblue:
+      Description: "Reflectance Back Blue"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+
+SpectralCharacteristic:
+  Object Type: "Data Group"
+  Data Elements:
+    wavelength:
+      Description: "Wavelength"
+      Data Type: "Numeric"
+      Units: "m"
+      Constraints: ">0.0"
+    transmittance:
+      Description: "Transmittance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    front_side_reflectance:
+      Description: "Front Side Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    back_side_reflectance:
+      Description: "Back Side Reflectance"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+
+GasComponent:
+  Object Type: "Data Group"
+  Data Elements:
+    type:
+      Description: "Type of gas"
+      Data Type: "String"
+      Required: True
+    fraction:
+      Description: "Fraction"
+      Data Type: "Numeric"
+      Units: "-"
+      Constraints: [">=0.0", "<=1.0"]
+    

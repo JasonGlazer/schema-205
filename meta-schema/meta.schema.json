@@ -217,7 +217,7 @@
         "V",
         "rev/s",
         "W/m-K",
-        "degrees",
+        "radians",
         "lux"
      ]
     },

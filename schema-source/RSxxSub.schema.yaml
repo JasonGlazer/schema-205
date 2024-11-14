@@ -49,20 +49,25 @@ Performance:
       Description: "The total thickness of the glazing."
       Data Type: "Numeric"
       Units: "m"
+      Required: True
     conductivity:
       Description: "Overall conductivity of the glazing."
       Data Type: "Numeric"
       Units: "W/m-K"
+      Required: True
     front_side_infrared_emissivity:
       Description: "Front Side Infrared Emissivity"
       Data Type: "Numeric"
       Units: "-"
+      Required: True
       Constraints: [">=0.0", "<=1.0"]
     back_side_infrared_emissivity:
       Description: "Back Side Infrared Emissivity"
       Data Type: "Numeric"
       Units: "-"
+      Required: False
       Constraints: [">=0.0", "<=1.0"]
+      Notes: "When this data element is missing, the value is assumed to be the same as the front_side_infrared_emissivity."
     performance_map_optical:
       Description: "Data group describing optical performance over a range of conditions. A list is provided that corresponds to the lists of wavelength_integration, is_incidence_hemispherical, and is_emergence_hemispherical."
       Data Type: "[{PerformanceMapOptical}]"
@@ -209,6 +214,6 @@ LookupVariablesOptical:
       Data Type: "[Numeric][1..]"
       Units: "-"
       Constraints: [">=0.0", "<=1.0"]
-      Required: True
-      Notes: "Reflectance is the ratio between the irradiance reflected by the sample and the irradiance on the sample."
+      Required: False
+      Notes: "Reflectance is the ratio between the irradiance reflected by the sample and the irradiance on the sample. When this data element is not provided, it value is assumed to be the same as the front_side_reflectance"
 

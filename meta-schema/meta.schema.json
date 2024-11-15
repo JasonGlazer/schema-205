@@ -218,7 +218,11 @@
         "rev/s",
         "W/m-K",
         "radians",
-        "lux"
+        "lux",
+        "kg/m3",
+        "g/mol",
+        "J/kg-K",
+        "kg/m-s"
      ]
     },
     "RatingUnits": {

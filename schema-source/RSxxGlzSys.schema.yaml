@@ -1,0 +1,151 @@
+Schema:
+  Object Type: "Meta"
+  References:
+    - "ASHRAE205"
+    - "RSxxSub"
+  Title: "Fenestration - Glazing System"
+  Description: "Schema for ASHRAE 205 annex RSxxGlzSys: Glazing System"
+  Version: "2.0.0"
+  Root Data Group: "RSxxGlzSys"
+
+# Data Groups
+RSxxGlzSys:
+  Object Type: "Data Group"
+  Data Elements:
+    metadata:
+      Description: "Metadata data group"
+      Data Type: "{Metadata}"
+      Constraints: "schema=RSxxGlzSys"
+      Required: True
+    description:
+      Description: "Data group describing product and rating information"
+      Data Type: "{Description}"
+    performance:
+      Description: "Data group containing performance information"
+      Data Type: "{Performance}"
+      Required: True
+
+Description:
+  Object Type: "Data Group"
+  Data Elements:
+    product_information:
+      Description: "Data group describing product information"
+      Data Type: "{ProductInformation}"
+
+ProductInformation:
+  Object Type: "Data Group"
+  Data Elements:
+    manufacturer:
+      Description: "Package manufacturer name"
+      Data Type: "String"
+    model_number:
+      Description: "Package model number"
+      Data Type: "Pattern"
+      Notes: "Pattern shall match all model numbers that can be represented by the representation"
+
+Performance:
+  Object Type: "Data Group"
+  Data Elements:
+    levels:
+      Description: "List of substrates, films, cavities"
+      Data Type: "[{Level}]"
+      Required: True
+# the following did not work:      Data Type: "[({RSxxSub}, {Film}, {Cavity})]"
+      Notes: "List in order from front side (outside) to back side (inside)."
+
+Level:
+  Object Type: "Data Group"
+  Data Elements:
+    level:
+      Description: "A substrate, film, coating, or cavity"
+      Data Type: "({RSxxSub}, {Film}, {Cavity})"
+      Required: True
+    level_type:
+      Description: "Indicates the type of layer being referenced"
+      Data Type: "<LevelOptions>"
+      Required: True
+      Notes: "is this even needed or is their a way to determine this?"
+
+LevelOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    GLAZING_SUBSTRATE:
+      Display Text: "Glazing substrate"
+    FILM_OR_COATING:
+      Display Text: "Film or coating"
+    CAVITY:
+      Display Text: "Cavity"
+    OTHER:
+      Display Text: "other"
+
+Film:
+  Object Type: "Data Group"
+  Data Elements:
+    name:
+      Description: "name"
+      Data Type: "String"
+      Notes: "this is just a stand in for now. It will be very similar to RSxxSub but without angle sensitivity."
+
+Cavity:
+  Object Type: "Data Group"
+  Data Elements:
+    thickness:
+      Description: "The total thickness of the cavity."
+      Data Type: "Numeric"
+      Units: "m"
+      Required: True
+    fill:
+      Description: "Fill"
+      Data Type: "<FillOptions>"
+      Required: True
+    conductivity:
+      Description: "Conductivity"
+      Data Type: "Numeric"
+      Units: "W/m-K"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+    viscosity:
+      Description: "Viscosity"
+      Data Type: "Numeric"
+      Units: "kg/m-s"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+    specific_heat:
+      Description: "Specific heat"
+      Data Type: "Numeric"
+      Units: "J/kg-K"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+    density:
+      Description: "Density"
+      Data Type: "Numeric"
+      Units: "kg/m3"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+    prandtl_number:
+      Description: "Prandtl_Number"
+      Data Type: "Numeric"
+      Required: if fill=OTHER
+    molecular_weight:
+      Description: "Molecular weight"
+      Data Type: "Numeric"
+      Units: "g/mol"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+
+FillOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    AIR:  
+      Display Text: "Air"
+    ARGON:
+      Display Text: "Argon"
+    KRYPTON:
+      Display Text: "Krypton"
+    XENON:
+      Display Text: "Xenon"
+    VACUUM:  
+      Display Text: "Vacuum"
+    OTHER:
+      Display Text: "Other"
+

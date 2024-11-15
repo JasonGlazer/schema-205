@@ -215,8 +215,15 @@
         "m2-K/W",
         "Hz",
         "V",
-        "rev/s"
-      ]
+        "rev/s",
+        "W/m-K",
+        "radians",
+        "lux",
+        "kg/m3",
+        "g/mol",
+        "J/kg-K",
+        "kg/m-s"
+     ]
     },
     "RatingUnits": {
       "type": "string",

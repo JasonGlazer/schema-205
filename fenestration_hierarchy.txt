@@ -1,0 +1,23 @@
+205 Fenestration Schema Hierarchy
+---------------------------------
+
+RSxxFenSys Fenestration System
+
+     RSxxGlzSys Glazing System  *Draft*
+
+         List:
+             RSxxSub Glazing Substrate *Draft*
+             RSxxFilm Glazing Film or Coating
+             Cavities
+                 RSxxAttach Window Attachment 
+
+     RSxxSpacer
+
+     List:
+         RSxxFrameComp - Frame Component  
+
+     RSxxAttach Window Attachment
+
+     Ratings
+
+     Dimensions

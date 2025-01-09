@@ -50,8 +50,8 @@ Performance:
       Data Type: "Numeric"
       Units: "m"
       Required: True
-    conductivity:
-      Description: "Overall conductivity of the glazing."
+    thermal_conductivity:
+      Description: "Overall thermal conductivity of the glazing."
       Data Type: "Numeric"
       Units: "W/m-K"
       Required: True
@@ -68,6 +68,11 @@ Performance:
       Required: False
       Constraints: [">=0.0", "<=1.0"]
       Notes: "When this data element is missing, the value is assumed to be the same as the front_side_infrared_emissivity."
+    is_coated:
+      Description: "Indicates that the front side of the glass has a coating or applied film"
+      Data Type: "Boolean"
+      Required: True
+      Notes: "The properties inculde the effect of the coating or film."
     performance_map_optical:
       Description: "Data group describing optical performance over a range of conditions. A list is provided that corresponds to the lists of wavelength_integration, is_incidence_hemispherical, and is_emergence_hemispherical."
       Data Type: "[{PerformanceMapOptical}]"

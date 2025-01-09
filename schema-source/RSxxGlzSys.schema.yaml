@@ -1,0 +1,261 @@
+Schema:
+  Object Type: "Meta"
+  References:
+    - "ASHRAE205"
+    - "RSxxSub"
+  Title: "Fenestration - Glazing System"
+  Description: "Schema for ASHRAE 205 annex RSxxGlzSys: Glazing System"
+  Version: "2.0.0"
+  Root Data Group: "RSxxGlzSys"
+
+# Data Groups
+RSxxGlzSys:
+  Object Type: "Data Group"
+  Data Elements:
+    metadata:
+      Description: "Metadata data group"
+      Data Type: "{Metadata}"
+      Constraints: "schema=RSxxGlzSys"
+      Required: True
+    description:
+      Description: "Data group describing product and rating information"
+      Data Type: "{Description}"
+    performance:
+      Description: "Data group containing performance information"
+      Data Type: "{Performance}"
+      Required: True
+
+Description:
+  Object Type: "Data Group"
+  Data Elements:
+    product_information:
+      Description: "Data group describing product information"
+      Data Type: "{ProductInformation}"
+
+ProductInformation:
+  Object Type: "Data Group"
+  Data Elements:
+    manufacturer:
+      Description: "Package manufacturer name"
+      Data Type: "String"
+    model_number:
+      Description: "Package model number"
+      Data Type: "Pattern"
+      Notes: "Pattern shall match all model numbers that can be represented by the representation"
+
+Performance:
+  Object Type: "Data Group"
+  Data Elements:
+    levels:
+      Description: "List of substrates, films, cavities"
+      Data Type: "[{Level}]"
+      Required: True
+# the following did not work:      Data Type: "[({RSxxSub}, {Film}, {Cavity})]"
+      Notes: "List in order from front side (outside) to back side (inside)."
+    color_transmittance:
+      Description: "Color characterization of the irradiance transmitted through a component"
+      Data Type: "{ColorTransmittance}"
+    color_reflectance:
+      Description: "Color characterization of the irradiance reflected by a component"
+      Data Type: "{ColorReflectance}"
+
+Level:
+  Object Type: "Data Group"
+  Data Elements:
+    level:
+      Description: "A substrate, film, coating, or cavity"
+      Data Type: "({RSxxSub}, {FutureRSxxFilm}, {Cavity})"
+      Required: True
+    level_type:
+      Description: "Indicates the type of layer being referenced"
+      Data Type: "<LevelOptions>"
+      Required: True
+      Notes: "is this even needed or is their a way to determine this?"
+
+LevelOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    GLAZING_SUBSTRATE:
+      Display Text: "Glazing substrate"
+    FILM_OR_COATING:
+      Display Text: "Film or coating"
+    CAVITY:
+      Display Text: "Cavity"
+    OTHER:
+      Display Text: "other"
+
+FutureRSxxFilm:
+  Object Type: "Data Group"
+  Data Elements:
+    name:
+      Description: "name"
+      Data Type: "String"
+      Notes: "this is just a stand in for now. It will be very similar to RSxxSub but without angle sensitivity."
+
+Cavity:
+  Object Type: "Data Group"
+  Data Elements:
+    thickness:
+      Description: "The total thickness of the cavity."
+      Data Type: "Numeric"
+      Units: "m"
+      Required: True
+    fill:
+      Description: "Fill"
+      Data Type: "<FillOptions>"
+      Required: True
+    between_glass_attachment:
+      Description: "Window attachment that located in the cavity"
+      Data Type: "{FutureRSxxAttach}"
+      Notes: "This is referencing an RS that has not yet been developed but will represent blinds, shades, etc. that are located between the panes of glass in the cavity."
+    conductivity:
+      Description: "Conductivity"
+      Data Type: "Numeric"
+      Units: "W/m-K"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+    viscosity:
+      Description: "Viscosity"
+      Data Type: "Numeric"
+      Units: "kg/m-s"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+    specific_heat:
+      Description: "Specific heat"
+      Data Type: "Numeric"
+      Units: "J/kg-K"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+    density:
+      Description: "Density"
+      Data Type: "Numeric"
+      Units: "kg/m3"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+    prandtl_number:
+      Description: "Prandtl_Number"
+      Data Type: "Numeric"
+      Required: if fill=OTHER
+    molecular_weight:
+      Description: "Molecular weight"
+      Data Type: "Numeric"
+      Units: "g/mol"
+      Constraints: ">=0"
+      Required: if fill=OTHER
+
+FillOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    AIR:  
+      Display Text: "Air"
+    ARGON:
+      Display Text: "Argon"
+    KRYPTON:
+      Display Text: "Krypton"
+    XENON:
+      Display Text: "Xenon"
+    VACUUM:  
+      Display Text: "Vacuum"
+    OTHER:
+      Display Text: "Other"
+
+FutureRSxxAttach:
+  Object Type: "Data Group"
+  Data Elements:
+    name:
+      Description: "name"
+      Data Type: "String"
+      Notes: "This is just a placeholder. This is referencing an RS that has not yet been developed but will represent blinds, shades, etc."
+
+ColorTransmittance:
+  Object Type: "Data Group"
+  Data Elements:
+    color_rendering_indices:
+      Description: "List of color rendering indices"
+      Data Type: "[{ColorRenderingIndex}]"
+      Notes: "The Color Rendering Index (CRI) indicates how well the transmitted radiation matches daylight regarding the rendering of colors. `Ra` considers one transmission of the building envelope. `Raout-in` considers two transmissions of the building envelope."
+    cielab_colors:
+      Description: "List of CIELAB colors"
+      Data Type: "[{CielabColors}]"
+      Notes: "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) define the color which is reflected by a component or transmitted through a component."
+
+ColorReflectance:
+  Object Type: "Data Group"
+  Data Elements:
+    cielab_colors:
+      Description: "List of CIELAB colors"
+      Data Type: "[{CielabColors}]"
+      Notes: "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) define the color which is reflected by a component or transmitted through a component."
+
+ColorRenderingIndex:
+  Object Type: "Data Group"
+  Data Elements:
+    ra: 
+      Description: "Color Rendering Index CRI Ra value or Ra-inout."
+      Data Type: "Numeric"
+      Required: True
+      Constraints: ">=0, <=100"
+      Notes: "If is_ra_in_out is False, the Color Rendering Index as it is defined by EN 410 based on CIE 13. 3-1995, Method of Measuring and Specifying Colour RenderingProperties of Light Sources, 1995, ISBN: 9783900734572. It indicates how well colors are rendered after one transmission of the building envelope. For example, how the color of an object inside a building is perceived from within the building.  If is_ra_in_out is True, The Color Rendering Index Raout-in is defined by T.E. Kuhn, H.R. Wilson, J. Hanek, M. Santamouris, Ra out-in Color rendering of objects in a daylit room viewed from outdoors, Energy and Buildings 118 (2016) 93–98, https://doi.org/10.1016/j.enbuild.2016.02.019. It indicates how well colors are rendered after two transmissions of the building envelope. For example, how the color of an object inside the building is percived from the outside."
+    is_ra_in_out:
+      Description: "If true ra is observed from outside the building, if false observed from inside the building"
+      Data Type: "Boolean"
+      Required: True
+      Notes: "The properties inculde the effect of the coating or film."
+    observer: 
+      Description: "Observer"
+      Data Type: "{ObserverOptions}"
+      Required: True
+      Notes: "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
+    illuminant: 
+      Description: "Illuminant"
+      Data Type: "{IlluminantOptions}"
+      Required: True
+      Notes: "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+
+CielabColors:
+  Object Type: "Data Group"
+  Data Elements:
+    l_star:
+      Description: "L* (lStar) defines the lightness of the color."
+      Data Type: "Numeric"
+      Required: True
+    a_star: 
+      Description: "a* (aStar) defines the color between green and red."
+      Data Type: "Numeric"
+      Required: True
+    b_star: 
+      Description: "b* (bStar) defines the color between blue and yellow."
+      Data Type: "Numeric"
+      Required: True
+    observer: 
+      Description: "Observer"
+      Data Type: "{ObserverOptions}"
+      Required: True
+      Notes: "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
+    illuminant: 
+      Description: "Illuminant"
+      Required: True
+      Data Type: "{IlluminantOptions}"
+      Notes: "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+
+ObserverOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    TWO_DEGREES:  
+      Display Text: "Two degrees"
+      Notes: "The CIE 1931 standard colorimetric observer."
+    TEN_DEGREES:
+      Display Text: "Ten degrees"
+      Notes: "The CIE 1964 standard colorimetric observer."
+    OTHER:
+      Display Text: "Other"
+
+IlluminantOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    A:
+      Display Text: "CIE standard illuminant A"
+    D65:
+      Display Text: "CIE standard illuminant D65"
+    OTHER:
+      Display Text: "Other"

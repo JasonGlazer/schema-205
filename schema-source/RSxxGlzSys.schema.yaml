@@ -58,7 +58,7 @@ Level:
   Data Elements:
     level:
       Description: "A substrate, film, coating, or cavity"
-      Data Type: "({RSxxSub}, {Film}, {Cavity})"
+      Data Type: "({RSxxSub}, {FutureRSxxFilm}, {Cavity})"
       Required: True
     level_type:
       Description: "Indicates the type of layer being referenced"
@@ -78,7 +78,7 @@ LevelOptions:
     OTHER:
       Display Text: "other"
 
-Film:
+FutureRSxxFilm:
   Object Type: "Data Group"
   Data Elements:
     name:
@@ -98,6 +98,10 @@ Cavity:
       Description: "Fill"
       Data Type: "<FillOptions>"
       Required: True
+    between_glass_attachment:
+      Description: "Window attachment that located in the cavity"
+      Data Type: "{FutureRSxxAttach}"
+      Notes: "This is referencing an RS that has not yet been developed but will represent blinds, shades, etc. that are located between the panes of glass in the cavity."
     conductivity:
       Description: "Conductivity"
       Data Type: "Numeric"
@@ -149,3 +153,10 @@ FillOptions:
     OTHER:
       Display Text: "Other"
 
+FutureRSxxAttach:
+  Object Type: "Data Group"
+  Data Elements:
+    name:
+      Description: "name"
+      Data Type: "String"
+      Notes: "This is just a placeholder. This is referencing an RS that has not yet been developed but will represent blinds, shades, etc."

@@ -52,6 +52,12 @@ Performance:
       Required: True
 # the following did not work:      Data Type: "[({RSxxSub}, {Film}, {Cavity})]"
       Notes: "List in order from front side (outside) to back side (inside)."
+    color_transmittance:
+      Description: "Color characterization of the irradiance transmitted through a component"
+      Data Type: "{ColorTransmittance}"
+    color_reflectance:
+      Description: "Color characterization of the irradiance reflected by a component"
+      Data Type: "{ColorReflectance}"
 
 Level:
   Object Type: "Data Group"
@@ -160,3 +166,96 @@ FutureRSxxAttach:
       Description: "name"
       Data Type: "String"
       Notes: "This is just a placeholder. This is referencing an RS that has not yet been developed but will represent blinds, shades, etc."
+
+ColorTransmittance:
+  Object Type: "Data Group"
+  Data Elements:
+    color_rendering_indices:
+      Description: "List of color rendering indices"
+      Data Type: "[{ColorRenderingIndex}]"
+      Notes: "The Color Rendering Index (CRI) indicates how well the transmitted radiation matches daylight regarding the rendering of colors. `Ra` considers one transmission of the building envelope. `Raout-in` considers two transmissions of the building envelope."
+    cielab_colors:
+      Description: "List of CIELAB colors"
+      Data Type: "[{CielabColors}]"
+      Notes: "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) define the color which is reflected by a component or transmitted through a component."
+
+ColorReflectance:
+  Object Type: "Data Group"
+  Data Elements:
+    cielab_colors:
+      Description: "List of CIELAB colors"
+      Data Type: "[{CielabColors}]"
+      Notes: "The three color coordinates L* (lStar), a* (aStar) and b* (bStar) defined by the International Commission on Illumination (CIE) define the color which is reflected by a component or transmitted through a component."
+
+ColorRenderingIndex:
+  Object Type: "Data Group"
+  Data Elements:
+    ra: 
+      Description: "Color Rendering Index CRI Ra value or Ra-inout."
+      Data Type: "Numeric"
+      Required: True
+      Constraints: ">=0, <=100"
+      Notes: "If is_ra_in_out is False, the Color Rendering Index as it is defined by EN 410 based on CIE 13. 3-1995, Method of Measuring and Specifying Colour RenderingProperties of Light Sources, 1995, ISBN: 9783900734572. It indicates how well colors are rendered after one transmission of the building envelope. For example, how the color of an object inside a building is perceived from within the building.  If is_ra_in_out is True, The Color Rendering Index Raout-in is defined by T.E. Kuhn, H.R. Wilson, J. Hanek, M. Santamouris, Ra out-in Color rendering of objects in a daylit room viewed from outdoors, Energy and Buildings 118 (2016) 93–98, https://doi.org/10.1016/j.enbuild.2016.02.019. It indicates how well colors are rendered after two transmissions of the building envelope. For example, how the color of an object inside the building is percived from the outside."
+    is_ra_in_out:
+      Description: "If true ra is observed from outside the building, if false observed from inside the building"
+      Data Type: "Boolean"
+      Required: True
+      Notes: "The properties inculde the effect of the coating or film."
+    observer: 
+      Description: "Observer"
+      Data Type: "{ObserverOptions}"
+      Required: True
+      Notes: "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
+    illuminant: 
+      Description: "Illuminant"
+      Data Type: "{IlluminantOptions}"
+      Required: True
+      Notes: "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+
+CielabColors:
+  Object Type: "Data Group"
+  Data Elements:
+    l_star:
+      Description: "L* (lStar) defines the lightness of the color."
+      Data Type: "Numeric"
+      Required: True
+    a_star: 
+      Description: "a* (aStar) defines the color between green and red."
+      Data Type: "Numeric"
+      Required: True
+    b_star: 
+      Description: "b* (bStar) defines the color between blue and yellow."
+      Data Type: "Numeric"
+      Required: True
+    observer: 
+      Description: "Observer"
+      Data Type: "{ObserverOptions}"
+      Required: True
+      Notes: "`twoDegrees` equals the CIE 1931 standard colorimetric observer. `tenDegrees` equals the CIE 1964 standard colorimetric observer. The observers differ in the solid angle which they consider."
+    illuminant: 
+      Description: "Illuminant"
+      Required: True
+      Data Type: "{IlluminantOptions}"
+      Notes: "The illuminant which is used to determine the color coordinates. `A` equals the CIE standard illuminant A. `D65` equals the CIE standard illuminant D65."
+
+ObserverOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    TWO_DEGREES:  
+      Display Text: "Two degrees"
+      Notes: "The CIE 1931 standard colorimetric observer."
+    TEN_DEGREES:
+      Display Text: "Ten degrees"
+      Notes: "The CIE 1964 standard colorimetric observer."
+    OTHER:
+      Display Text: "Other"
+
+IlluminantOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    A:
+      Display Text: "CIE standard illuminant A"
+    D65:
+      Display Text: "CIE standard illuminant D65"
+    OTHER:
+      Display Text: "Other"
